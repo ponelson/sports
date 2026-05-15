@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Intelligence — Rights, Owners, Venues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f3ee;
+  --bg-elev: #fbfaf6;
+  --bg-row-alt: #f0eee8;
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --ink-2: #4a4a44;
+  --ink-3: #7e7e76;
+  --ink-4: #adada3;
+  --rule: #e0ddd2;
+  --rule-strong: #2c2c2a;
+  --accent: #b8400f;
+  --accent-soft: #f5e8d8;
+  --green: #2d5f2d;
+  --amber: #8a5a00;
+  --red: #9b2020;
+  --blue: #1a3a6e;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15140f;
+    --bg-elev: #1e1d18;
+    --bg-row-alt: #1a1914;
+    --paper: #1e1d18;
+    --ink: #f4f2e8;
+    --ink-2: #c8c5b8;
+    --ink-3: #8d8a7c;
+    --ink-4: #5a5850;
+    --rule: #2e2c25;
+    --rule-strong: #c8c5b8;
+    --accent: #e89060;
+    --accent-soft: #3a2a15;
+    --green: #98c098;
+    --amber: #e0b870;
+    --red: #e89090;
+    --blue: #95b0d8;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+}
+.mono { font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace; font-feature-settings: 'tnum'; }
+.serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+.masthead {
+  border-bottom: 2px solid var(--rule-strong);
+  padding: 18px 0 14px;
+  margin-bottom: 0;
+  background: var(--bg-elev);
+}
+.masthead-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 28px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;
+}
+.brand {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px; font-weight: 600; letter-spacing: -0.02em;
+  line-height: 1;
+}
+.brand-sub {
+  font-size: 11px; color: var(--ink-3); margin-top: 6px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.masthead-meta {
+  font-size: 11px; color: var(--ink-3);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  text-align: right;
+}
+.masthead-meta strong { color: var(--ink); font-weight: 500; }
+
+.tabs {
+  border-bottom: 0.5px solid var(--rule);
+  background: var(--bg-elev);
+}
+.tabs-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 28px;
+  display: flex; gap: 0;
+}
+.tab {
+  padding: 14px 22px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-3);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  background: none;
+  border-left: none; border-right: none; border-top: none;
+  font-family: inherit;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-bottom-color: var(--accent); }
+.tab-count {
+  display: inline-block;
+  background: var(--rule);
+  color: var(--ink-2);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 9px;
+  margin-left: 7px;
+  font-weight: 500;
+  vertical-align: 1px;
+}
+
+.container { max-width: 1280px; margin: 0 auto; padding: 24px 28px 60px; }
+
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0;
+  margin-bottom: 28px;
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.summary-stat {
+  padding: 14px 18px;
+  border-right: 0.5px solid var(--rule);
+}
+.summary-stat:last-child { border-right: none; }
+.summary-label {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.summary-value {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.summary-delta {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 0.5px solid var(--rule);
+}
+.controls input, .controls select {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.controls input:focus, .controls select:focus { border-color: var(--ink-2); }
+.controls input { flex: 1; min-width: 220px; }
+.filter-group {
+  display: flex; gap: 0;
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.filter-btn {
+  font-size: 11px;
+  padding: 0 12px;
+  height: 34px;
+  cursor: pointer;
+  color: var(--ink-3);
+  background: var(--paper);
+  border: none;
+  border-right: 0.5px solid var(--rule);
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.filter-btn:last-child { border-right: none; }
+.filter-btn:hover { background: var(--bg-row-alt); color: var(--ink); }
+.filter-btn.on { background: var(--ink); color: var(--bg); }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1.5px solid var(--rule-strong);
+  padding-bottom: 8px;
+  margin: 24px 0 0;
+}
+.section-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.section-meta {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table thead th {
+  background: var(--bg-elev);
+  text-align: left;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  user-select: none;
+}
+.data-table thead th:hover { color: var(--ink); }
+.data-table thead th.sortable::after {
+  content: '↕';
+  margin-left: 4px;
+  opacity: 0.35;
+  font-size: 10px;
+}
+.data-table thead th.sort-asc::after { content: '↑'; opacity: 1; color: var(--accent); }
+.data-table thead th.sort-desc::after { content: '↓'; opacity: 1; color: var(--accent); }
+.data-table thead th.num { text-align: right; }
+
+.data-table tbody tr {
+  border-bottom: 0.5px solid var(--rule);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.data-table tbody tr:nth-child(even) { background: var(--bg-row-alt); }
+.data-table tbody tr:hover { background: var(--accent-soft); }
+.data-table tbody tr.expanded { background: var(--accent-soft); }
+.data-table tbody td {
+  padding: 9px 12px;
+  vertical-align: top;
+}
+.data-table tbody td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-feature-settings: 'tnum'; }
+.data-table tbody td.primary { font-weight: 500; color: var(--ink); }
+.data-table tbody td.secondary { color: var(--ink-2); }
+.data-table tbody td .sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+
+.league-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: var(--rule);
+  color: var(--ink-2);
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-right: 4px;
+}
+.cat-marker {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 6px;
+}
+
+.exp-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}
+.exp-urgent { background: rgba(155, 32, 32, 0.12); color: var(--red); }
+.exp-soon { background: rgba(138, 90, 0, 0.14); color: var(--amber); }
+.exp-ok { background: rgba(45, 95, 45, 0.12); color: var(--green); }
+
+.detail-row {
+  display: none;
+  background: var(--paper);
+}
+.detail-row.open { display: table-row; }
+.detail-row td {
+  padding: 0 0 0 0 !important;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule-strong) !important;
+}
+.detail-content {
+  padding: 20px 28px 24px;
+  border-left: 3px solid var(--accent);
+  background: var(--paper);
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 40px;
+}
+.detail-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+.detail-block { min-width: 0; }
+.detail-label {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 0.5px solid var(--rule);
+}
+.detail-value { font-size: 13px; color: var(--ink); line-height: 1.55; }
+.detail-list { list-style: none; }
+.detail-list li {
+  padding: 5px 0;
+  font-size: 13px;
+  border-bottom: 0.5px dashed var(--rule);
+}
+.detail-list li:last-child { border-bottom: none; }
+.detail-list li .net { color: var(--ink-3); font-size: 11px; margin-left: 6px; }
+
+.note-block {
+  margin-top: 20px;
+  padding: 12px 14px;
+  background: var(--bg-elev);
+  border-left: 2px solid var(--ink-4);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.note-block strong { font-style: normal; color: var(--ink); font-weight: 600; }
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-style: italic;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-strong);
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+footer h4 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .detail-grid, .detail-grid.three-col { grid-template-columns: 1fr; gap: 20px; }
+  .container { padding: 16px 14px 40px; }
+  .masthead-inner { padding: 0 14px; }
+  .tabs-inner { padding: 0 14px; overflow-x: auto; }
+  .tab { padding: 12px 14px; font-size: 11px; }
+  .data-table { font-size: 12px; }
+  .data-table thead th, .data-table tbody td { padding: 8px 6px; }
+  footer .footer-grid { grid-template-columns: 1fr; }
+  .summary-strip { grid-template-columns: 1fr 1fr; }
+  .summary-stat { border-right: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); }
+  .controls input { min-width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="brand">SPORTS INTELLIGENCE</div>
+      <div class="brand-sub">Media rights · Ownership · Venues</div>
+    </div>
+    <div class="masthead-meta">
+      Edition <strong>Vol. 1, No. 1</strong><br>
+      Updated <strong>May 2026</strong>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-view="rights">Media rights<span class="tab-count" id="count-rights">—</span></button>
+    <button class="tab" data-view="owners">Team owners<span class="tab-count" id="count-owners">—</span></button>
+    <button class="tab" data-view="venues">Venues &amp; stadiums<span class="tab-count" id="count-venues">—</span></button>
+  </div>
+</nav>
+
+<main class="container">
+
+<section id="view-rights" class="view active">
+  <div class="summary-strip" id="rights-summary"></div>
+  <div class="controls">
+    <input type="text" id="rights-search" placeholder="Search leagues, broadcasters, terms...">
+    <select id="rights-sort">
+      <option value="val">Sort: deal value</option>
+      <option value="exp">Sort: expiry year</option>
+      <option value="name">Sort: alphabetical</option>
+    </select>
+    <div class="filter-group" id="rights-filters"></div>
+  </div>
+  <div class="section-header">
+    <div class="section-title">League rights deals</div>
+    <div class="section-meta">Click row for full broadcaster breakdown</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:24px"></th>
+        <th>League</th>
+        <th>Category</th>
+        <th class="num">Annual value</th>
+        <th class="num">Total deal</th>
+        <th class="num">Expires</th>
+      </tr>
+    </thead>
+    <tbody id="rights-tbody"></tbody>
+  </table>
+</section>
+
+<section id="view-owners" class="view">
+  <div class="summary-strip" id="owners-summary"></div>
+  <div class="controls">
+    <input type="text" id="owners-search" placeholder="Search owners, teams, leagues...">
+    <select id="owners-sort">
+      <option value="val">Sort: team value</option>
+      <option value="purchase">Sort: purchase price</option>
+      <option value="year-new">Sort: most recent purchase</option>
+      <option value="year-old">Sort: longest tenure</option>
+      <option value="name">Sort: alphabetical</option>
+    </select>
+    <div class="filter-group" id="owners-filters"></div>
+  </div>
+  <div class="section-header">
+    <div class="section-title">Principal team ownership</div>
+    <div class="section-meta">Control stakes, purchase prices, minority partners</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:24px"></th>
+        <th>Team</th>
+        <th>League</th>
+        <th>Principal owner</th>
+        <th class="num">Year</th>
+        <th class="num">Purchase</th>
+        <th class="num">Current value</th>
+      </tr>
+    </thead>
+    <tbody id="owners-tbody"></tbody>
+  </table>
+</section>
+
+<section id="view-venues" class="view">
+  <div class="summary-strip" id="venues-summary"></div>
+  <div class="controls">
+    <input type="text" id="venues-search" placeholder="Search venues, cities, owners...">
+    <select id="venues-sort">
+      <option value="cost">Sort: construction cost</option>
+      <option value="year">Sort: newest</option>
+      <option value="year-old">Sort: oldest</option>
+      <option value="cap">Sort: capacity</option>
+      <option value="name">Sort: alphabetical</option>
+    </select>
+    <div class="filter-group" id="venues-filters"></div>
+  </div>
+  <div class="section-header">
+    <div class="section-title">Stadiums &amp; arenas</div>
+    <div class="section-meta">Owner, operator, naming rights, build cost</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:24px"></th>
+        <th>Venue</th>
+        <th>Primary tenant(s)</th>
+        <th>Owner type</th>
+        <th class="num">Built</th>
+        <th class="num">Cost</th>
+        <th class="num">Capacity</th>
+      </tr>
+    </thead>
+    <tbody id="venues-tbody"></tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Methodology</h4>
+      Values derived from public reporting through May 2026. Sources include Sportico, Forbes, CNBC team valuations, league announcements, SEC filings, press releases, and trade publications. Purchase prices for control stakes; minority deals noted separately where applicable.
+    </div>
+    <div>
+      <h4>Coverage</h4>
+      Scope #2: every team in NFL, NBA, WNBA, NHL, MLB, MLS, Premier League, plus top La Liga clubs, all Formula 1 constructors, headline NASCAR teams, UFC and WWE. Plus principal venues for these teams.
+    </div>
+    <div>
+      <h4>Limitations</h4>
+      Many minority owners (especially in NFL/NBA limited partnerships) are not publicly disclosed. Stadium "owner" reflects legal title; operating control may rest with team holding companies under long-term leases. Currency conversions reflect approximate USD as of May 2026.
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+const CATS = {
+  rights: [
+    {id:'all', label:'All'},
+    {id:'american', label:'American sports', color:'#1a3a6e'},
+    {id:'soccer', label:'Soccer', color:'#2d5f2d'},
+    {id:'motorsport', label:'Motorsport', color:'#b8400f'},
+    {id:'combat', label:'Combat', color:'#722f37'},
+    {id:'golf', label:'Golf', color:'#5a7d2a'},
+    {id:'tennis', label:'Tennis', color:'#8a5a8a'},
+    {id:'other', label:'Other', color:'#6b6b6b'},
+  ],
+  owners: [
+    {id:'all', label:'All leagues'},
+    {id:'NFL', label:'NFL'},
+    {id:'NBA', label:'NBA'},
+    {id:'NHL', label:'NHL'},
+    {id:'MLB', label:'MLB'},
+    {id:'MLS', label:'MLS'},
+    {id:'WNBA', label:'WNBA'},
+    {id:'EPL', label:'Premier League'},
+    {id:'LL', label:'La Liga'},
+    {id:'F1', label:'Formula 1'},
+    {id:'MotoGP', label:'MotoGP'},
+    {id:'SailGP', label:'SailGP'},
+    {id:'NASCAR', label:'NASCAR'},
+    {id:'COMBAT', label:'Combat'},
+  ],
+  venues: [
+    {id:'all', label:'All'},
+    {id:'NFL', label:'NFL'},
+    {id:'NBA', label:'NBA'},
+    {id:'NHL', label:'NHL'},
+    {id:'MLB', label:'MLB'},
+    {id:'MLS', label:'MLS'},
+    {id:'EPL', label:'EPL'},
+    {id:'F1', label:'F1'},
+  ],
+};
+
+const RIGHTS = [
+  {name:'NFL', sub:'National Football League', cat:'american', totalVal:110, annualVal:9.0, expiryYear:2033, total:'~$110B / 11 yrs', annual:'~$9B/yr', expires:'2033', domestic:['ESPN/ABC — MNF + 2 Super Bowls ($2.7B/yr)','Fox — Sunday NFC ($2.3B/yr)','CBS/Paramount+ — Sunday AFC ($2.1B/yr)','NBC/Peacock — SNF ($2.0B/yr)','Amazon Prime — TNF ($1.0B/yr, thru 2032)','YouTube TV — Sunday Ticket OOM ($2.0B/yr, thru 2029)','Netflix — Christmas Day games (~$150M/yr, thru 2026)'], intl:'ESPN International + DAZN; Sky / ITV / Channel 5 (UK)', note:'<strong>ESPN took 10% stake in NFL in exchange for NFL Network, RedZone, NFL Fantasy.</strong> Opt-out windows after 2029 (most partners) and 2030 (ESPN). $110B baseline; $126B including all add-ons.'},
+  {name:'NBA', sub:'National Basketball Association', cat:'american', totalVal:76, annualVal:6.9, expiryYear:2036, total:'$76B / 11 yrs', annual:'~$6.9B/yr', expires:'2025-26 thru 2035-36', domestic:['ESPN/ABC — 80 games, NBA Finals exclusive ($2.6B/yr)','NBC/Peacock — up to 100 games ($2.5B/yr)','Amazon Prime — 66 games ($1.9B/yr)'], intl:'NBA League Pass (global)', note:'<strong>TNT/WBD displaced after 35+ years.</strong> Disney\'s ABC retains exclusive NBA Finals rights.'},
+  {name:'WNBA', sub:"Women's National Basketball Association", cat:'american', totalVal:2.2, annualVal:0.20, expiryYear:2036, total:'$2.2B / 11 yrs', annual:'~$200M/yr', expires:'2036', domestic:['ESPN/ABC — 25+ games, Finals odd yrs from 2027','NBC/Peacock/USA — 50+ games, Finals 2026','Amazon Prime — 30 games, Finals alt. even yrs','CBS — 20 games','Ion TV — 50 Friday night games'], intl:'Various regional', note:'Up from <strong>~$50M/yr to ~$200M/yr</strong> — 4× increase. Revaluation option after 3 years.'},
+  {name:'NHL', sub:'National Hockey League', cat:'american', totalVal:4.375, annualVal:0.625, expiryYear:2028, total:'~$4.375B / 7 yrs', annual:'~$625M/yr', expires:'2027-28', domestic:['ESPN/ABC/ESPN+ — ~$400M/yr incl. Stanley Cup Finals','TNT/Max — ~$225M/yr'], intl:'Rogers/Sportsnet (Canada exclusive)', note:'Deal runs 2021-22 through 2027-28. <strong>New cycle expected to escalate sharply given NBA comparables.</strong>'},
+  {name:'MLB', sub:'Major League Baseball', cat:'american', totalVal:12.3, annualVal:1.75, expiryYear:2028, total:'~$12.3B / 7 yrs', annual:'~$1.75B/yr', expires:'2028', domestic:['Fox/FS1 — World Series + Sat games (~$729M/yr)','TBS — LCS + Tue games (~$470M/yr)','ESPN/ABC — weeknight + MLB.TV (2026-28)','NBC/Peacock — Sunday Night (2026-28)','Netflix — Opening Night + Home Run Derby','Apple TV+ — Friday games (~$85M/yr)','Roku — Sunday early games ($30M/yr)'], intl:'Various regional', note:'<strong>ESPN opted out of Sunday Night Baseball.</strong> 3-year bridge deal (ESPN/NBC/Netflix) covers 2026-28 before full renegotiation. Diamond Sports bankruptcy disrupted local RSN economics.'},
+  {name:'MLS', sub:'Major League Soccer', cat:'soccer', totalVal:1.0, annualVal:0.25, expiryYear:2029, total:'~$1B revised', annual:'~$250M/yr (2027-29)', expires:'2029', domestic:['Apple TV+ — exclusive global; in base sub from 2026'], intl:'Apple TV+ (global)', note:'Original 10-yr $2.5B deal (2023-32) <strong>revised in 2025 to end in 2029.</strong> Season Pass eliminated 2026 — all games in standard sub. New summer calendar from 2027.'},
+  {name:'Formula 1', sub:'FIA Formula One', cat:'motorsport', totalVal:0.75, annualVal:0.15, expiryYear:2030, total:'~$750M / 5 yrs', annual:'~$150M/yr', expires:'2030', domestic:['Apple TV+ — all races, qualifying, sprint (~$150M/yr)'], intl:'Sky Sports F1 (UK/Europe); Canal+ (France); F1 TV Pro', note:'Apple deal starts 2026, 5 years. <strong>ESPN was prior US partner at ~$85-90M/yr.</strong> Apple includes some free races in base app.'},
+  {name:'NASCAR', sub:'Cup Series', cat:'motorsport', totalVal:7.7, annualVal:1.1, expiryYear:2031, total:'$7.7B / 7 yrs', annual:'~$1.1B/yr', expires:'2031', domestic:['Fox/FS1 — 14 races incl. Daytona 500','Amazon Prime — 5 midseason races (streaming-only)','TNT/Max — 5 midseason races','NBC/USA — 14 races incl. playoffs','The CW — Xfinity Series ($115M/yr)'], intl:'Various regional', note:'Deal runs 2025-2031. <strong>Prior Fox/NBC deal was ~$820M/yr.</strong> First NASCAR Cup races on streaming-only platform (Amazon).'},
+  {name:'MotoGP', sub:'FIM Motorcycle Grand Prix', cat:'motorsport', totalVal:0, annualVal:0, expiryYear:2027, total:'Undisclosed (US: 3-yr Fox deal)', annual:'Undisclosed', expires:'~2027 (US)', domestic:['Fox Sports/FS1/FS2 — Sprint + GP races (multi-year deal from 2025)','Fox Business — select races'], intl:'TNT Sports/Discovery (UK/Europe); Canal+ (France); DAZN (select); MotoGP VideoPass (global DTC)', note:'<strong>Liberty Media completed €4.2B / $4.9B acquisition of Dorna Sports in July 2025</strong> (84% stake). MotoGP now owned by same company as Formula 1. Fox replaced TNT Sports/truTV as US partner in 2025. 22 races across 18 countries; global broadcast audience of hundreds of millions.'},
+  {name:'SailGP', sub:'Rolex SailGP Championship', cat:'motorsport', totalVal:0, annualVal:0, expiryYear:2027, total:'Undisclosed', annual:'Undisclosed', expires:'2027 (US)', domestic:['CBS/CBS Sports Network — 50+ hrs/yr; 9 CBS broadcast windows in 2026'], intl:'Various global per-territory; ~215M global broadcast audience', note:'<strong>League co-founded by Larry Ellison; 2-year extension signed Jan 2026 with CBS Sports (owned by son David Ellison via Paramount).</strong> First-ever multi-year US TV deal. 12 races/12 teams in 2025; expanding to 13+ in 2026. Race to Abu Dhabi drew 3.47M US viewers — <strong>most-watched sailing race in US history</strong>, surpassing 1992 America\'s Cup. Title partner Rolex thru 2034.'},
+  {name:'Olympics', sub:'Summer & Winter Games (IOC)', cat:'other', totalVal:10.75, annualVal:0, expiryYear:2036, total:'$7.75B + $3B ext.', annual:'Cycle-based', expires:'2036', domestic:['NBC/Peacock — all US platforms; strategic IOC partner'], intl:'Warner Bros. Discovery/Eurosport (Europe)', note:'Original $7.75B (2014-2032). <strong>March 2025: NBCU $3B extension for 2034 (Salt Lake City) and 2036.</strong>'},
+  {name:'UFC', sub:'Ultimate Fighting Championship', cat:'combat', totalVal:7.7, annualVal:1.1, expiryYear:2032, total:'$7.7B / 7 yrs', annual:'$1.1B/yr', expires:'~2032', domestic:['Paramount+/CBS — all 13 numbered + 30 Fight Nights'], intl:'Paramount expanding (LatAm, Australia)', note:'Deal starts Jan 2026. <strong>PPV model eliminated — all events in base Paramount+ sub.</strong> Prior ESPN deal ~$315-550M/yr.'},
+  {name:'WWE', sub:'World Wrestling Entertainment', cat:'combat', totalVal:6.5, annualVal:0.82, expiryYear:2034, total:'$5B Raw + $1.6B premium', annual:'~$820M/yr', expires:'2034 / 2031', domestic:['Netflix — Raw weekly ($500M/yr, 10-yr deal)','ESPN+ — premium events incl. WrestleMania ($1.6B/5yr)'], intl:'Netflix (global for Raw)', note:'WWE and UFC both TKO subsidiaries. <strong>"Pay-per-view is a thing of the past" — Mark Shapiro, TKO COO.</strong>'},
+  {name:'FIFA World Cup', sub:'2026 + next cycle', cat:'soccer', totalVal:0, annualVal:0, expiryYear:2026, total:'Undisclosed', annual:'Quadrennial', expires:'2026 — rights up after', domestic:['Fox/FS1 — English US rights','Telemundo/Peacock — Spanish US rights'], intl:'ITV+BBC (UK); beIN Sports (MENA); per-territory', note:'2026 hosted in US/Canada/Mexico. <strong>Post-2026 rights will be the most contested soccer property in history.</strong>'},
+  {name:'UEFA Champions League', sub:'+ Europa + Conference', cat:'soccer', totalVal:0, annualVal:0, expiryYear:2030, total:'Undisclosed', annual:'Undisclosed', expires:'~2029-30', domestic:['CBS/Paramount+ — exclusive English','Univision/TUDN — Spanish'], intl:'Sky + TNT (UK); DAZN; beIN; Canal+', note:'Paramount holds entire UEFA stack. Women\'s Champions League also CBS/Paramount+ thru 2030.'},
+  {name:'Premier League', sub:'English top flight', cat:'soccer', totalVal:2.7, annualVal:0.45, expiryYear:2028, total:'$2.7B US (6yr)', annual:'~$450M/yr US', expires:'2028 US / 2029 UK', domestic:['NBC/Peacock/USA — US ($2.7B, thru 2027-28)'], intl:'Sky Sports (UK) + TNT Sports (UK) + Amazon Prime (UK) thru 2028-29', note:'<strong>US NBC deal expires after 2027-28.</strong> Netflix actively eyeing US rights. Among next bidders: ESPN, Fox, CBS, Netflix, Amazon.'},
+  {name:'La Liga', sub:'Spanish Primera División', cat:'soccer', totalVal:1.4, annualVal:0.175, expiryYear:2029, total:'$1.4B / 8 yrs', annual:'~$175M/yr', expires:'2028-29', domestic:['ESPN+/ESPN/ABC — all 380 matches; El Clásico on ABC'], intl:'DAZN (select); various regional', note:'8-yr deal began 2021-22. <strong>Record-breaking US deal for an overseas soccer league when signed.</strong>'},
+  {name:'WSL', sub:"Women's Super League (England)", cat:'soccer', totalVal:0.082, annualVal:0.013, expiryYear:2030, total:'£65M / 5 yrs UK', annual:'~£13M/yr UK', expires:'2029-30', domestic:['CBS/Paramount+ — prior US English holder (historical)'], intl:'Sky (UK, 118 matches) + BBC (UK, 21 matches) thru 2030; IMG mgmt intl', note:'<strong>£65M UK deal — massive jump from ~£8M/yr.</strong> IMG now manages international rights from 2025-26.'},
+  {name:'PGA Tour', sub:'incl. FedEx Cup playoffs', cat:'golf', totalVal:6.3, annualVal:0.7, expiryYear:2030, total:'~$700M/yr / 9 yrs', annual:'~$700M/yr', expires:'2030', domestic:['CBS — 19 events incl. alt. FedEx Playoffs','NBC/Golf Channel — 8 events + early rounds','ESPN+ — PGA Tour Live streaming all events'], intl:'Discovery/GOLFTV (international streaming thru 2030)', note:'PGA Tour CEO signaled willingness to extend early. <strong>PGA Championship: CBS+ESPN thru 2030. Ryder Cup: NBC/USA thru 2033.</strong>'},
+  {name:'The Masters', sub:'Augusta National', cat:'golf', totalVal:0, annualVal:0, expiryYear:2031, total:'Undisclosed', annual:'Undisclosed', expires:'~2031', domestic:['CBS — weekend rounds (exclusive linear)','ESPN/ESPN+ — early rounds'], intl:'Various regional; BBC (UK partial)', note:'Augusta National negotiates independently. <strong>Deal terms are notoriously private.</strong>'},
+  {name:'LIV Golf', sub:'Saudi-backed tour', cat:'golf', totalVal:0, annualVal:0, expiryYear:2027, total:'Undisclosed', annual:'Undisclosed', expires:'2027', domestic:['Fox Sports/FS1 — US broadcast thru 2027'], intl:'CW Network; YouTube free in some markets', note:'PGA-LIV framework merger announced 2023 but stalled.'},
+  {name:'Ryder Cup', sub:'USA vs Europe', cat:'golf', totalVal:0, annualVal:0, expiryYear:2033, total:'Undisclosed', annual:'Biennial', expires:'2033', domestic:['NBC/USA Network — thru 2033 (extended for 2033 home event)'], intl:'Sky Sports (UK/Europe dominant)', note:'NBC extended 2 years specifically for <strong>2033 home Ryder Cup at Olympic Club, SF.</strong> 44 consecutive years on USA Network.'},
+  {name:'Wimbledon', sub:'All England Club', cat:'tennis', totalVal:0, annualVal:0, expiryYear:2035, total:'Undisclosed', annual:'Undisclosed', expires:'2035', domestic:['ESPN/ABC/ESPN+ — all rounds thru 2035'], intl:'BBC (UK FTA, listed event); Eurosport/Discovery', note:'BBC holds <strong>protected listed-event status</strong> in UK — cannot move entirely behind paywall.'},
+  {name:'US Open Tennis', sub:'USTA Grand Slam', cat:'tennis', totalVal:0, annualVal:0, expiryYear:2037, total:'Undisclosed', annual:'Undisclosed', expires:'2037', domestic:['ESPN/ABC/ESPN+ — all rounds thru 2037'], intl:'Eurosport/Discovery (Europe); Amazon Prime (UK)', note:'<strong>Longest-dated Grand Slam deal in the US.</strong> ESPN locked in well ahead of expiry.'},
+  {name:'French Open', sub:'Roland Garros', cat:'tennis', totalVal:0, annualVal:0, expiryYear:2034, total:'Undisclosed', annual:'Undisclosed', expires:'2034', domestic:['TNT/TBS/truTV/Max — all rounds thru 2034'], intl:'Eurosport/Discovery; France Télévisions (FTA partial)', note:'WBD/TNT holds US rights thru 2034 — kept despite losing NBA rights.'},
+  {name:'Australian Open', sub:'Tennis Australia', cat:'tennis', totalVal:0, annualVal:0, expiryYear:2031, total:'Undisclosed', annual:'Undisclosed', expires:'2031', domestic:['ESPN/ESPN+ — all rounds thru 2031'], intl:'Nine Network (Australia, host); Eurosport (Europe)', note:'Nine Network produces the host broadcast.'},
+  {name:'ATP/WTA Tours', sub:'Pro tennis tours', cat:'tennis', totalVal:0, annualVal:0, expiryYear:2032, total:'Undisclosed', annual:'Undisclosed', expires:'2032 (WTA) / 2028 (ATP)', domestic:['Tennis Channel/T2 — WTA thru 2032; ATP thru 2028'], intl:'Eurosport (Europe); Amazon Prime (UK, ATP); beIN (MENA)', note:'Tour rights separate from Grand Slams, which each negotiate independently.'},
+  {name:'NCAA March Madness', sub:"Men's basketball tournament", cat:'american', totalVal:8.8, annualVal:1.1, expiryYear:2032, total:'~$8.8B / 8 yrs', annual:'~$1.1B/yr', expires:'2032', domestic:['CBS — Final Four + championship (odd years)','TBS/TNT/truTV/Max — all rounds + Final Four (even years)'], intl:'Various', note:'Long-running CBS/Turner split. Combined value <strong>~$8.8B through 2032.</strong>'},
+  {name:'College Football', sub:'CFP + major conferences', cat:'american', totalVal:7.8, annualVal:1.3, expiryYear:2031, total:'~$7.8B+ across packages', annual:'~$1.3B+/yr', expires:'2031 CFP; varies', domestic:['ESPN/ABC — CFP exclusive, SEC, ACC','Fox/FS1 — Big Ten, Big 12','CBS/Paramount+ — SEC (shared)','NBC/Peacock — Big Ten (from 2023)','TNT/Max — CFP sublicensed'], intl:'ESPN International', note:'Highly fragmented. <strong>Big Ten deal alone ~$7.4B over 7 years.</strong>'},
+  {name:'Boxing', sub:'Major promotions', cat:'combat', totalVal:0, annualVal:0, expiryYear:2031, total:'Varies', annual:'Varies', expires:'Various', domestic:['DAZN — Matchroom (2031), Top Rank (2029)','Amazon Prime — PBC (thru 2028)','Paramount+/CBS — Zuffa Boxing (thru 2030)'], intl:'DAZN (global); Sky Sports (UK)', note:'<strong>PPV remains for biggest fights (Canelo etc.)</strong> regardless of broadcast deals.'},
+  {name:'IPL', sub:'Indian Premier League cricket', cat:'other', totalVal:6.2, annualVal:1.0, expiryYear:2027, total:'~$6.2B / 5 yrs', annual:'~$1.0B/yr', expires:'2027', domestic:['Star/JioStar (Disney+Hotstar India) — digital','Star Sports — linear TV (India)'], intl:'Willow TV (US/Canada); Sky (UK)', note:'<strong>Most valuable domestic cricket rights in the world.</strong> Digital and linear sold separately.'},
+];
+
+const OWNERS = [
+  {team:'Dallas Cowboys', league:'NFL', leagueColor:'#1a3a6e', owner:'Jerry Jones', ownerNet:'$15.0B', year:1989, yearStr:'1989', purchaseVal:0.14, purchase:'$140M', value:12.8, valueStr:'$12.8B', minority:['Family (Stephen Jones, Charlotte Jones Anderson, Jerry Jones Jr.)'], note:'The most valuable franchise in pro sports. Jones has rejected offers approaching $15B. Family runs nearly every aspect of operations.'},
+  {team:'Los Angeles Rams', league:'NFL', leagueColor:'#1a3a6e', owner:'Stan Kroenke', ownerNet:'$21.3B', year:2010, yearStr:'2010 (full)', purchaseVal:0.75, purchase:'~$750M', value:10.5, valueStr:'$10.5B', minority:['Kroenke Sports & Entertainment (KSE)'], note:'Kroenke also owns Arsenal FC, Colorado Avalanche, Denver Nuggets, Colorado Rapids. Built SoFi Stadium privately for $5.5B.'},
+  {team:'New York Giants', league:'NFL', leagueColor:'#1a3a6e', owner:'John Mara / Steve Tisch families', ownerNet:'—', year:1925, yearStr:'1925 (Mara)', purchaseVal:0.0005, purchase:'$500', value:10.5, valueStr:'$10.5B', minority:['Julia Koch family (10%, 2025 at $10.5B val.)'], note:'Founded by Tim Mara in 1925 for $500. Julia Koch\'s 2025 stake purchase <strong>set the all-time record valuation</strong> for a sports team.'},
+  {team:'New England Patriots', league:'NFL', leagueColor:'#1a3a6e', owner:'Robert Kraft', ownerNet:'$11.1B', year:1994, yearStr:'1994', purchaseVal:0.172, purchase:'$172M', value:9.0, valueStr:'$9.0B', minority:['Sixth Street Partners (8%, 2025, at $9B val.)'], note:'First major NFL PE investment after 2024 rule change. Kraft family retains 90%+. Sixth Street also holds stakes in Real Madrid, Barcelona, Spurs.'},
+  {team:'San Francisco 49ers', league:'NFL', leagueColor:'#1a3a6e', owner:'Jed York / DeBartolo-York family', ownerNet:'—', year:1977, yearStr:'1977', purchaseVal:0.017, purchase:'$17M', value:8.5, valueStr:'$8.5B', minority:['Multiple LP stakes sold 2025'], note:'York family inherited from Eddie DeBartolo Jr. (banned by NFL in 1999). Multiple LP sales at $8B+ valuation in 2025.'},
+  {team:'New York Jets', league:'NFL', leagueColor:'#1a3a6e', owner:'Woody Johnson', ownerNet:'$3.7B', year:2000, yearStr:'2000', purchaseVal:0.635, purchase:'$635M', value:7.5, valueStr:'$7.5B', minority:['Johnson family'], note:'Johnson & Johnson heir. Served as US Ambassador to UK 2017-2021.'},
+  {team:'Chicago Bears', league:'NFL', leagueColor:'#1a3a6e', owner:'McCaskey family (George McCaskey)', ownerNet:'—', year:1920, yearStr:'1920 (Halas)', purchaseVal:0.0001, purchase:'$100', value:8.2, valueStr:'$8.2B', minority:['2% LP stake sold at $8.8B val. in 2025'], note:'Founded by George Halas. Virginia Halas McCaskey passed in Feb 2025 at age 102 — longest-tenured owner in major US sports. Son George took over.'},
+  {team:'Las Vegas Raiders', league:'NFL', leagueColor:'#1a3a6e', owner:'Mark Davis', ownerNet:'$2.2B', year:2011, yearStr:'2011 (inherited)', purchaseVal:0, purchase:'Inherited', value:7.7, valueStr:'$7.7B', minority:['Tom Brady (minority, approved 2025)','Egon Durban (Silver Lake)'], note:'Inherited from father Al Davis. Brady approval finalized 2025 — high-profile minority partner.'},
+  {team:'Philadelphia Eagles', league:'NFL', leagueColor:'#1a3a6e', owner:'Jeffrey Lurie', ownerNet:'$5.8B', year:1994, yearStr:'1994', purchaseVal:0.185, purchase:'$185M', value:7.8, valueStr:'$7.8B', minority:['Multiple LP partners (2025 sales at $8B+ val.)'], note:'Documentary filmmaker background. Eagles won Super Bowl LIX in February 2025.'},
+  {team:'Miami Dolphins', league:'NFL', leagueColor:'#1a3a6e', owner:'Stephen Ross', ownerNet:'$11.6B', year:2009, yearStr:'2009', purchaseVal:1.1, purchase:'$1.1B', value:7.5, valueStr:'$7.5B', minority:['Ares Management (10%, at $8.1B val., 2025)','Other LPs at similar valuation'], note:'Ross declined offers up to $15B (including Hard Rock Stadium + F1 Miami Grand Prix). Founder of Related Companies.'},
+  {team:'Washington Commanders', league:'NFL', leagueColor:'#1a3a6e', owner:'Josh Harris (Harris Blitzer Sports)', ownerNet:'$10.5B', year:2023, yearStr:'2023', purchaseVal:6.05, purchase:'$6.05B', value:7.6, valueStr:'$7.6B', minority:['Magic Johnson','20+ limited partners'], note:'Record full-control sale price at the time. Harris also owns 76ers, Devils, Crystal Palace minority. Apollo co-founder.'},
+  {team:'Pittsburgh Steelers', league:'NFL', leagueColor:'#1a3a6e', owner:'Rooney family (Art Rooney II)', ownerNet:'—', year:1933, yearStr:'1933', purchaseVal:0.0025, purchase:'$2,500', value:6.5, valueStr:'$6.5B', minority:['Family-controlled since 1933'], note:'One of the longest unchanged ownership groups in pro sports. 6 Super Bowl titles.'},
+  {team:'Denver Broncos', league:'NFL', leagueColor:'#1a3a6e', owner:'Walton-Penner family', ownerNet:'$233B (Walton fam.)', year:2022, yearStr:'2022', purchaseVal:4.65, purchase:'$4.65B', value:6.4, valueStr:'$6.4B', minority:['Lewis Hamilton','Condoleezza Rice','Mellody Hobson'], note:'Rob Walton (Walmart heir) leads group. Was the record NFL sale price until Commanders in 2023.'},
+  {team:'Atlanta Falcons', league:'NFL', leagueColor:'#1a3a6e', owner:'Arthur Blank', ownerNet:'$8.4B', year:2002, yearStr:'2002', purchaseVal:0.545, purchase:'$545M', value:6.35, valueStr:'$6.35B', minority:['Sold 10% stake at $3B val. (2019)'], note:'Home Depot co-founder. Also owns Atlanta United (MLS) and Mercedes-Benz Stadium.'},
+  {team:'Baltimore Ravens', league:'NFL', leagueColor:'#1a3a6e', owner:'Steve Bisciotti', ownerNet:'$7.1B', year:2004, yearStr:'2004 (full)', purchaseVal:0.6, purchase:'$600M total', value:6.1, valueStr:'$6.1B', minority:[], note:'Founder of Aerotek staffing. Bought initial 49% in 2000, full control in 2004.'},
+  {team:'Buffalo Bills', league:'NFL', leagueColor:'#1a3a6e', owner:'Terry & Kim Pegula', ownerNet:'$7.7B', year:2014, yearStr:'2014', purchaseVal:1.4, purchase:'$1.4B', value:5.95, valueStr:'$5.95B', minority:['Arctos Partners (10%, 2024)'], note:'Pegulas also own Buffalo Sabres (NHL). One of first NFL teams to sell to PE after 2024 rule change.'},
+  {team:'Carolina Panthers', league:'NFL', leagueColor:'#1a3a6e', owner:'David Tepper', ownerNet:'$22.2B', year:2018, yearStr:'2018', purchaseVal:2.3, purchase:'$2.3B', value:5.7, valueStr:'$5.7B', minority:[], note:'Appaloosa Management founder. Was a record NFL sale price at the time. Also owns Charlotte FC (MLS).'},
+  {team:'Cincinnati Bengals', league:'NFL', leagueColor:'#1a3a6e', owner:'Mike Brown', ownerNet:'$1.0B', year:1991, yearStr:'1991 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.5, valueStr:'$5.5B', minority:['Family-controlled'], note:'Inherited from father Paul Brown who co-founded both Bengals and Browns.'},
+  {team:'Cleveland Browns', league:'NFL', leagueColor:'#1a3a6e', owner:'Jimmy & Dee Haslam', ownerNet:'$9.6B', year:2012, yearStr:'2012', purchaseVal:1.1, purchase:'$1.1B', value:5.6, valueStr:'$5.6B', minority:['Haslam Sports Group'], note:'Pilot Flying J truck stop chain. Also own Columbus Crew (MLS), stake in Milwaukee Bucks (NBA).'},
+  {team:'Detroit Lions', league:'NFL', leagueColor:'#1a3a6e', owner:'Sheila Ford Hamp', ownerNet:'—', year:2020, yearStr:'2020 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.4, valueStr:'$5.4B', minority:['Ford family'], note:'Daughter of William Clay Ford Sr., great-granddaughter of Henry Ford. Took over from mother Martha Ford in 2020.'},
+  {team:'Green Bay Packers', league:'NFL', leagueColor:'#1a3a6e', owner:'Publicly owned (537,000+ shareholders)', ownerNet:'N/A', year:1923, yearStr:'1923 (incorp.)', purchaseVal:0, purchase:'Non-profit', value:6.65, valueStr:'$6.65B', minority:['Public shareholders (no dividends, no resale)'], note:'<strong>Only publicly owned, non-profit team in major US sports.</strong> Grandfathered under NFL rules.'},
+  {team:'Houston Texans', league:'NFL', leagueColor:'#1a3a6e', owner:'Cal McNair', ownerNet:'$3.6B', year:2018, yearStr:'2018 (control)', purchaseVal:0.7, purchase:'$700M (1999)', value:7.4, valueStr:'$7.4B', minority:['Harris County, TX (5%, grandfathered)','Janice McNair'], note:'Bob McNair paid $700M expansion fee in 1999. Cal took control in 2024 after death of mother Janice. <strong>Harris County owns 5%</strong> — grandfathered before 2007 rule banning government ownership.'},
+  {team:'Indianapolis Colts', league:'NFL', leagueColor:'#1a3a6e', owner:'Carlie Irsay-Gordon', ownerNet:'—', year:2025, yearStr:'2025 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.9, valueStr:'$5.9B', minority:['Irsay family'], note:'Took over after Jim Irsay\'s death in May 2025. Robert Irsay originally bought the Rams for $19M in 1972, traded for the Colts.'},
+  {team:'Jacksonville Jaguars', league:'NFL', leagueColor:'#1a3a6e', owner:'Shad Khan', ownerNet:'$13.4B', year:2011, yearStr:'2011', purchaseVal:0.77, purchase:'$770M', value:5.6, valueStr:'$5.6B', minority:[], note:'Pakistani-American auto parts magnate (Flex-N-Gate). Also owns Fulham FC (Premier League).'},
+  {team:'Kansas City Chiefs', league:'NFL', leagueColor:'#1a3a6e', owner:'Clark Hunt / Hunt family', ownerNet:'—', year:1960, yearStr:'1960 (Lamar Hunt)', purchaseVal:0.000025, purchase:'$25K (founding)', value:6.2, valueStr:'$6.2B', minority:['Hunt family'], note:'Founded by Lamar Hunt as charter AFL team. Family also owns FC Dallas (MLS), stake in Chicago Bulls.'},
+  {team:'Los Angeles Chargers', league:'NFL', leagueColor:'#1a3a6e', owner:'Dean Spanos', ownerNet:'$3.0B', year:1994, yearStr:'1994 (inherited)', purchaseVal:0, purchase:'Inherited', value:6.0, valueStr:'$6.0B', minority:['Tom Gores (27%, at $4B val., 2025)','Arctos Partners (8%, at $6B+ val., 2025)'], note:'Gores discount reflected no path to control. Inherited from father Alex Spanos. Tenants at SoFi Stadium.'},
+  {team:'Minnesota Vikings', league:'NFL', leagueColor:'#1a3a6e', owner:'Wilf family (Zygi Wilf)', ownerNet:'$5.3B', year:2005, yearStr:'2005', purchaseVal:0.6, purchase:'$600M', value:6.25, valueStr:'$6.25B', minority:['Wilf family'], note:'New Jersey-based real estate developers. Garden Homes founders.'},
+  {team:'New Orleans Saints', league:'NFL', leagueColor:'#1a3a6e', owner:'Gayle Benson', ownerNet:'$5.1B', year:2018, yearStr:'2018 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.6, valueStr:'$5.6B', minority:['Benson family'], note:'Inherited from husband Tom Benson. Also owns New Orleans Pelicans (NBA).'},
+  {team:'Arizona Cardinals', league:'NFL', leagueColor:'#1a3a6e', owner:'Michael Bidwill', ownerNet:'$2.3B', year:2019, yearStr:'2019 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.5, valueStr:'$5.5B', minority:['Bidwill family'], note:'Family ownership since 1933. Michael inherited from father Bill Bidwill in 2019.'},
+  {team:'Seattle Seahawks', league:'NFL', leagueColor:'#1a3a6e', owner:'Jody Allen (trustee)', ownerNet:'—', year:2018, yearStr:'2018 (trust)', purchaseVal:0.2, purchase:'$200M (1997, P.Allen)', value:5.65, valueStr:'$5.65B', minority:['Paul G. Allen Trust'], note:'Held in trust since Paul Allen\'s death in 2018. Jody Allen (sister) is trustee. Eventual sale required by Allen\'s will.'},
+  {team:'Tampa Bay Buccaneers', league:'NFL', leagueColor:'#1a3a6e', owner:'Glazer family', ownerNet:'$11.7B', year:1995, yearStr:'1995', purchaseVal:0.192, purchase:'$192M', value:5.7, valueStr:'$5.7B', minority:['Glazer family (multiple siblings)'], note:'Also majority owner of Manchester United (with INEOS Sir Jim Ratcliffe holding ~29%).'},
+  {team:'Tennessee Titans', league:'NFL', leagueColor:'#1a3a6e', owner:'Amy Adams Strunk', ownerNet:'$3.4B', year:2015, yearStr:'2015 (inherited)', purchaseVal:0, purchase:'Inherited', value:5.0, valueStr:'$5.0B', minority:['Adams family'], note:'Daughter of original owner Bud Adams (founding AFL owner).'},
+
+  {team:'Los Angeles Lakers', league:'NBA', leagueColor:'#722f37', owner:'Mark Walter (TWG Global)', ownerNet:'$10B+', year:2025, yearStr:'2025', purchaseVal:10.0, purchase:'$10.0B (at val.)', value:10.0, valueStr:'$10.0B', minority:['Buss family (15%, Jeanie Buss remains Governor for 5+ yrs)'], note:'<strong>Largest sale price for any pro sports team in history.</strong> Walter also owns Dodgers, Sparks, Cadillac F1, PWHL. Buss family had owned since 1979 ($67.5M).'},
+  {team:'New York Knicks', league:'NBA', leagueColor:'#722f37', owner:'James Dolan (MSG Sports)', ownerNet:'$2.5B (Dolan fam.)', year:1997, yearStr:'1997 (control)', purchaseVal:0, purchase:'Family-controlled', value:8.5, valueStr:'$8.5B', minority:['Public shareholders (MSG Sports is publicly traded)'], note:'Through MSG Sports Corporation. Dolan family also owns Rangers (NHL).'},
+  {team:'Golden State Warriors', league:'NBA', leagueColor:'#722f37', owner:'Joe Lacob / Peter Guber', ownerNet:'$3.3B', year:2010, yearStr:'2010', purchaseVal:0.45, purchase:'$450M', value:9.4, valueStr:'$9.4B', minority:['~20 LPs incl. Vivek Ranadive (left in 2013 for Kings)'], note:'Bought from Chris Cohan. Built privately-funded Chase Center ($1.4B). 4 NBA titles since 2015.'},
+  {team:'Boston Celtics', league:'NBA', leagueColor:'#722f37', owner:'Bill Chisholm (Symphony Tech.)', ownerNet:'$3.5B', year:2025, yearStr:'2025', purchaseVal:6.1, purchase:'$6.1B', value:6.5, valueStr:'$6.5B', minority:['Wyc Grousbeck remains as Governor (transition)','Sixth Street Partners'], note:'Was record sale price before Lakers later in 2025. Grousbeck family had owned since 2002.'},
+  {team:'Los Angeles Clippers', league:'NBA', leagueColor:'#722f37', owner:'Steve Ballmer', ownerNet:'$135B', year:2014, yearStr:'2014', purchaseVal:2.0, purchase:'$2.0B', value:6.4, valueStr:'$6.4B', minority:[], note:'Former Microsoft CEO. <strong>Privately funded $2B Intuit Dome (2024) and $400M purchase of The Forum from MSG.</strong>'},
+  {team:'Miami Heat', league:'NBA', leagueColor:'#722f37', owner:'Mickey Arison (Carnival Corp.)', ownerNet:'$8.4B', year:1995, yearStr:'1995', purchaseVal:0.065, purchase:'$65M', value:4.7, valueStr:'$4.7B', minority:['Arison family'], note:'Carnival Cruise Lines chairman. 3 NBA championships.'},
+  {team:'Chicago Bulls', league:'NBA', leagueColor:'#722f37', owner:'Jerry Reinsdorf', ownerNet:'$2.0B', year:1985, yearStr:'1985', purchaseVal:0.0162, purchase:'$16.2M', value:5.0, valueStr:'$5.0B', minority:['Reinsdorf family'], note:'Also owner of Chicago White Sox (MLB). 6 NBA championships during Jordan era.'},
+  {team:'Brooklyn Nets', league:'NBA', leagueColor:'#722f37', owner:'Joe Tsai', ownerNet:'$8.2B', year:2019, yearStr:'2019 (full)', purchaseVal:2.35, purchase:'$2.35B', value:4.5, valueStr:'$4.5B', minority:[], note:'Alibaba co-founder. Also owns Barclays Center, NY Liberty (WNBA), San Diego Seals (NLL).'},
+  {team:'Dallas Mavericks', league:'NBA', leagueColor:'#722f37', owner:'Adelson & Dumont families', ownerNet:'$32.5B (Adelson)', year:2023, yearStr:'2023', purchaseVal:3.5, purchase:'$3.5B', value:5.7, valueStr:'$5.7B', minority:['Mark Cuban (retained 27%, basketball ops)','Sands Corporation'], note:'Cuban bought for $285M in 2000, sold majority to Sands chair Miriam Adelson. Cuban retained basketball ops control.'},
+  {team:'Toronto Raptors', league:'NBA', leagueColor:'#722f37', owner:'MLSE (Bell + Rogers)', ownerNet:'—', year:2025, yearStr:'2025 (Rogers full)', purchaseVal:4.7, purchase:'$4.7B (Rogers buyout)', value:4.5, valueStr:'$4.5B', minority:['Rogers Communications (75%, 2025)','Tanenbaum family (25%)'], note:'<strong>Rogers bought out Bell\'s 37.5% stake in 2024 for $3.5B.</strong> MLSE also owns Maple Leafs (NHL), Toronto FC (MLS).'},
+  {team:'Philadelphia 76ers', league:'NBA', leagueColor:'#722f37', owner:'Josh Harris / David Blitzer (HBSE)', ownerNet:'$10.5B (Harris)', year:2011, yearStr:'2011', purchaseVal:0.28, purchase:'$280M', value:4.8, valueStr:'$4.8B', minority:['Harris Blitzer Sports & Entertainment','Michael Rubin (sold 2022)'], note:'HBSE also owns Devils (NHL), Commanders (NFL), Crystal Palace (Premier League).'},
+
+  {team:'New York Yankees', league:'MLB', leagueColor:'#9c5500', owner:'Hal Steinbrenner (Steinbrenner fam.)', ownerNet:'$3.8B (family)', year:1973, yearStr:'1973', purchaseVal:0.0088, purchase:'$8.8M', value:9.3, valueStr:'$9.3B', minority:['Steinbrenner family'], note:'<strong>Most valuable MLB team.</strong> Family controls via partnership. Yankee Global Enterprises.'},
+  {team:'Los Angeles Dodgers', league:'MLB', leagueColor:'#9c5500', owner:'Mark Walter (Guggenheim Baseball)', ownerNet:'$10B+', year:2012, yearStr:'2012', purchaseVal:2.15, purchase:'$2.15B', value:9.0, valueStr:'$9.0B', minority:['Magic Johnson','Todd Boehly','Peter Guber','Robert L. Smith','Bobby Patton'], note:'Was record MLB price at the time. Walter also acquired Lakers ($10B) in 2025. Multiple World Series titles. Largest payroll in MLB.'},
+  {team:'Boston Red Sox', league:'MLB', leagueColor:'#9c5500', owner:'John Henry (Fenway Sports Group)', ownerNet:'$5.5B', year:2002, yearStr:'2002', purchaseVal:0.66, purchase:'$660M', value:4.7, valueStr:'$4.7B', minority:['Tom Werner','LeBron James (sm. stake)','RedBird Capital (sold 2022)'], note:'FSG also owns Liverpool FC, Pittsburgh Penguins (NHL), Roush Fenway Racing (NASCAR). 4 World Series titles since 2004.'},
+  {team:'Chicago Cubs', league:'MLB', leagueColor:'#9c5500', owner:'Ricketts family (Tom Ricketts)', ownerNet:'$3.2B', year:2009, yearStr:'2009', purchaseVal:0.845, purchase:'$845M', value:4.6, valueStr:'$4.6B', minority:['Ricketts family (Pete, Todd, Laura, Tom)','Arctos Partners'], note:'Tom Ricketts is chairman. Family is from TD Ameritrade fortune (Joe Ricketts).'},
+  {team:'San Francisco Giants', league:'MLB', leagueColor:'#9c5500', owner:'Greg Johnson (chairman)', ownerNet:'—', year:1992, yearStr:'1992 (Magowan led)', purchaseVal:0.1, purchase:'$100M', value:4.1, valueStr:'$4.1B', minority:['Charles B. Johnson (former chair)','30+ investor partners','Sixth Street (2025)'], note:'Group investment structure with many minority owners. Privately funded Oracle Park (2000).'},
+  {team:'New York Mets', league:'MLB', leagueColor:'#9c5500', owner:'Steve Cohen (Point72)', ownerNet:'$21.3B', year:2020, yearStr:'2020', purchaseVal:2.42, purchase:'$2.42B', value:3.4, valueStr:'$3.4B', minority:[], note:'Hedge fund manager. Highest MLB payroll in 2023, 2024. Aggressive spending under Cohen ownership.'},
+  {team:'St. Louis Cardinals', league:'MLB', leagueColor:'#9c5500', owner:'DeWitt family (Bill DeWitt Jr.)', ownerNet:'—', year:1995, yearStr:'1995', purchaseVal:0.15, purchase:'$150M', value:2.85, valueStr:'$2.85B', minority:['Sold LP stake at $2.85B val. (2025)'], note:'11 World Series titles — second most in MLB. LP stake sale in 2025 set new MLB benchmark.'},
+  {team:'Baltimore Orioles', league:'MLB', leagueColor:'#9c5500', owner:'David Rubenstein (Carlyle Group)', ownerNet:'$3.7B', year:2024, yearStr:'2024', purchaseVal:1.73, purchase:'$1.73B', value:1.9, valueStr:'$1.9B', minority:['Cal Ripken Jr.','Michael Bloomberg','Mike Arougheti'], note:'Carlyle co-founder. Bought from Angelos family. Group includes prominent investors and Ripken Jr.'},
+  {team:'Tampa Bay Rays', league:'MLB', leagueColor:'#9c5500', owner:'Patrick Zalupski (announced 2025)', ownerNet:'$1.4B', year:2025, yearStr:'2025 (pending)', purchaseVal:1.7, purchase:'$1.7B', value:1.4, valueStr:'$1.4B', minority:['Group with various LP investors'], note:'Bought from Stuart Sternberg. <strong>26% premium to Sportico\'s 2025 valuation.</strong> Hurricane damaged Tropicana Field forced 2025 games to be played at Steinbrenner Field.'},
+  {team:'Kansas City Royals', league:'MLB', leagueColor:'#9c5500', owner:'John Sherman', ownerNet:'$1.8B', year:2019, yearStr:'2019', purchaseVal:1.0, purchase:'$1.0B', value:1.8, valueStr:'$1.8B', minority:['LP stake sales at $1.8B val. (2025)'], note:'Acquired from David Glass family. Local Kansas City businessman.'},
+  {team:'Milwaukee Brewers', league:'MLB', leagueColor:'#9c5500', owner:'Mark Attanasio', ownerNet:'$700M', year:2005, yearStr:'2005', purchaseVal:0.223, purchase:'$223M', value:2.25, valueStr:'$2.25B', minority:['LP stake sales at $2.25B val. (2025)'], note:'Crescent Capital Group founder. Hollywood/finance background.'},
+
+  {team:'Los Angeles Rams (Stan Kroenke)', league:'NHL', leagueColor:'#0f4d3a', owner:'Colorado Avalanche — Ann Walton Kroenke (KSE)', ownerNet:'$11.6B', year:2000, yearStr:'2000', purchaseVal:0.202, purchase:'$202M', value:2.35, valueStr:'$2.35B', minority:['Kroenke Sports & Entertainment'], note:'Part of KSE empire (also Rams, Nuggets, Arsenal, Rapids).'},
+  {team:'Toronto Maple Leafs', league:'NHL', leagueColor:'#0f4d3a', owner:'MLSE (Rogers + Tanenbaum)', ownerNet:'—', year:2025, yearStr:'2025 (Rogers buyout)', purchaseVal:4.7, purchase:'$4.7B (MLSE deal)', value:3.85, valueStr:'$3.85B', minority:['Rogers Communications (75%)','Tanenbaum family (25%)'], note:'<strong>Most valuable NHL team.</strong> Same ownership as Raptors. Rogers full buyout completed 2025.'},
+  {team:'New York Rangers', league:'NHL', leagueColor:'#0f4d3a', owner:'Dolan family (MSG Sports)', ownerNet:'$2.5B', year:1997, yearStr:'1997 (control)', purchaseVal:0, purchase:'Via MSG', value:3.5, valueStr:'$3.5B', minority:['Public shareholders (MSG)'], note:'Through publicly traded MSG Sports.'},
+  {team:'Montreal Canadiens', league:'NHL', leagueColor:'#0f4d3a', owner:'Molson family (Geoff Molson)', ownerNet:'—', year:2009, yearStr:'2009', purchaseVal:0.575, purchase:'$575M', value:3.1, valueStr:'$3.1B', minority:['Molson family + partners'], note:'Beer family. 24 Stanley Cup championships — most in NHL history.'},
+  {team:'Boston Bruins', league:'NHL', leagueColor:'#0f4d3a', owner:'Jeremy Jacobs (Delaware North)', ownerNet:'$3.7B', year:1975, yearStr:'1975', purchaseVal:0.01, purchase:'$10M', value:3.05, valueStr:'$3.05B', minority:['Jacobs family'], note:'<strong>50+ years of ownership.</strong> Delaware North also operates many sports concessions and TD Garden.'},
+  {team:'Chicago Blackhawks', league:'NHL', leagueColor:'#0f4d3a', owner:'Danny Wirtz (Wirtz family)', ownerNet:'$5.5B', year:1954, yearStr:'1954', purchaseVal:0.001, purchase:'$1M', value:2.75, valueStr:'$2.75B', minority:['Wirtz family'], note:'<strong>Longest family ownership in NHL — 71 years.</strong> Also liquor distribution empire.'},
+  {team:'Tampa Bay Lightning', league:'NHL', leagueColor:'#0f4d3a', owner:'Doug Ostrover / Marc Lipschultz (transition)', ownerNet:'—', year:2025, yearStr:'2025 (50%+, transition)', purchaseVal:1.8, purchase:'$1.8B (at val.)', value:1.9, valueStr:'$1.9B', minority:['Jeff Vinik retains control for 3 yrs as Governor'], note:'Vinik (acquired 2010 for $170M) keeps full control for 3 years before control transfers.'},
+  {team:'Vegas Golden Knights', league:'NHL', leagueColor:'#0f4d3a', owner:'Bill Foley (Black Knight Sports)', ownerNet:'$1.4B', year:2017, yearStr:'2017 (expansion)', purchaseVal:0.5, purchase:'$500M (exp. fee)', value:1.8, valueStr:'$1.8B', minority:['Maloof family (minority)'], note:'Won Stanley Cup in 6th season (2023) — fastest in modern NHL history.'},
+  {team:'Carolina Hurricanes', league:'NHL', leagueColor:'#0f4d3a', owner:'Tom Dundon (Dundon Capital)', ownerNet:'$2.0B', year:2018, yearStr:'2018', purchaseVal:0.42, purchase:'$420M', value:1.92, valueStr:'$1.92B', minority:['Stake sale approved 2026'], note:'Significant appreciation — <strong>4.6× over 7 years.</strong>'},
+  {team:'Utah Mammoth', league:'NHL', leagueColor:'#0f4d3a', owner:'Ryan Smith (Smith Entertainment Group)', ownerNet:'$1.7B', year:2024, yearStr:'2024 (relocation)', purchaseVal:1.2, purchase:'$1.2B', value:1.6, valueStr:'$1.6B', minority:['SEG investors'], note:'Bought Arizona Coyotes and relocated to Salt Lake City. Smith also owns Utah Jazz (NBA). $200M relocation fee to other owners.'},
+  {team:'Ottawa Senators', league:'NHL', leagueColor:'#0f4d3a', owner:'Michael Andlauer', ownerNet:'$2.2B', year:2023, yearStr:'2023', purchaseVal:0.95, purchase:'$950M', value:1.05, valueStr:'$1.05B', minority:[], note:'NHL record price at the time. Andlauer Health Care Group founder.'},
+  {team:'Nashville Predators', league:'NHL', leagueColor:'#0f4d3a', owner:'Bill Haslam', ownerNet:'$5.0B', year:2025, yearStr:'2025 (majority)', purchaseVal:0.775, purchase:'$775M (at val.)', value:1.75, valueStr:'$1.75B', minority:['Predators Holdings prior consortium'], note:'Bill Haslam (former TN governor) is brother of Jimmy Haslam (Browns). Acquired majority over 3 years.'},
+
+  {team:'Inter Miami CF', league:'MLS', leagueColor:'#2d5f2d', owner:'Jorge Mas / Jose Mas / David Beckham', ownerNet:'$1.6B (Mas)', year:2018, yearStr:'2018 (expansion)', purchaseVal:0.025, purchase:'$25M (exp. fee)', value:1.2, valueStr:'$1.2B', minority:['David Beckham (sweat equity)','Marcelo Claure'], note:'<strong>Lionel Messi signing (2023) transformed franchise valuation.</strong> Beckham\'s option negotiated during LA Galaxy tenure.'},
+  {team:'LA Galaxy', league:'MLS', leagueColor:'#2d5f2d', owner:'AEG (Philip Anschutz)', ownerNet:'$12.7B', year:1996, yearStr:'1996 (founding)', purchaseVal:0, purchase:'Founding', value:1.0, valueStr:'$1.0B', minority:['Anschutz Entertainment Group'], note:'AEG was once an investor in 7 MLS teams. Anschutz also owns LA Kings (NHL), Crypto.com Arena.'},
+  {team:'San Diego FC', league:'MLS', leagueColor:'#2d5f2d', owner:'Mohamed Mansour / Sycuan Tribe', ownerNet:'$3.6B (Mansour)', year:2023, yearStr:'2023 (expansion)', purchaseVal:0.5, purchase:'$500M (exp. fee)', value:0.55, valueStr:'$550M', minority:['Manny Machado (sm. stake)','Right to Dream Academy network'], note:'<strong>MLS-record expansion fee.</strong> Egyptian-British billionaire. Sycuan Band of Kumeyaay Nation is first Native American tribe to co-own a US pro soccer team.'},
+  {team:'Atlanta United', league:'MLS', leagueColor:'#2d5f2d', owner:'Arthur Blank', ownerNet:'$8.4B', year:2014, yearStr:'2014', purchaseVal:0.07, purchase:'$70M (exp. fee)', value:1.15, valueStr:'$1.15B', minority:['AMB Sports & Entertainment'], note:'Also owns Atlanta Falcons (NFL). Plays at Mercedes-Benz Stadium.'},
+  {team:'LAFC', league:'MLS', leagueColor:'#2d5f2d', owner:'Larry Berg / Bennett Rosenthal lead group', ownerNet:'—', year:2014, yearStr:'2014 (expansion)', purchaseVal:0.11, purchase:'$110M', value:1.15, valueStr:'$1.15B', minority:['Will Ferrell','Magic Johnson','Tony Robbins','Mia Hamm','Nomar Garciaparra'], note:'Star-studded ownership group. BMO Stadium opened 2018.'},
+  {team:'Charlotte FC', league:'MLS', leagueColor:'#2d5f2d', owner:'David Tepper', ownerNet:'$22.2B', year:2019, yearStr:'2019 (expansion)', purchaseVal:0.325, purchase:'$325M (exp. fee)', value:0.65, valueStr:'$650M', minority:[], note:'Was MLS record expansion fee at the time. Tepper also owns Carolina Panthers (NFL).'},
+  {team:'NYCFC', league:'MLS', leagueColor:'#2d5f2d', owner:'City Football Group (Abu Dhabi) + NY Yankees', ownerNet:'—', year:2013, yearStr:'2013', purchaseVal:0.1, purchase:'$100M (exp. fee)', value:0.85, valueStr:'$850M', minority:['Yankee Global Enterprises (20%)','Silver Lake','PIF'], note:'CFG also owns Manchester City and 12+ clubs globally. Building Etihad Park in Queens (opens 2027).'},
+  {team:'New York Red Bulls', league:'MLS', leagueColor:'#2d5f2d', owner:'Red Bull GmbH', ownerNet:'—', year:2006, yearStr:'2006', purchaseVal:0, purchase:'Took over MetroStars', value:0.8, valueStr:'$800M', minority:['Red Bull (Yoovidhya 51% / Mateschitz 49%)'], note:'Red Bull also owns RB Leipzig, Salzburg, NY Red Bulls II, F1 teams.'},
+
+  {team:'Manchester United', league:'EPL', leagueColor:'#9b2020', owner:'Glazer family + Sir Jim Ratcliffe (INEOS)', ownerNet:'$13.4B (Ratcliffe)', year:2005, yearStr:'2005 (Glazer)', purchaseVal:1.47, purchase:'£790M / ~$1.47B', value:6.5, valueStr:'~$6.5B', minority:['Glazer family (~69%)','Sir Jim Ratcliffe / INEOS (~29% since 2024)','Public free float'], note:'Publicly traded on NYSE (MANU). Ratcliffe bought 25% in early 2024 for ~$1.3B, then increased. Operations control of football operations.'},
+  {team:'Liverpool FC', league:'EPL', leagueColor:'#9b2020', owner:'Fenway Sports Group (John W. Henry)', ownerNet:'$5.5B', year:2010, yearStr:'2010', purchaseVal:0.4, purchase:'£300M / ~$400M', value:5.5, valueStr:'$5.5B', minority:['Tom Werner','Dynasty Equity (2023, ~2-4%)','LeBron James (sm. stake since 2011)','RedBird Capital (10%)'], note:'Henry/FSG also own Red Sox, Penguins. Anfield expansion + AXA Training Centre.'},
+  {team:'Manchester City', league:'EPL', leagueColor:'#9b2020', owner:'Abu Dhabi United Group (Sheikh Mansour)', ownerNet:'$30B+ (UAE-backed)', year:2008, yearStr:'2008', purchaseVal:0.28, purchase:'£210M / ~$280M', value:5.1, valueStr:'$5.1B', minority:['Silver Lake (~18%)','China Media Capital + CITIC (~12%)','Manchester City (Newton Investment)'], note:'<strong>State-controlled via Abu Dhabi.</strong> Owned through City Football Group — also Melbourne City, NYCFC, Yokohama F. Marinos, Mumbai City, 10+ other clubs.'},
+  {team:'Chelsea FC', league:'EPL', leagueColor:'#9b2020', owner:'Todd Boehly / Clearlake Capital', ownerNet:'$5.4B (Boehly)', year:2022, yearStr:'2022', purchaseVal:3.16, purchase:'£2.5B / $3.16B', value:3.6, valueStr:'$3.6B', minority:['Clearlake Capital (Behdad Eghbali, Jose Feliciano)','Hansjorg Wyss','Mark Walter'], note:'Bought from Roman Abramovich after UK government froze his assets following Ukraine invasion. Walter also owns Dodgers, Lakers, Sparks.'},
+  {team:'Arsenal FC', league:'EPL', leagueColor:'#9b2020', owner:'Stan Kroenke (KSE)', ownerNet:'$21.3B', year:2007, yearStr:'2007 (start), 2018 (full)', purchaseVal:0, purchase:'Multi-stage', value:3.5, valueStr:'$3.5B', minority:['Kroenke Sports & Entertainment'], note:'Full control since 2018. Kroenke also owns Rams, Avalanche, Nuggets, Rapids.'},
+  {team:'Tottenham Hotspur', league:'EPL', leagueColor:'#9b2020', owner:'ENIC (Joe Lewis estate / Daniel Levy)', ownerNet:'—', year:2001, yearStr:'2001 (ENIC)', purchaseVal:0.08, purchase:'£80M / ~$80M', value:3.4, valueStr:'$3.4B', minority:['ENIC International (~86.5%)','Levy family (~29% of ENIC)','Lewis family trust (~70.6% of ENIC)'], note:'Lewis stepped back from active control in 2022. Daniel Levy is Executive Chairman.'},
+  {team:'Newcastle United', league:'EPL', leagueColor:'#9b2020', owner:'Saudi Public Investment Fund (PIF)', ownerNet:'$925B+ AUM', year:2021, yearStr:'2021', purchaseVal:0.4, purchase:'£305M / ~$400M', value:1.3, valueStr:'$1.3B', minority:['PIF (~85%)','RB Sports & Media (~15%)','Reuben Brothers (~10% via RB)'], note:'<strong>State-controlled via Saudi sovereign fund.</strong> PIF chaired by Yasir Al-Rumayyan.'},
+  {team:'Aston Villa', league:'EPL', leagueColor:'#9b2020', owner:'V Sports (Nassef Sawiris + Wes Edens)', ownerNet:'~$8B combined', year:2018, yearStr:'2018', purchaseVal:0.04, purchase:'£60M / ~$76M', value:1.1, valueStr:'$1.1B', minority:['50/50 Sawiris (Egyptian industrialist) / Edens (Fortress Investment Group)'], note:'V Sports also owns minority of Vitória de Guimarães (Portugal), Real Unión (Spain), and other clubs.'},
+  {team:'Everton', league:'EPL', leagueColor:'#9b2020', owner:'The Friedkin Group (Dan Friedkin)', ownerNet:'$7.6B', year:2024, yearStr:'2024', purchaseVal:0.505, purchase:'~$505M', value:0.65, valueStr:'$650M', minority:['Acquired 98.8% from Farhad Moshiri'], note:'Friedkin also owns AS Roma (Serie A). New Bramley-Moore Dock stadium opened 2025-26.'},
+
+  {team:'Real Madrid', league:'LL', leagueColor:'#b8400f', owner:'Socios (registered members)', ownerNet:'N/A', year:1902, yearStr:'1902 (founded)', purchaseVal:0, purchase:'Member-owned', value:6.7, valueStr:'$6.7B', minority:['~93,000 socios','Sixth Street (20% stadium revenue rights, €360M, 2022)'], note:'<strong>Member-owned non-profit.</strong> Florentino Pérez is president. Sixth Street deal is revenue participation, not equity.'},
+  {team:'FC Barcelona', league:'LL', leagueColor:'#b8400f', owner:'Socios (registered members)', ownerNet:'N/A', year:1899, yearStr:'1899 (founded)', purchaseVal:0, purchase:'Member-owned', value:5.6, valueStr:'$5.6B', minority:['~140,000+ socios','Sixco (LaLiga TV rights sale)','Various sponsorship advances'], note:'Joan Laporta is president. Sold 25% of TV rights for €700M via "Barça Vision" Web3 venture.'},
+  {team:'Atlético de Madrid', league:'LL', leagueColor:'#b8400f', owner:'Atlético HoldCo (Apollo Global)', ownerNet:'—', year:2025, yearStr:'2025 (Apollo majority)', purchaseVal:2.5, purchase:'~$2.5B (at val.)', value:2.5, valueStr:'~$2.5B', minority:['Idan Ofer','Club members (small %)','Ares Management (prior)'], note:'<strong>Apollo Global Management acquired controlling stake in 2025.</strong> Also owns Atlético San Luis (Mexico), Atlético Ottawa (Canada).'},
+  {team:'Athletic Bilbao', league:'LL', leagueColor:'#b8400f', owner:'Socios (registered members)', ownerNet:'N/A', year:1898, yearStr:'1898 (founded)', purchaseVal:0, purchase:'Member-owned', value:0.55, valueStr:'$550M', minority:['~43,000 socios'], note:'One of four La Liga clubs (with Real Madrid, Barça, Osasuna) exempted from 1990 law requiring conversion to private companies. Famous Basque-only player policy.'},
+  {team:'Sevilla FC', league:'LL', leagueColor:'#b8400f', owner:'José María del Nido Carrasco + various', ownerNet:'—', year:2002, yearStr:'2002 (Lopera/Del Nido)', purchaseVal:0, purchase:'Various', value:0.5, valueStr:'$500M', minority:['Del Nido family','777 Partners (prior, defunct)'], note:'Has won Europa League/UEFA Cup 7 times — record. Mixed ownership with multiple stakeholders.'},
+  {team:'Valencia CF', league:'LL', leagueColor:'#b8400f', owner:'Peter Lim (Meriton Holdings)', ownerNet:'$1.5B', year:2014, yearStr:'2014', purchaseVal:0.12, purchase:'~$120M', value:0.4, valueStr:'$400M', minority:[], note:'Singaporean businessman. Also owns Salford City (England). Highly controversial ownership among Valencia fans.'},
+
+  {team:'Ferrari (Scuderia Ferrari)', league:'F1', leagueColor:'#9b2020', owner:'Ferrari N.V. (public + Exor)', ownerNet:'—', year:1929, yearStr:'1929 (founded)', purchaseVal:0, purchase:'Founder-built', value:6.5, valueStr:'$6.5B', minority:['Public free float (~67%)','Exor N.V. (~24%, Agnelli family)','Piero Ferrari (10%)'], note:'Only constructor in every F1 season since 1950. Public on NYSE/Milan stock exchanges.'},
+  {team:'Mercedes-AMG Petronas', league:'F1', leagueColor:'#1a3a6e', owner:'Daimler / Toto Wolff / INEOS (33% each)', ownerNet:'—', year:2010, yearStr:'2010 (Mercedes ownership)', purchaseVal:0, purchase:'~$200M (Brawn GP)', value:5.5, valueStr:'$5.5B', minority:['Daimler AG (1/3)','Toto Wolff (1/3)','INEOS (1/3)'], note:'<strong>8 consecutive constructors championships (2014-2021).</strong> Wolff also runs the team operationally.'},
+  {team:'McLaren Racing', league:'F1', leagueColor:'#b8400f', owner:'McLaren Group (Mumtalakat Bahrain SWF)', ownerNet:'$18B (Mumtalakat)', year:2024, yearStr:'2024 (Mumtalakat full)', purchaseVal:0, purchase:'Multi-stage', value:4.4, valueStr:'$4.4B', minority:['MSP Sports Capital','UBS O\'Connor','Public Sector Pension'], note:'Bahrain sovereign wealth fund took 100% in 2024 after converting preference shares. <strong>Reigning constructors champions (2024, 2025).</strong>'},
+  {team:'Red Bull Racing', league:'F1', leagueColor:'#1a3a6e', owner:'Red Bull GmbH', ownerNet:'—', year:2005, yearStr:'2005', purchaseVal:0, purchase:'Bought Jaguar Racing', value:4.9, valueStr:'$4.9B', minority:['Yoovidhya family (51%)','Mark Mateschitz (49%, inherited)'], note:'Also owns RB (formerly Toro Rosso/AlphaTauri). Combined ~$7.5B with RB. Max Verstappen 4-time champion.'},
+  {team:'Aston Martin', league:'F1', leagueColor:'#0f4d3a', owner:'Lawrence Stroll (Yew Tree Consortium)', ownerNet:'$3.5B', year:2018, yearStr:'2018', purchaseVal:0.117, purchase:'$117M (Force India)', value:3.2, valueStr:'$3.2B', minority:['Yew Tree Consortium investors','Aston Martin Lagonda commercial ties'], note:'Originally bought Force India, rebranded as Racing Point then Aston Martin in 2021. Stroll\'s son Lance drives.'},
+  {team:'Alpine', league:'F1', leagueColor:'#1a3a6e', owner:'Renault Group', ownerNet:'—', year:2002, yearStr:'2002 (as Renault)', purchaseVal:0.12, purchase:'$120M (Benetton)', value:1.8, valueStr:'$1.8B', minority:['Otro Capital','Maximum Effort Investments (Ryan Reynolds)','Various LP investors (incl. Trent Reznor)'], note:'Renault has competed under various names. Celebrity LP group joined 2023.'},
+  {team:'Audi (formerly Sauber)', league:'F1', leagueColor:'#722f37', owner:'Volkswagen AG / Audi', ownerNet:'—', year:2024, yearStr:'2024 (acquisition)', purchaseVal:0.7, purchase:'~$700M est.', value:1.7, valueStr:'$1.7B', minority:['Audi AG (full)'], note:'Audi entered F1 in 2026 with own power unit. Acquired Sauber over 2022-2024 in stages.'},
+  {team:'Williams Racing', league:'F1', leagueColor:'#1a3a6e', owner:'Dorilton Capital', ownerNet:'—', year:2020, yearStr:'2020', purchaseVal:0.183, purchase:'$183M', value:1.5, valueStr:'$1.5B', minority:['Dorilton Capital (US PE)'], note:'Williams family relinquished control after 43 years. 9 constructors and 7 drivers titles in 1980s-90s heyday.'},
+  {team:'Haas F1 Team', league:'F1', leagueColor:'#6b6b6b', owner:'Gene Haas', ownerNet:'$1.5B', year:2016, yearStr:'2016 (founded)', purchaseVal:0, purchase:'Founded', value:1.5, valueStr:'$1.5B', minority:['Haas Automation'], note:'Only American-owned F1 team (until Cadillac in 2026). Haas Automation CNC machine tools.'},
+  {team:'Racing Bulls (RB)', league:'F1', leagueColor:'#1a3a6e', owner:'Red Bull GmbH', ownerNet:'—', year:2005, yearStr:'2005 (as Toro Rosso)', purchaseVal:0, purchase:'Bought Minardi', value:2.6, valueStr:'$2.6B', minority:['Same as Red Bull Racing'], note:'Red Bull\'s "B-team." Has gone through several rebrands: Toro Rosso → AlphaTauri → RB → Racing Bulls.'},
+  {team:'Cadillac F1', league:'F1', leagueColor:'#1a3a6e', owner:'TWG Global (Mark Walter, Thomas Tull)', ownerNet:'$10B+', year:2025, yearStr:'2025 (formed)', purchaseVal:0.45, purchase:'~$450M entry fee', value:1.5, valueStr:'$1.5B (est.)', minority:['Dan Towriss (CEO)','Mario Andretti (advisor)','GM (engine partner only, no equity)'], note:'<strong>11th team on the 2026 grid — first new constructor since 2016.</strong> Walter portfolio: Dodgers, Lakers, Sparks, Chelsea minority.'},
+
+  {team:'Hendrick Motorsports', league:'NASCAR', leagueColor:'#b8400f', owner:'Rick Hendrick', ownerNet:'$1.5B', year:1984, yearStr:'1984 (founded)', purchaseVal:0, purchase:'Founded', value:0.5, valueStr:'~$500M (est.)', minority:[], note:'<strong>Most successful team in NASCAR history — 14 Cup championships.</strong> Hendrick Automotive Group is largest privately held auto dealer in US.'},
+  {team:'Joe Gibbs Racing', league:'NASCAR', leagueColor:'#722f37', owner:'Joe Gibbs', ownerNet:'$70M', year:1991, yearStr:'1991 (founded)', purchaseVal:0, purchase:'Founded', value:0.35, valueStr:'~$350M (est.)', minority:[], note:'Joe Gibbs is also 3× Super Bowl-winning NFL head coach. 5 NASCAR Cup championships.'},
+  {team:'Team Penske', league:'NASCAR', leagueColor:'#1a3a6e', owner:'Roger Penske (Penske Corporation)', ownerNet:'$4.0B', year:1966, yearStr:'1966 (founded)', purchaseVal:0, purchase:'Founded', value:0.6, valueStr:'~$600M (est.)', minority:[], note:'Also owns Indianapolis Motor Speedway, IndyCar Series. Truck/transportation logistics empire.'},
+  {team:'23XI Racing', league:'NASCAR', leagueColor:'#0f4d3a', owner:'Michael Jordan + Denny Hamlin + Curtis Polk', ownerNet:'$3.5B (Jordan)', year:2020, yearStr:'2020 (founded)', purchaseVal:0, purchase:'Founded', value:0.3, valueStr:'~$300M (est.)', minority:[], note:'<strong>First Black majority owner in modern NASCAR.</strong> Jordan, his manager Curtis Polk, and active driver Denny Hamlin.'},
+
+  {team:'MotoGP (championship)', league:'MotoGP', leagueColor:'#b8400f', owner:'Liberty Media (84%) + Dorna management (16%)', ownerNet:'—', year:2025, yearStr:'2025', purchaseVal:4.9, purchase:'€4.2B / ~$4.9B', value:4.9, valueStr:'~$4.9B', minority:['Carmelo Ezpeleta (CEO since 1998, retains stake)','Dorna management team'], note:'<strong>Liberty Media (also F1 owner) closed acquisition July 2025</strong> after €4.2B deal. Chase Carey and Sean Bratches joined Dorna board. Spain-based commercial rights holder. Dorna also holds rights to Moto2, Moto3, MotoE, World Superbike.'},
+  {team:'Ducati Lenovo Team', league:'MotoGP', leagueColor:'#9b2020', owner:'Ducati Motor Holding (Audi/VW Group)', ownerNet:'—', year:2012, yearStr:'2012 (Audi acquisition)', purchaseVal:0.86, purchase:'€860M (Audi bought Ducati)', value:0, valueStr:'Undisclosed', minority:['Volkswagen AG → Audi AG'], note:'Dominant MotoGP team — won riders championship 2022, 2023, 2024, 2025. Owned by Audi (Volkswagen Group) since 2012. Italian motorcycle manufacturer.'},
+  {team:'Repsol Honda Team', league:'MotoGP', leagueColor:'#1a3a6e', owner:'Honda Racing Corporation (HRC)', ownerNet:'—', year:1982, yearStr:'1982 (HRC founded)', purchaseVal:0, purchase:'Factory team', value:0, valueStr:'Undisclosed', minority:['Honda Motor Co.'], note:'Honda\'s factory team. One of the most successful teams in MotoGP history (multiple titles with Marc Márquez 2013-2019). Repsol title sponsorship since 1995.'},
+  {team:'Monster Energy Yamaha', league:'MotoGP', leagueColor:'#0f4d3a', owner:'Yamaha Motor Racing', ownerNet:'—', year:1999, yearStr:'1999 (factory team)', purchaseVal:0, purchase:'Factory team', value:0, valueStr:'Undisclosed', minority:['Yamaha Motor Co.','Monster Beverage (title sponsor)'], note:'Yamaha factory team. Won 6 riders titles with Valentino Rossi and Jorge Lorenzo era. Currently rebuilding.'},
+  {team:'Red Bull KTM Factory Racing', league:'MotoGP', leagueColor:'#b8400f', owner:'KTM AG (Pierer Mobility)', ownerNet:'—', year:2017, yearStr:'2017 (joined MotoGP)', purchaseVal:0, purchase:'Factory team', value:0, valueStr:'Undisclosed', minority:['Pierer Mobility AG','Bajaj Auto (~48%)','Red Bull (title sponsor)'], note:'Austrian manufacturer KTM is publicly traded (Vienna). Bajaj Auto of India holds large minority stake. <strong>KTM AG faced bankruptcy restructuring in 2024-25</strong> but continues racing program.'},
+  {team:'Aprilia Racing', league:'MotoGP', leagueColor:'#722f37', owner:'Piaggio Group', ownerNet:'—', year:2002, yearStr:'2002', purchaseVal:0, purchase:'Factory team', value:0, valueStr:'Undisclosed', minority:['Piaggio Group (publicly traded, Milan)'], note:'Italian. Piaggio Group also owns Vespa, Moto Guzzi, Gilera brands. Aprilia returned to MotoGP factory status in 2022.'},
+  {team:'Gresini Racing', league:'MotoGP', leagueColor:'#1a3a6e', owner:'Gresini family / Nadia Padovani', ownerNet:'—', year:1997, yearStr:'1997 (founded)', purchaseVal:0, purchase:'Founded', value:0, valueStr:'Undisclosed', minority:['Various sponsors'], note:'Independent Italian team running Ducati machinery. Family-owned after death of founder Fausto Gresini in 2021; widow Nadia Padovani runs the operation.'},
+  {team:'VR46 Racing Team', league:'MotoGP', leagueColor:'#0f4d3a', owner:'Valentino Rossi (Pertamina Mandalika SAG)', ownerNet:'~$200M', year:2021, yearStr:'2021 (MotoGP entry)', purchaseVal:0, purchase:'Founded', value:0, valueStr:'Undisclosed', minority:['Pertamina (Indonesian state oil)','Various sponsors'], note:'<strong>Founded by 9× world champion Valentino Rossi.</strong> Indonesian state oil company Pertamina is title sponsor. Develops young Italian riders.'},
+
+  {team:'United States SailGP Team', league:'SailGP', leagueColor:'#1a3a6e', owner:'Avenue Sports Fund (Marc Lasry-led group)', ownerNet:'$1.8B (Lasry)', year:2023, yearStr:'2023', purchaseVal:0.035, purchase:'$35M', value:0.06, valueStr:'$60M+', minority:['Marc Lasry (lead, ex-Bucks owner)','Various investor partners'], note:'<strong>First privately-acquired SailGP team.</strong> Marc Lasry (Avenue Capital) led group; previously sold Milwaukee Bucks for $3.5B (2023). Team valuations have risen rapidly — current SailGP team values "well in excess of $60M" per league.'},
+  {team:'Bonds Flying Roos (Australia)', league:'SailGP', leagueColor:'#0f4d3a', owner:'Ryan Reynolds + Hugh Jackman + investors', ownerNet:'$350M+ (Reynolds)', year:2024, yearStr:'2024 (controlling)', purchaseVal:0, purchase:'Undisclosed', value:0.06, valueStr:'$60M+', minority:['Maximum Effort (Reynolds production co.)','Hugh Jackman'], note:'<strong>Reynolds and Jackman took controlling stake in 2024.</strong> Reynolds also owns Wrexham AFC. Heavy promotional push via Maximum Effort marketing.'},
+  {team:'Mubadala Brazil SailGP Team', league:'SailGP', leagueColor:'#9c5500', owner:'Mubadala Capital (Abu Dhabi SWF)', ownerNet:'$330B AUM (Mubadala)', year:2025, yearStr:'2025 (debut)', purchaseVal:0.045, purchase:'~$45M (entry)', value:0.06, valueStr:'$60M+', minority:['Mubadala Capital'], note:'New Brazil franchise debuted in 2025. Abu Dhabi sovereign-wealth-backed.'},
+  {team:'Red Bull Italy SailGP Team', league:'SailGP', leagueColor:'#722f37', owner:'Muse Capital + Red Bull', ownerNet:'—', year:2025, yearStr:'2025 (debut)', purchaseVal:0.045, purchase:'~$45M (entry)', value:0.06, valueStr:'$60M+', minority:['Anne Hathaway','Muse Capital','Red Bull'], note:'<strong>Anne Hathaway among investor group.</strong> Muse Capital led the consortium. Red Bull provides title sponsorship.'},
+  {team:'France SailGP Team', league:'SailGP', leagueColor:'#1a3a6e', owner:'Investor group incl. Ares Management', ownerNet:'—', year:2025, yearStr:'2025 (new investors)', purchaseVal:0, purchase:'Undisclosed', value:0.06, valueStr:'$60M+', minority:['Ares Management','Kylian Mbappé','Various investors'], note:'<strong>Kylian Mbappé (PSG/Real Madrid superstar) on the cap table.</strong> Ares Management joined June 2025.'},
+  {team:'Germany SailGP Team', league:'SailGP', leagueColor:'#6b6b6b', owner:'Sebastian Vettel + investors', ownerNet:'$140M (Vettel)', year:2024, yearStr:'2024', purchaseVal:0, purchase:'Undisclosed', value:0.06, valueStr:'$60M+', minority:['Sebastian Vettel (4× F1 champion)','Other investors'], note:'<strong>4-time F1 world champion Sebastian Vettel invested.</strong> Notable crossover from F1 to SailGP ownership.'},
+
+  {team:'UFC', league:'COMBAT', leagueColor:'#b8400f', owner:'TKO Group Holdings (Endeavor)', ownerNet:'—', year:2023, yearStr:'2023 (TKO formed)', purchaseVal:21.4, purchase:'$21.4B (TKO merger)', value:12.5, valueStr:'~$12.5B (UFC portion)', minority:['Public free float (NYSE: TKO)','Endeavor (majority, ~58%)','Silver Lake'], note:'WWE + UFC merged into TKO in 2023. <strong>Endeavor (Ari Emanuel) took private in 2025 ($13B).</strong> Dana White remains UFC president.'},
+  {team:'WWE', league:'COMBAT', leagueColor:'#b8400f', owner:'TKO Group Holdings (Endeavor)', ownerNet:'—', year:2023, yearStr:'2023 (TKO formed)', purchaseVal:9.3, purchase:'$9.3B (WWE valuation in merger)', value:9.5, valueStr:'~$9.5B', minority:['Same as UFC (TKO subsidiary)'], note:'McMahon family sold WWE into TKO merger. Vince McMahon resigned 2024 amid lawsuits.'},
+
+  {team:'Los Angeles Sparks', league:'WNBA', leagueColor:'#9c5500', owner:'Mark Walter (Guggenheim)', ownerNet:'$10B+', year:2014, yearStr:'2014', purchaseVal:0, purchase:'Undisclosed', value:0.3, valueStr:'~$300M (est.)', minority:['Magic Johnson','Earvin Johnson family'], note:'Same ownership group as Lakers + Dodgers. WNBA valuations rising fast post-2024 media deal.'},
+  {team:'New York Liberty', league:'WNBA', leagueColor:'#9c5500', owner:'Joe Tsai (BSE Global)', ownerNet:'$8.2B', year:2019, yearStr:'2019', purchaseVal:0.014, purchase:'~$14M', value:0.45, valueStr:'~$450M (est.)', minority:['BSE Global (also Brooklyn Nets)'], note:'<strong>Most valuable WNBA team.</strong> Won 2024 WNBA Championship. Plays at Barclays Center.'},
+  {team:'Indiana Fever', league:'WNBA', leagueColor:'#9c5500', owner:'Pacers Sports & Entertainment (Simon family)', ownerNet:'$3.5B', year:1999, yearStr:'1999 (expansion)', purchaseVal:0, purchase:'Expansion', value:0.4, valueStr:'~$400M (est.)', minority:['Herb Simon (Simon Property Group)','Steve Simon'], note:'<strong>Caitlin Clark effect:</strong> attendance, merchandise, and franchise value all up 200%+ since 2024 draft.'},
+];
+
+const VENUES = [
+  {name:'SoFi Stadium', city:'Inglewood, CA', tenants:'Los Angeles Rams (NFL), LA Chargers (NFL)', league:'NFL', ownerType:'Private', ownerEntity:'Stan Kroenke / KSE', operator:'Legends Hospitality', namingRights:'SoFi Technologies (~$30M/yr, 20 yrs)', naming:'SoFi (20-yr, ~$600M)', built:2020, cost:5.5, costStr:'$5.5B', capacity:70240, capStr:'70,240', publicFunding:'$0 (private)', note:'<strong>Most expensive sports venue ever built.</strong> Hosted Super Bowl LVI (2022). Will host 2028 Olympics opening ceremony. Capacity expandable to 100,240 for major events.'},
+  {name:'MetLife Stadium', city:'East Rutherford, NJ', tenants:'NY Giants (NFL), NY Jets (NFL)', league:'NFL', ownerType:'Public/private hybrid', ownerEntity:'NJ Sports & Exposition Authority (legal); MetLife Stadium Co. operates (50/50 Giants & Jets)', operator:'MetLife Stadium Company', namingRights:'MetLife Inc. ($17-20M/yr, 25 yrs)', naming:'MetLife ($425M, 25-yr)', built:2010, cost:1.6, costStr:'$1.6B', capacity:82500, capStr:'82,500', publicFunding:'$250M+ infrastructure', note:'Largest NFL stadium by capacity. Will host 2026 FIFA World Cup Final. Built entirely with private team funds; NJ contributed infrastructure & land.'},
+  {name:'AT&T Stadium', city:'Arlington, TX', tenants:'Dallas Cowboys (NFL)', league:'NFL', ownerType:'Public (City of Arlington)', ownerEntity:'City of Arlington (legal title)', operator:'Dallas Cowboys (long-term lease)', namingRights:'AT&T ($17-19M/yr est.)', naming:'AT&T (~$400M, 25-yr)', built:2009, cost:1.3, costStr:'$1.3B (2009 / ~$2.0B today)', capacity:80000, capStr:'80,000 (105K expanded)', publicFunding:'$325M (Arlington bonds)', note:'Voter-approved bond issue covered ~25% of cost. Hosted Super Bowl XLV (2011). New Cowboys stadium under discussion long-term.'},
+  {name:'Allegiant Stadium', city:'Paradise, NV', tenants:'Las Vegas Raiders (NFL), UNLV football', league:'NFL', ownerType:'Public (Clark County)', ownerEntity:'Las Vegas Stadium Authority', operator:'Raiders', namingRights:'Allegiant Travel ($20-25M/yr est.)', naming:'Allegiant (~$200M, 30-yr)', built:2020, cost:1.9, costStr:'$1.9B', capacity:65000, capStr:'65,000', publicFunding:'$750M (hotel tax)', note:'<strong>~40% public funding via Clark County hotel tax.</strong> Hosted Super Bowl LVIII (2024).'},
+  {name:'Hard Rock Stadium', city:'Miami Gardens, FL', tenants:'Miami Dolphins (NFL), Miami Hurricanes', league:'NFL', ownerType:'Private', ownerEntity:'Stephen Ross', operator:'Dolphins', namingRights:'Hard Rock International', naming:'Hard Rock (18-yr, ~$250M)', built:1987, cost:0.115, costStr:'$115M (1987); $500M+ renos', capacity:65326, capStr:'65,326', publicFunding:'$0 (privately funded)', note:'Hosts F1 Miami Grand Prix (also Ross-owned), Miami Open tennis. Hosted Super Bowls 1995, 1999, 2007, 2010, 2020.'},
+  {name:'Gillette Stadium', city:'Foxborough, MA', tenants:'New England Patriots (NFL), New England Revolution (MLS)', league:'NFL', ownerType:'Private', ownerEntity:'Robert Kraft / Kraft Group', operator:'Kraft Sports + Entertainment', namingRights:'Gillette (Procter & Gamble)', naming:'Gillette (~$8M/yr est.)', built:2002, cost:0.325, costStr:'$325M (2002)', capacity:64628, capStr:'64,628', publicFunding:'$0 (private)', note:'One of only NFL stadiums built fully without public funds. Patriot Place mixed-use development adjacent.'},
+  {name:'Lambeau Field', city:'Green Bay, WI', tenants:'Green Bay Packers (NFL)', league:'NFL', ownerType:'Public-owned NFL team facility', ownerEntity:'Green Bay/Brown County (stadium); Packers Inc. (renovations)', operator:'Packers', namingRights:'None (named for Curly Lambeau)', naming:'None', built:1957, cost:0.0096, costStr:'$960K (1957); $475M renos', capacity:81441, capStr:'81,441', publicFunding:'Multiple voter-approved upgrades', note:'<strong>Oldest continuously operating NFL stadium.</strong> Owned by city/county; Packers have long-term lease.'},
+
+  {name:'Madison Square Garden', city:'New York, NY', tenants:'NY Knicks (NBA), NY Rangers (NHL)', league:'NBA', ownerType:'Private', ownerEntity:'Madison Square Garden Sports Corp.', operator:'MSG', namingRights:'None (no corporate sponsor)', naming:'None', built:1968, cost:0.123, costStr:'$123M (1968); $1B+ renos', capacity:19812, capStr:'19,812 (NBA)', publicFunding:'Tax abatement (~$50M+/yr)', note:'<strong>Only major NBA arena without corporate naming rights.</strong> "The World\'s Most Famous Arena." 4th iteration of MSG.'},
+  {name:'Crypto.com Arena', city:'Los Angeles, CA', tenants:'LA Lakers (NBA), LA Kings (NHL), LA Sparks (WNBA)', league:'NBA', ownerType:'Private', ownerEntity:'AEG (Philip Anschutz)', operator:'AEG', namingRights:'Crypto.com ($700M, 20-yr)', naming:'Crypto.com (Dec 2021)', built:1999, cost:0.375, costStr:'$375M (1999, as Staples)', capacity:19068, capStr:'19,068 (NBA)', publicFunding:'~$70M (Staples era)', note:'<strong>Largest naming rights deal in sports history ($700M).</strong> Formerly Staples Center 1999-2021. AEG also owns Kings (NHL).'},
+  {name:'Intuit Dome', city:'Inglewood, CA', tenants:'Los Angeles Clippers (NBA)', league:'NBA', ownerType:'Private', ownerEntity:'Steve Ballmer', operator:'Clippers / Halo Sports', namingRights:'Intuit ($500M+, 23-yr)', naming:'Intuit (2023, 23-yr)', built:2024, cost:2.0, costStr:'$2.0B', capacity:18000, capStr:'18,000', publicFunding:'$0 (private)', note:'Privately funded by Ballmer. Features "The Wall" — 51-row continuous baseline section. Will host basketball at 2028 LA Olympics.'},
+  {name:'Chase Center', city:'San Francisco, CA', tenants:'Golden State Warriors (NBA)', league:'NBA', ownerType:'Private', ownerEntity:'Warriors / Lacob-Guber group', operator:'Warriors', namingRights:'JPMorgan Chase ($300M+, 20-yr)', naming:'Chase (2019)', built:2019, cost:1.4, costStr:'$1.4B', capacity:18064, capStr:'18,064', publicFunding:'$0 (private)', note:'First major privately funded California sports arena in modern era. Naming rights money helped fund construction.'},
+  {name:'TD Garden', city:'Boston, MA', tenants:'Boston Celtics (NBA), Boston Bruins (NHL)', league:'NBA', ownerType:'Private', ownerEntity:'Delaware North (Jeremy Jacobs)', operator:'Delaware North', namingRights:'TD Bank Group', naming:'TD Bank (~$6M/yr est.)', built:1995, cost:0.16, costStr:'$160M (1995)', capacity:19156, capStr:'19,156 (NBA)', publicFunding:'$0 (private)', note:'Owned by Bruins owner. Hosts both Celtics and Bruins. Formerly FleetCenter, then Banknorth Garden, then TD Banknorth.'},
+  {name:'United Center', city:'Chicago, IL', tenants:'Chicago Bulls (NBA), Chicago Blackhawks (NHL)', league:'NBA', ownerType:'Private', ownerEntity:'Bulls/Blackhawks joint venture', operator:'United Center Joint Venture', namingRights:'United Airlines', naming:'United (~$1.8M/yr)', built:1994, cost:0.175, costStr:'$175M (1994)', capacity:20917, capStr:'20,917 (largest NBA)', publicFunding:'$0 (private)', note:'Largest NBA arena by capacity. Joint venture between Bulls owner Jerry Reinsdorf and Blackhawks owner Wirtz family.'},
+  {name:'Barclays Center', city:'Brooklyn, NY', tenants:'Brooklyn Nets (NBA), NY Liberty (WNBA)', league:'NBA', ownerType:'Private', ownerEntity:'Joe Tsai (BSE Global)', operator:'BSE Global', namingRights:'Barclays ($200M+, 20-yr)', naming:'Barclays', built:2012, cost:1.0, costStr:'$1.0B', capacity:17732, capStr:'17,732', publicFunding:'Brooklyn Bridge Park bonds', note:'Tsai bought Nets, Liberty, and the arena in 2019 for $3.5B combined.'},
+
+  {name:'Yankee Stadium', city:'Bronx, NY', tenants:'New York Yankees (MLB), NYCFC (MLS, until Etihad Park opens)', league:'MLB', ownerType:'Public-private', ownerEntity:'NYC Industrial Dev. Agency (legal); Yankees operate', operator:'Yankees', namingRights:'None', naming:'None', built:2009, cost:1.5, costStr:'$1.5B', capacity:46537, capStr:'46,537', publicFunding:'$1.2B+ tax-free bonds', note:'Heavily subsidized via tax-exempt municipal bonds.'},
+  {name:'Dodger Stadium', city:'Los Angeles, CA', tenants:'Los Angeles Dodgers (MLB)', league:'MLB', ownerType:'Private', ownerEntity:'Dodgers / Guggenheim Baseball', operator:'Dodgers', namingRights:'None', naming:'None', built:1962, cost:0.023, costStr:'$23M (1962); $100M renos', capacity:56000, capStr:'56,000', publicFunding:'$0 (privately financed)', note:'Third-oldest MLB stadium (after Fenway and Wrigley). Built by Walter O\'Malley. Will host 2028 Olympic baseball.'},
+  {name:'Fenway Park', city:'Boston, MA', tenants:'Boston Red Sox (MLB)', league:'MLB', ownerType:'Private', ownerEntity:'Fenway Sports Group', operator:'Red Sox', namingRights:'None', naming:'None', built:1912, cost:0.00065, costStr:'$650K (1912)', capacity:37755, capStr:'37,755', publicFunding:'Historic preservation funds', note:'<strong>Oldest MLB stadium still in use.</strong> National Historic Landmark. "Green Monster" 37-foot left field wall.'},
+  {name:'Wrigley Field', city:'Chicago, IL', tenants:'Chicago Cubs (MLB)', league:'MLB', ownerType:'Private', ownerEntity:'Ricketts family / Cubs', operator:'Cubs', namingRights:'None (named for Wrigley)', naming:'None', built:1914, cost:0.00025, costStr:'$250K (1914); $750M renos', capacity:41649, capStr:'41,649', publicFunding:'Some renovation TIF funds', note:'Second-oldest MLB stadium. Famous ivy-covered outfield walls.'},
+  {name:'Oracle Park', city:'San Francisco, CA', tenants:'San Francisco Giants (MLB)', league:'MLB', ownerType:'Private', ownerEntity:'San Francisco Giants', operator:'Giants', namingRights:'Oracle Corp.', naming:'Oracle (2019; prior AT&T)', built:2000, cost:0.357, costStr:'$357M (2000)', capacity:41331, capStr:'41,331', publicFunding:'$0 (private; first MLB stadium)', note:'First fully privately financed MLB stadium in decades. Iconic views over McCovey Cove.'},
+
+  {name:'Old Trafford', city:'Manchester, England', tenants:'Manchester United (EPL)', league:'EPL', ownerType:'Private', ownerEntity:'Manchester United PLC (Glazer + Ratcliffe)', operator:'Manchester United', namingRights:'None', naming:'None', built:1910, cost:0.0006, costStr:'£60K (1910)', capacity:74310, capStr:'74,310', publicFunding:'War damages compensation (1949 rebuild)', note:'<strong>Largest club football stadium in UK.</strong> Ratcliffe pushing major redevelopment or new ~100K stadium.'},
+  {name:'Anfield', city:'Liverpool, England', tenants:'Liverpool FC (EPL)', league:'EPL', ownerType:'Private', ownerEntity:'Fenway Sports Group', operator:'Liverpool FC', namingRights:'None', naming:'None', built:1884, cost:0, costStr:'Various expansions', capacity:61276, capStr:'61,276 (post-2023 expansion)', publicFunding:'Council planning support', note:'<strong>Oldest stadium in this dataset (1884).</strong> Anfield Road End expansion completed 2023 added ~7,000 seats.'},
+  {name:'Etihad Stadium', city:'Manchester, England', tenants:'Manchester City (EPL)', league:'EPL', ownerType:'Public (Manchester City Council)', ownerEntity:'Manchester City Council (long lease to club)', operator:'Manchester City', namingRights:'Etihad Airways (~£20M/yr est.)', naming:'Etihad (2011)', built:2002, cost:0.144, costStr:'£112M (2002, as Commonwealth Stadium)', capacity:53400, capStr:'53,400 (expansion underway)', publicFunding:'Built for 2002 Commonwealth Games', note:'Originally built for 2002 Commonwealth Games. Council owns; City has 250-year lease. Expansion to ~62,000 in progress.'},
+  {name:'Emirates Stadium', city:'London, England', tenants:'Arsenal FC (EPL)', league:'EPL', ownerType:'Private', ownerEntity:'KSE UK / Arsenal Holdings', operator:'Arsenal', namingRights:'Emirates Airlines (15-yr, £150M)', naming:'Emirates (2006 + extensions)', built:2006, cost:0.39, costStr:'£390M', capacity:60704, capStr:'60,704', publicFunding:'£25M (Islington Council)', note:'Privately financed primarily by Arsenal. Naming rights deal with Emirates one of largest in football.'},
+  {name:'Stamford Bridge', city:'London, England', tenants:'Chelsea FC (EPL)', league:'EPL', ownerType:'Private (complex)', ownerEntity:'Chelsea Pitch Owners (CPO) - fan group owns freehold; Chelsea FC owns ground', operator:'Chelsea FC', namingRights:'None', naming:'None', built:1877, cost:0, costStr:'Various', capacity:40341, capStr:'40,341', publicFunding:'None', note:'Unique: fan-owned holding company (CPO) owns the freehold to prevent the club from moving. Boehly group exploring expansion or new ground.'},
+
+  {name:'Santiago Bernabéu', city:'Madrid, Spain', tenants:'Real Madrid (La Liga)', league:'EPL', ownerType:'Member-owned', ownerEntity:'Real Madrid CF (socios)', operator:'Real Madrid', namingRights:'None', naming:'None (named after president)', built:1947, cost:0, costStr:'€800M+ recent renovation', capacity:78297, capStr:'78,297', publicFunding:'None recently', note:'<strong>€1.5B+ renovation completed 2024.</strong> Retractable roof, retractable pitch. Sixth Street partnership for stadium revenue (€360M).'},
+  {name:'Camp Nou (Spotify Camp Nou)', city:'Barcelona, Spain', tenants:'FC Barcelona (La Liga)', league:'EPL', ownerType:'Member-owned', ownerEntity:'FC Barcelona (socios)', operator:'FC Barcelona', namingRights:'Spotify (4-yr, ~€280M total package)', naming:'Spotify (2022)', built:1957, cost:0, costStr:'€1.5B Espai Barça reno (in progress)', capacity:99354, capStr:'99,354 (post-reno target)', publicFunding:'None', note:'<strong>Largest stadium in Europe by capacity.</strong> Currently undergoing massive renovation; team playing at Olympic Stadium 2023-25.'},
+
+  {name:'BC Place / Various F1 circuits', city:'Various (24 races globally)', tenants:'F1 teams', league:'F1', ownerType:'Mostly publicly owned circuits', ownerEntity:'Local race promoters / municipalities / private groups', operator:'Race promoters under FOM hosting agreement', namingRights:'Title sponsors per race (e.g. Aramco, STC, Crypto.com)', naming:'Per-race', built:0, costStr:'Varies', capacity:0, capStr:'Varies (Silverstone ~150K, Monaco ~40K)', publicFunding:'Most circuits public', note:'F1 calendar uses 24 circuits in 21 countries. Most circuits publicly owned. F1 itself (FOM/Liberty Media) does not own circuits — pays hosting fees in some cases, charges hosting fees in others.'},
+
+  {name:'MotoGP circuits (Mugello, Jerez, Sepang, COTA, etc.)', city:'22 races / 18 countries', tenants:'MotoGP, Moto2, Moto3, WSBK', league:'F1', ownerType:'Mix (mostly public/track-owned)', ownerEntity:'Local circuit operators (Autodromo del Mugello — Ferrari/Mugello SpA; Circuito de Jerez — Junta de Andalucía; COTA — private, US)', operator:'Track operators under Dorna/Liberty Media hosting fees', namingRights:'Per-race title sponsors (e.g. Qatar Airways, Tissot, Michelin)', naming:'Per-race', built:0, costStr:'Varies (Mugello ~$60M, COTA ~$400M)', capacity:0, capStr:'Mugello ~100K, Sepang ~130K, COTA ~120K', publicFunding:'Mixed — many circuits built with regional govt funds', note:'MotoGP shares many circuits with F1 (COTA, Silverstone, Red Bull Ring, etc.) but uses motorcycle-specific tracks like Mugello, Jerez, Misano, Sepang, Sachsenring. <strong>Now coordinated under Liberty Media following 2025 acquisition.</strong>'},
+
+  {name:'SailGP venues (Sydney, Auckland, Saint-Tropez, etc.)', city:'13+ events globally per season', tenants:'SailGP teams', league:'F1', ownerType:'Public waterways', ownerEntity:'Harbor/maritime authorities (typically city or national government)', operator:'SailGP Inc. (Larry Ellison)', namingRights:'Per-event title sponsors (Oracle, KPMG, Mubadala, Emirates)', naming:'Per-event', built:0, costStr:'~$10-15M/event setup', capacity:0, capStr:'Varies — primarily TV; ticketed grandstand seating', publicFunding:'Cities pay hosting fees / contribute infrastructure', note:'<strong>SailGP races take place in major harbors and bays</strong> — no fixed venues. Spectacular natural amphitheaters (Sydney Harbour, San Francisco Bay, Saint-Tropez). League pays for temporary infrastructure; host cities typically contribute permits and water access.'},
+
+  {name:'BMO Stadium', city:'Los Angeles, CA', tenants:'LAFC (MLS), Angel City FC (NWSL)', league:'MLS', ownerType:'Public-private', ownerEntity:'USC (land), LAFC (stadium)', operator:'LAFC', namingRights:'BMO Financial Group', naming:'BMO (2023; prior Banc of CA)', built:2018, cost:0.35, costStr:'$350M', capacity:22000, capStr:'22,000', publicFunding:'$0 stadium (private)', note:'Built on USC-owned land. LAFC has long-term lease.'},
+  {name:'Mercedes-Benz Stadium', city:'Atlanta, GA', tenants:'Atlanta Falcons (NFL), Atlanta United (MLS)', league:'NFL', ownerType:'Public-private', ownerEntity:'Georgia World Congress Center Authority (legal); AMB Sports (operator)', operator:'AMB Sports & Entertainment', namingRights:'Mercedes-Benz USA (~$12M/yr, 27-yr)', naming:'Mercedes-Benz (2015)', built:2017, cost:1.6, costStr:'$1.6B', capacity:71000, capStr:'71,000', publicFunding:'$200M+ (hotel-motel tax)', note:'Famous "pinwheel" retractable roof. Will host 2026 FIFA World Cup matches. Distinctive halo board.'},
+];
+
+let activeView = 'rights';
+let activeFilters = {rights: 'all', owners: 'all', venues: 'all'};
+let sortDirections = {rights: {field: 'val', dir: 'desc'}, owners: {field: 'val', dir: 'desc'}, venues: {field: 'cost', dir: 'desc'}};
+
+function fmtCurrency(v) {
+  if (!v && v !== 0) return '—';
+  if (v >= 1) return '$' + v.toFixed(1) + 'B';
+  return '$' + Math.round(v * 1000) + 'M';
+}
+
+function expClass(yr) {
+  if (!yr) return 'exp-ok';
+  if (yr <= 2027) return 'exp-urgent';
+  if (yr <= 2029) return 'exp-soon';
+  return 'exp-ok';
+}
+
+function escapeHtml(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function catColor(cat) {
+  const c = CATS.rights.find(x => x.id === cat);
+  return c ? c.color : '#6b6b6b';
+}
+
+function renderRightsSummary(items) {
+  const totalMkt = items.reduce((a,b) => a + (b.totalVal || 0), 0);
+  const expSoon = items.filter(x => x.expiryYear && x.expiryYear <= 2028).length;
+  const expNext = items.filter(x => x.expiryYear && x.expiryYear >= 2029 && x.expiryYear <= 2031).length;
+  const avgAnnual = items.reduce((a,b) => a + (b.annualVal || 0), 0);
+  document.getElementById('rights-summary').innerHTML = `
+    <div class="summary-stat"><div class="summary-label">Leagues</div><div class="summary-value">${items.length}</div><div class="summary-delta">Filtered set</div></div>
+    <div class="summary-stat"><div class="summary-label">Disclosed total</div><div class="summary-value">$${Math.round(totalMkt)}B+</div><div class="summary-delta">Across deal terms</div></div>
+    <div class="summary-stat"><div class="summary-label">Annual run-rate</div><div class="summary-value">$${avgAnnual.toFixed(1)}B</div><div class="summary-delta">Per year combined</div></div>
+    <div class="summary-stat"><div class="summary-label">Expiring ≤ 2028</div><div class="summary-value" style="color:var(--red)">${expSoon}</div><div class="summary-delta">Coming to market</div></div>
+    <div class="summary-stat"><div class="summary-label">Expiring 2029-31</div><div class="summary-value" style="color:var(--amber)">${expNext}</div><div class="summary-delta">Next cycle</div></div>
+  `;
+}
+
+function renderRights() {
+  const q = (document.getElementById('rights-search').value || '').toLowerCase();
+  const sortField = document.getElementById('rights-sort').value;
+  let items = RIGHTS.filter(d => {
+    const catOk = activeFilters.rights === 'all' || d.cat === activeFilters.rights;
+    if (!catOk) return false;
+    if (!q) return true;
+    return d.name.toLowerCase().includes(q) || d.sub.toLowerCase().includes(q) ||
+      d.domestic.some(x => x.toLowerCase().includes(q)) ||
+      (d.intl || '').toLowerCase().includes(q) ||
+      (d.note || '').toLowerCase().includes(q);
+  });
+
+  if (sortField === 'val') items.sort((a,b) => b.totalVal - a.totalVal);
+  else if (sortField === 'exp') items.sort((a,b) => (a.expiryYear || 9999) - (b.expiryYear || 9999));
+  else items.sort((a,b) => a.name.localeCompare(b.name));
+
+  renderRightsSummary(items);
+  document.getElementById('count-rights').textContent = items.length;
+
+  if (!items.length) {
+    document.getElementById('rights-tbody').innerHTML = '<tr><td colspan="6"><div class="empty-state">No leagues match your search.</div></td></tr>';
+    return;
+  }
+
+  document.getElementById('rights-tbody').innerHTML = items.map((d, i) => {
+    const ec = expClass(d.expiryYear);
+    const uid = 'r' + i;
+    return `<tr data-uid="${uid}" data-type="row">
+      <td><span class="cat-marker" style="background:${catColor(d.cat)}"></span></td>
+      <td class="primary">${escapeHtml(d.name)}<div class="sub">${escapeHtml(d.sub)}</div></td>
+      <td class="secondary">${escapeHtml((CATS.rights.find(c => c.id === d.cat) || {}).label || d.cat)}</td>
+      <td class="num">${escapeHtml(d.annual)}</td>
+      <td class="num secondary">${escapeHtml(d.total)}</td>
+      <td class="num"><span class="exp-pill ${ec}">${escapeHtml(d.expires)}</span></td>
+    </tr>
+    <tr class="detail-row" id="d-${uid}">
+      <td colspan="6">
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">US domestic broadcasters</div>
+              <ul class="detail-list">${d.domestic.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">International distribution</div>
+              <div class="detail-value">${escapeHtml(d.intl || '—')}</div>
+            </div>
+          </div>
+          ${d.note ? `<div class="note-block">${d.note}</div>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderOwnersSummary(items) {
+  const totalVal = items.reduce((a,b) => a + (b.value || 0), 0);
+  const totalPurchase = items.reduce((a,b) => a + (b.purchaseVal || 0), 0);
+  const recentCount = items.filter(x => x.year >= 2020).length;
+  document.getElementById('owners-summary').innerHTML = `
+    <div class="summary-stat"><div class="summary-label">Teams tracked</div><div class="summary-value">${items.length}</div><div class="summary-delta">Across leagues</div></div>
+    <div class="summary-stat"><div class="summary-label">Combined value</div><div class="summary-value">$${Math.round(totalVal)}B</div><div class="summary-delta">Current franchise value</div></div>
+    <div class="summary-stat"><div class="summary-label">Total paid</div><div class="summary-value">$${Math.round(totalPurchase)}B</div><div class="summary-delta">Original purchase prices</div></div>
+    <div class="summary-stat"><div class="summary-label">Value gain</div><div class="summary-value" style="color:var(--green)">${(totalVal/Math.max(totalPurchase, 0.001)).toFixed(1)}×</div><div class="summary-delta">Aggregate multiple</div></div>
+    <div class="summary-stat"><div class="summary-label">Recent sales</div><div class="summary-value">${recentCount}</div><div class="summary-delta">Since 2020</div></div>
+  `;
+}
+
+function renderOwners() {
+  const q = (document.getElementById('owners-search').value || '').toLowerCase();
+  const sortField = document.getElementById('owners-sort').value;
+  let items = OWNERS.filter(d => {
+    const lgOk = activeFilters.owners === 'all' || d.league === activeFilters.owners;
+    if (!lgOk) return false;
+    if (!q) return true;
+    return d.team.toLowerCase().includes(q) ||
+      d.owner.toLowerCase().includes(q) ||
+      d.league.toLowerCase().includes(q) ||
+      (d.note || '').toLowerCase().includes(q) ||
+      (d.minority || []).some(x => x.toLowerCase().includes(q));
+  });
+
+  if (sortField === 'val') items.sort((a,b) => b.value - a.value);
+  else if (sortField === 'purchase') items.sort((a,b) => b.purchaseVal - a.purchaseVal);
+  else if (sortField === 'year-new') items.sort((a,b) => b.year - a.year);
+  else if (sortField === 'year-old') items.sort((a,b) => a.year - b.year);
+  else items.sort((a,b) => a.team.localeCompare(b.team));
+
+  renderOwnersSummary(items);
+  document.getElementById('count-owners').textContent = items.length;
+
+  if (!items.length) {
+    document.getElementById('owners-tbody').innerHTML = '<tr><td colspan="7"><div class="empty-state">No teams match your search.</div></td></tr>';
+    return;
+  }
+
+  document.getElementById('owners-tbody').innerHTML = items.map((d, i) => {
+    const uid = 'o' + i;
+    return `<tr data-uid="${uid}" data-type="row">
+      <td><span class="cat-marker" style="background:${d.leagueColor}"></span></td>
+      <td class="primary">${escapeHtml(d.team)}</td>
+      <td><span class="league-tag">${escapeHtml(d.league)}</span></td>
+      <td>${escapeHtml(d.owner)}<div class="sub">${escapeHtml(d.ownerNet || '')}</div></td>
+      <td class="num">${escapeHtml(d.yearStr)}</td>
+      <td class="num secondary">${escapeHtml(d.purchase)}</td>
+      <td class="num primary">${escapeHtml(d.valueStr)}</td>
+    </tr>
+    <tr class="detail-row" id="d-${uid}">
+      <td colspan="7">
+        <div class="detail-content">
+          <div class="detail-grid three-col">
+            <div class="detail-block">
+              <div class="detail-label">Purchase</div>
+              <div class="detail-value"><strong>${escapeHtml(d.purchase)}</strong> in ${escapeHtml(d.yearStr)}</div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Current value</div>
+              <div class="detail-value"><strong>${escapeHtml(d.valueStr)}</strong></div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Value multiple</div>
+              <div class="detail-value">${d.purchaseVal > 0 ? '<strong>' + (d.value/d.purchaseVal).toFixed(1) + '×</strong>' : '<em>Inherited or founding</em>'}</div>
+            </div>
+          </div>
+          ${d.minority && d.minority.length ? `<div class="detail-block" style="margin-top:20px">
+            <div class="detail-label">Minority owners / partners</div>
+            <ul class="detail-list">${d.minority.map(m => `<li>${escapeHtml(m)}</li>`).join('')}</ul>
+          </div>` : ''}
+          ${d.note ? `<div class="note-block">${d.note}</div>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderVenuesSummary(items) {
+  const totalCost = items.reduce((a,b) => a + (b.cost || 0), 0);
+  const totalCap = items.reduce((a,b) => a + (b.capacity || 0), 0);
+  const private_ = items.filter(x => x.ownerType === 'Private').length;
+  document.getElementById('venues-summary').innerHTML = `
+    <div class="summary-stat"><div class="summary-label">Venues tracked</div><div class="summary-value">${items.length}</div><div class="summary-delta">Filtered set</div></div>
+    <div class="summary-stat"><div class="summary-label">Combined cost</div><div class="summary-value">$${Math.round(totalCost)}B</div><div class="summary-delta">Build costs (nominal)</div></div>
+    <div class="summary-stat"><div class="summary-label">Total capacity</div><div class="summary-value">${(totalCap/1000).toFixed(0)}K</div><div class="summary-delta">Combined seats</div></div>
+    <div class="summary-stat"><div class="summary-label">Privately owned</div><div class="summary-value">${private_}</div><div class="summary-delta">Out of ${items.length}</div></div>
+  `;
+}
+
+function renderVenues() {
+  const q = (document.getElementById('venues-search').value || '').toLowerCase();
+  const sortField = document.getElementById('venues-sort').value;
+  let items = VENUES.filter(d => {
+    const lgOk = activeFilters.venues === 'all' || d.league === activeFilters.venues;
+    if (!lgOk) return false;
+    if (!q) return true;
+    return d.name.toLowerCase().includes(q) ||
+      d.city.toLowerCase().includes(q) ||
+      d.tenants.toLowerCase().includes(q) ||
+      (d.ownerEntity || '').toLowerCase().includes(q) ||
+      (d.namingRights || '').toLowerCase().includes(q) ||
+      (d.note || '').toLowerCase().includes(q);
+  });
+
+  if (sortField === 'cost') items.sort((a,b) => b.cost - a.cost);
+  else if (sortField === 'year') items.sort((a,b) => (b.built || 0) - (a.built || 0));
+  else if (sortField === 'year-old') items.sort((a,b) => (a.built || 9999) - (b.built || 9999));
+  else if (sortField === 'cap') items.sort((a,b) => b.capacity - a.capacity);
+  else items.sort((a,b) => a.name.localeCompare(b.name));
+
+  renderVenuesSummary(items);
+  document.getElementById('count-venues').textContent = items.length;
+
+  if (!items.length) {
+    document.getElementById('venues-tbody').innerHTML = '<tr><td colspan="7"><div class="empty-state">No venues match your search.</div></td></tr>';
+    return;
+  }
+
+  document.getElementById('venues-tbody').innerHTML = items.map((d, i) => {
+    const uid = 'v' + i;
+    const ownerColor = d.ownerType === 'Private' ? '#2d5f2d' : d.ownerType.includes('Public') ? '#9b2020' : '#8a5a00';
+    return `<tr data-uid="${uid}" data-type="row">
+      <td><span class="cat-marker" style="background:${ownerColor}"></span></td>
+      <td class="primary">${escapeHtml(d.name)}<div class="sub">${escapeHtml(d.city)}</div></td>
+      <td class="secondary">${escapeHtml(d.tenants)}</td>
+      <td>${escapeHtml(d.ownerType)}</td>
+      <td class="num">${d.built || '—'}</td>
+      <td class="num">${escapeHtml(d.costStr)}</td>
+      <td class="num">${escapeHtml(d.capStr)}</td>
+    </tr>
+    <tr class="detail-row" id="d-${uid}">
+      <td colspan="7">
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">Owner entity (legal title)</div>
+              <div class="detail-value">${escapeHtml(d.ownerEntity)}</div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Operator</div>
+              <div class="detail-value">${escapeHtml(d.operator)}</div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Naming rights</div>
+              <div class="detail-value">${escapeHtml(d.namingRights)}</div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Public funding</div>
+              <div class="detail-value">${escapeHtml(d.publicFunding)}</div>
+            </div>
+          </div>
+          ${d.note ? `<div class="note-block">${d.note}</div>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function buildFilters(viewName) {
+  const containerId = viewName + '-filters';
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const cats = CATS[viewName];
+  container.innerHTML = cats.map(c =>
+    `<button class="filter-btn ${activeFilters[viewName] === c.id ? 'on' : ''}" data-cat="${c.id}">${escapeHtml(c.label)}</button>`
+  ).join('');
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilters[viewName] = btn.dataset.cat;
+      buildFilters(viewName);
+      if (viewName === 'rights') renderRights();
+      else if (viewName === 'owners') renderOwners();
+      else if (viewName === 'venues') renderVenues();
+    });
+  });
+}
+
+function setView(view) {
+  activeView = view;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => setView(t.dataset.view));
+});
+
+document.body.addEventListener('click', (e) => {
+  const row = e.target.closest('tr[data-type="row"]');
+  if (!row) return;
+  const uid = row.dataset.uid;
+  const detail = document.getElementById('d-' + uid);
+  if (detail) {
+    detail.classList.toggle('open');
+    row.classList.toggle('expanded');
+  }
+});
+
+document.getElementById('rights-search').addEventListener('input', renderRights);
+document.getElementById('rights-sort').addEventListener('change', renderRights);
+document.getElementById('owners-search').addEventListener('input', renderOwners);
+document.getElementById('owners-sort').addEventListener('change', renderOwners);
+document.getElementById('venues-search').addEventListener('input', renderVenues);
+document.getElementById('venues-sort').addEventListener('change', renderVenues);
+
+buildFilters('rights');
+buildFilters('owners');
+buildFilters('venues');
+renderRights();
+renderOwners();
+renderVenues();
+</script>
+</body>
+</html>
