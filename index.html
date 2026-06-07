@@ -84,6 +84,40 @@ html, body {
   text-align: right;
 }
 .masthead-meta strong { color: var(--ink); font-weight: 500; }
+.masthead-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.contact-buttons {
+  display: flex;
+  gap: 6px;
+}
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.contact-btn:hover {
+  color: var(--ink);
+  border-color: var(--ink-2);
+  background: var(--bg-row-alt);
+}
+.contact-btn svg {
+  flex-shrink: 0;
+}
 
 .tabs {
   border-bottom: 0.5px solid var(--rule);
@@ -395,10 +429,276 @@ footer h4 {
   font-weight: 600;
 }
 
+/* Chat interface */
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 600px;
+}
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1.5px solid var(--rule-strong);
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.chat-sub {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-style: italic;
+  margin-top: 4px;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+.chat-mode-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mode-pill {
+  font-size: 10px;
+  padding: 4px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.mode-pill.api-mode {
+  background: rgba(45, 95, 45, 0.14);
+  color: var(--green);
+}
+.api-toggle-btn, .chat-send, .api-save-btn, .api-clear-btn {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 7px 14px;
+  border: 0.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  cursor: pointer;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.api-toggle-btn:hover, .chat-send:hover, .api-save-btn:hover { opacity: 0.85; }
+.api-clear-btn { background: var(--paper); color: var(--ink); }
+.api-config {
+  background: var(--bg-elev);
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+}
+.api-config-inner { padding: 16px; }
+.api-warning {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+  line-height: 1.6;
+  padding: 10px 12px;
+  background: var(--paper);
+  border-left: 2px solid var(--amber);
+  border-radius: 2px;
+}
+.api-warning strong { color: var(--amber); }
+.api-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.api-row input {
+  flex: 1;
+  min-width: 280px;
+  height: 34px;
+  padding: 0 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+}
+.api-row input:focus { border-color: var(--ink-2); }
+.api-status {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--ink-3);
+  font-family: 'JetBrains Mono', monospace;
+}
+.api-status.success { color: var(--green); }
+.api-status.error { color: var(--red); }
+
+.chat-suggestions {
+  padding: 12px 14px;
+  background: var(--bg-elev);
+  border-radius: 2px;
+  border: 0.5px solid var(--rule);
+}
+.suggestion-label {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.suggestion-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.suggest-pill {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 5px 11px;
+  background: var(--paper);
+  color: var(--ink-2);
+  border: 0.5px solid var(--rule);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.suggest-pill:hover {
+  border-color: var(--ink-2);
+  color: var(--ink);
+}
+
+.chat-messages {
+  flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 6px 0;
+}
+.msg {
+  display: flex;
+  gap: 10px;
+}
+.msg-avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.msg-user .msg-avatar { background: var(--ink); color: var(--bg); }
+.msg-bot .msg-avatar { background: var(--accent); color: white; }
+.msg-body {
+  flex: 1;
+  min-width: 0;
+}
+.msg-content {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.msg-content p { margin-bottom: 8px; }
+.msg-content p:last-child { margin-bottom: 0; }
+.msg-content ul {
+  margin: 8px 0 8px 18px;
+  font-size: 13px;
+}
+.msg-content li {
+  padding: 3px 0;
+}
+.msg-content strong { font-weight: 600; }
+.msg-content em { font-style: italic; color: var(--ink-3); }
+.msg-result-table {
+  width: 100%;
+  font-size: 12px;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+.msg-result-table th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.msg-result-table td {
+  padding: 5px 8px;
+  border-bottom: 0.5px solid var(--rule);
+}
+.msg-result-table td.num {
+  font-family: 'JetBrains Mono', monospace;
+  text-align: right;
+}
+.msg-note {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-3);
+  margin-top: 8px;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+.msg-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--rule);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: -3px;
+  margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--rule);
+}
+#chat-input {
+  flex: 1;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 0.5px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  min-height: 50px;
+  max-height: 140px;
+}
+#chat-input:focus { border-color: var(--ink-2); }
+.chat-send {
+  height: 50px;
+  padding: 0 20px;
+}
+.chat-footer {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-style: italic;
+  font-family: 'Source Serif 4', Georgia, serif;
+  text-align: center;
+  padding-top: 8px;
+}
+
 @media (max-width: 800px) {
   .detail-grid, .detail-grid.three-col { grid-template-columns: 1fr; gap: 20px; }
   .container { padding: 16px 14px 40px; }
   .masthead-inner { padding: 0 14px; }
+  .masthead-right { align-items: flex-start; }
+  .contact-btn span { display: none; }
+  .contact-btn { padding: 6px 8px; }
   .tabs-inner { padding: 0 14px; overflow-x: auto; }
   .tab { padding: 12px 14px; font-size: 11px; }
   .data-table { font-size: 12px; }
@@ -418,9 +718,21 @@ footer h4 {
       <div class="brand">SPORTS INTELLIGENCE</div>
       <div class="brand-sub">Media rights · Ownership · Venues</div>
     </div>
-    <div class="masthead-meta">
-      Edition <strong>Vol. 1, No. 1</strong><br>
-      Updated <strong>May 2026</strong>
+    <div class="masthead-right">
+      <div class="contact-buttons">
+        <a href="mailto:ponelson@gmail.com" class="contact-btn" title="Email Peter Nelson">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ponelson/" target="_blank" rel="noopener" class="contact-btn" title="Peter Nelson on LinkedIn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+      <div class="masthead-meta">
+        Edition <strong>Vol. 1, No. 1</strong><br>
+        Updated <strong>May 2026</strong>
+      </div>
     </div>
   </div>
 </header>
@@ -430,6 +742,8 @@ footer h4 {
     <button class="tab active" data-view="rights">Media rights<span class="tab-count" id="count-rights">—</span></button>
     <button class="tab" data-view="owners">Team owners<span class="tab-count" id="count-owners">—</span></button>
     <button class="tab" data-view="venues">Venues &amp; stadiums<span class="tab-count" id="count-venues">—</span></button>
+    <button class="tab" data-view="naming">Naming rights<span class="tab-count" id="count-naming">—</span></button>
+    <button class="tab" data-view="chat">Ask the data</button>
   </div>
 </nav>
 
@@ -531,6 +845,94 @@ footer h4 {
   </table>
 </section>
 
+<section id="view-naming" class="view">
+  <div class="summary-strip" id="naming-summary"></div>
+  <div class="controls">
+    <input type="text" id="naming-search" placeholder="Search sponsor, venue, industry...">
+    <select id="naming-sort">
+      <option value="val">Sort: total deal value</option>
+      <option value="annual">Sort: annual value</option>
+      <option value="exp">Sort: expiry year</option>
+      <option value="year">Sort: deal signed</option>
+      <option value="name">Sort: venue name</option>
+    </select>
+    <div class="filter-group" id="naming-filters"></div>
+  </div>
+  <div class="section-header">
+    <div class="section-title">Stadium &amp; arena naming rights</div>
+    <div class="section-meta">Sponsor commitments and contract terms</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:24px"></th>
+        <th>Venue</th>
+        <th>Sponsor</th>
+        <th>Industry</th>
+        <th class="num">Signed</th>
+        <th class="num">Term</th>
+        <th class="num">Total value</th>
+        <th class="num">Expires</th>
+      </tr>
+    </thead>
+    <tbody id="naming-tbody"></tbody>
+  </table>
+</section>
+
+<section id="view-chat" class="view">
+  <div class="chat-wrapper">
+    <div class="chat-header">
+      <div>
+        <div class="section-title" style="border:none;margin:0">Ask the data</div>
+        <div class="chat-sub">Natural-language queries across leagues, teams, owners, venues, and naming rights.</div>
+      </div>
+      <div class="chat-mode-indicator">
+        <span class="mode-pill" id="mode-pill">Smart-filter mode</span>
+        <button class="api-toggle-btn" id="api-toggle">Connect to Claude API</button>
+      </div>
+    </div>
+
+    <div class="api-config" id="api-config" style="display:none">
+      <div class="api-config-inner">
+        <div class="api-warning">
+          <strong>Heads up.</strong> Your API key is stored only in this browser tab&apos;s memory (sessionStorage) and is sent directly to Anthropic from your browser. It is never sent to me or anyone else. Anthropic will bill the key&apos;s account at standard API rates. Get a key at <span class="mono">console.anthropic.com</span>.
+        </div>
+        <div class="api-row">
+          <input type="password" id="api-key" placeholder="sk-ant-..." autocomplete="off">
+          <button class="api-save-btn" id="api-save">Save key</button>
+          <button class="api-clear-btn" id="api-clear">Clear key</button>
+        </div>
+        <div class="api-status" id="api-status">No key saved &mdash; Smart-filter mode active.</div>
+      </div>
+    </div>
+
+    <div class="chat-suggestions" id="chat-suggestions">
+      <div class="suggestion-label">Try asking:</div>
+      <div class="suggestion-pills">
+        <button class="suggest-pill">Which media deals expire before 2029?</button>
+        <button class="suggest-pill">Show me NBA owners who bought after 2020</button>
+        <button class="suggest-pill">Compare NFL stadium costs to NBA arenas</button>
+        <button class="suggest-pill">Who owns Crypto.com Arena?</button>
+        <button class="suggest-pill">List teams owned by Mark Walter</button>
+        <button class="suggest-pill">What are the most expensive naming-rights deals?</button>
+        <button class="suggest-pill">Which leagues have streaming-only deals?</button>
+        <button class="suggest-pill">Show me the biggest team purchases ever</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="chat-input-row">
+      <textarea id="chat-input" placeholder="Ask anything about the data..." rows="2"></textarea>
+      <button class="chat-send" id="chat-send">Send</button>
+    </div>
+
+    <div class="chat-footer">
+      Smart-filter mode parses queries against the underlying dataset and returns matching rows. For free-form analysis and synthesis, connect a Claude API key above.
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-grid">
     <div>
@@ -539,7 +941,7 @@ footer h4 {
     </div>
     <div>
       <h4>Coverage</h4>
-      Scope #2: every team in NFL, NBA, WNBA, NHL, MLB, MLS, Premier League, plus top La Liga clubs, all Formula 1 constructors, headline NASCAR teams, UFC and WWE. Plus principal venues for these teams.
+      Five views: Media rights (31 leagues), team owners (123 teams), venues (31 facilities), naming rights (81 deals), and a chat interface for natural-language queries. Scope spans NFL, NBA, WNBA, NHL, MLB, MLS, EPL, La Liga, F1, MotoGP, SailGP, NASCAR, UFC/WWE.
     </div>
     <div>
       <h4>Limitations</h4>
@@ -587,6 +989,16 @@ const CATS = {
     {id:'MLS', label:'MLS'},
     {id:'EPL', label:'EPL'},
     {id:'F1', label:'F1'},
+  ],
+  naming: [
+    {id:'all', label:'All industries'},
+    {id:'finance', label:'Finance / Banks'},
+    {id:'tech', label:'Tech / Software'},
+    {id:'insurance', label:'Insurance'},
+    {id:'telecom', label:'Telecom / Airlines'},
+    {id:'crypto', label:'Crypto'},
+    {id:'consumer', label:'Consumer brands'},
+    {id:'other', label:'Other'},
   ],
 };
 
@@ -804,9 +1216,106 @@ const VENUES = [
   {name:'Mercedes-Benz Stadium', city:'Atlanta, GA', tenants:'Atlanta Falcons (NFL), Atlanta United (MLS)', league:'NFL', ownerType:'Public-private', ownerEntity:'Georgia World Congress Center Authority (legal); AMB Sports (operator)', operator:'AMB Sports & Entertainment', namingRights:'Mercedes-Benz USA (~$12M/yr, 27-yr)', naming:'Mercedes-Benz (2015)', built:2017, cost:1.6, costStr:'$1.6B', capacity:71000, capStr:'71,000', publicFunding:'$200M+ (hotel-motel tax)', note:'Famous "pinwheel" retractable roof. Will host 2026 FIFA World Cup matches. Distinctive halo board.'},
 ];
 
+const NAMING = [
+  // NBA/NHL — most lucrative naming-rights deals
+  {venue:'Crypto.com Arena', tenants:'Lakers, Kings, Sparks', league:'NBA', sponsor:'Crypto.com', industry:'crypto', year:2021, term:20, termStr:'20 years', annualVal:35, annualStr:'$35M/yr', totalVal:700, totalStr:'$700M', expiryYear:2041, expiresStr:'2041', note:'<strong>Largest naming-rights deal in sports history.</strong> Crypto.com, Singapore-based crypto exchange, took over from Staples (which paid $116M for 20 yrs in 1999). Renamed Christmas Day 2021. Operated by AEG (Anschutz).'},
+  {venue:'Intuit Dome', tenants:'LA Clippers', league:'NBA', sponsor:'Intuit', industry:'tech', year:2023, term:23, termStr:'23 years', annualVal:22, annualStr:'~$22M/yr', totalVal:500, totalStr:'$500M+', expiryYear:2047, expiresStr:'2047', note:'Mountain View, CA fintech (QuickBooks, TurboTax, Credit Karma). Deal announced 2023 ahead of 2024 opening. Largest sports naming rights deal of 2023.'},
+  {venue:'SoFi Stadium', tenants:'Rams, Chargers', league:'NFL', sponsor:'SoFi Technologies', industry:'finance', year:2019, term:20, termStr:'20 years', annualVal:30, annualStr:'~$30M/yr', totalVal:600, totalStr:'~$600M', expiryYear:2040, expiresStr:'2040', note:'<strong>Largest NFL stadium naming-rights deal ever signed.</strong> San Francisco-based online lender. Kroenke privately funded the entire $5.5B venue.'},
+  {venue:'Allegiant Stadium', tenants:'Las Vegas Raiders', league:'NFL', sponsor:'Allegiant Travel', industry:'telecom', year:2019, term:30, termStr:'30 years', annualVal:8, annualStr:'~$8M/yr', totalVal:200, totalStr:'~$200M', expiryYear:2050, expiresStr:'2050', note:'Las Vegas-based low-cost airline. 30-yr deal is among the longest in NFL.'},
+  {venue:'MetLife Stadium', tenants:'NY Giants, NY Jets', league:'NFL', sponsor:'MetLife Inc.', industry:'insurance', year:2011, term:25, termStr:'25 years', annualVal:18, annualStr:'$17-20M/yr', totalVal:425, totalStr:'$425M', expiryYear:2036, expiresStr:'2036', note:'NY-based life insurance giant. Bought rights one year after stadium opened (initially named New Meadowlands Stadium). Will host 2026 FIFA World Cup Final.'},
+  {venue:'AT&T Stadium', tenants:'Dallas Cowboys', league:'NFL', sponsor:'AT&T', industry:'telecom', year:2013, term:25, termStr:'25 years', annualVal:18, annualStr:'~$18M/yr', totalVal:400, totalStr:'~$400M', expiryYear:2038, expiresStr:'2038', note:'AT&T HQ in Dallas. Replaced "Cowboys Stadium" name. Jerry Jones called it a "natural fit." Hosted Super Bowl XLV.'},
+  {venue:'Hard Rock Stadium', tenants:'Miami Dolphins, F1 Miami GP', league:'NFL', sponsor:'Hard Rock International', industry:'consumer', year:2016, term:18, termStr:'18 years', annualVal:14, annualStr:'~$14M/yr', totalVal:250, totalStr:'~$250M', expiryYear:2034, expiresStr:'2034', note:'Hard Rock Cafe / Hotels & Casinos (Seminole Tribe-owned). Stadium also hosts F1 Miami Grand Prix and Miami Open tennis.'},
+  {venue:'Mercedes-Benz Stadium', tenants:'Falcons, Atlanta United', league:'NFL', sponsor:'Mercedes-Benz USA', industry:'consumer', year:2015, term:27, termStr:'27 years', annualVal:12, annualStr:'~$12M/yr', totalVal:324, totalStr:'~$324M', expiryYear:2042, expiresStr:'2042', note:'<strong>Longest NFL naming deal at signing.</strong> Mercedes-Benz USA HQ is in Atlanta. Also names the Mercedes-Benz Superdome in New Orleans.'},
+  {venue:'Caesars Superdome', tenants:'New Orleans Saints', league:'NFL', sponsor:'Caesars Entertainment', industry:'consumer', year:2021, term:20, termStr:'20 years', annualVal:7, annualStr:'~$7M/yr', totalVal:140, totalStr:'~$140M', expiryYear:2041, expiresStr:'2041', note:'Replaced Mercedes-Benz Superdome. Caesars also has casino sponsorships across NFL.'},
+  {venue:'Gillette Stadium', tenants:'Patriots, Revolution', league:'NFL', sponsor:'Gillette (Procter & Gamble)', industry:'consumer', year:2002, term:15, termStr:'15 years (extended)', annualVal:8, annualStr:'~$8M/yr', totalVal:0, totalStr:'Undisclosed (multi-extension)', expiryYear:2031, expiresStr:'~2031', note:'P&G\'s Boston-based razor brand. Multiple extensions since 2002. Kraft co-owned. Hosts MLS New England Revolution.'},
+  {venue:'Highmark Stadium', tenants:'Buffalo Bills', league:'NFL', sponsor:'Highmark', industry:'insurance', year:2021, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2031, expiresStr:'2031', note:'PA-based Blue Cross health insurer. Stadium being replaced — new Bills venue (Highmark name expected to continue) opens 2026.'},
+  {venue:'M&T Bank Stadium', tenants:'Baltimore Ravens', league:'NFL', sponsor:'M&T Bank', industry:'finance', year:2003, term:15, termStr:'15 years + ext.', annualVal:6, annualStr:'~$6M/yr', totalVal:75, totalStr:'~$75M (orig.)', expiryYear:2027, expiresStr:'2027 (ext.)', note:'Buffalo-headquartered bank. Extended through 2027 from original 2018 expiration.'},
+  {venue:'Lincoln Financial Field', tenants:'Philadelphia Eagles', league:'NFL', sponsor:'Lincoln Financial Group', industry:'finance', year:2002, term:20, termStr:'20 years + ext.', annualVal:7, annualStr:'~$7M/yr', totalVal:139, totalStr:'~$139M (orig.)', expiryYear:2032, expiresStr:'2032', note:'Insurance/financial services. Original deal extended in 2019.'},
+  {venue:'NRG Stadium', tenants:'Houston Texans', league:'NFL', sponsor:'NRG Energy', industry:'consumer', year:2014, term:10, termStr:'10 years (renewed)', annualVal:10, annualStr:'~$10M/yr', totalVal:0, totalStr:'Undisclosed', expiryYear:2034, expiresStr:'2034', note:'TX-based electricity provider. Renewed in 2024. Hosted Super Bowl LI.'},
+  {venue:'Lucas Oil Stadium', tenants:'Indianapolis Colts', league:'NFL', sponsor:'Lucas Oil Products', industry:'consumer', year:2006, term:20, termStr:'20 years', annualVal:6, annualStr:'~$6M/yr', totalVal:121, totalStr:'$121M', expiryYear:2027, expiresStr:'2027', note:'Indianapolis-based motor oil company. <strong>Expires 2027 — extension or new deal expected.</strong>'},
+  {venue:'Northwest Stadium', tenants:'Washington Commanders', league:'NFL', sponsor:'Northwest Federal Credit Union', industry:'finance', year:2024, term:0, termStr:'Multi-year', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Replaced FedEx Field naming. New Commanders ownership (Harris) signed deal in 2024.'},
+  {venue:'U.S. Bank Stadium', tenants:'Minnesota Vikings', league:'NFL', sponsor:'U.S. Bancorp', industry:'finance', year:2015, term:25, termStr:'25 years', annualVal:9, annualStr:'~$9M/yr', totalVal:220, totalStr:'~$220M', expiryYear:2040, expiresStr:'2040', note:'Minneapolis-based bank. Hosted Super Bowl LII (2018).'},
+  {venue:'State Farm Stadium', tenants:'Arizona Cardinals', league:'NFL', sponsor:'State Farm Insurance', industry:'insurance', year:2018, term:18, termStr:'18 years', annualVal:6, annualStr:'~$6M/yr', totalVal:111, totalStr:'~$111M', expiryYear:2036, expiresStr:'2036', note:'Replaced "University of Phoenix Stadium." Bloomington, IL-based insurer.'},
+
+  // NBA
+  {venue:'Chase Center', tenants:'Golden State Warriors', league:'NBA', sponsor:'JPMorgan Chase', industry:'finance', year:2016, term:20, termStr:'20 years', annualVal:15, annualStr:'~$15-17M/yr', totalVal:325, totalStr:'~$325M', expiryYear:2039, expiresStr:'2039', note:'Helped fund $1.4B privately financed arena. Includes "Chase Cardholder Entrance" and exclusive cardholder lounges.'},
+  {venue:'Madison Square Garden', tenants:'Knicks, Rangers', league:'NBA', sponsor:'None (no corporate sponsor)', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'<strong>Only major NBA arena without corporate naming rights.</strong> Dolan family/MSG has resisted selling naming rights to preserve the brand value of "The World\'s Most Famous Arena."'},
+  {venue:'TD Garden', tenants:'Celtics, Bruins', league:'NBA', sponsor:'TD Bank Group', industry:'finance', year:2005, term:20, termStr:'20 years', annualVal:6, annualStr:'~$6M/yr', totalVal:119, totalStr:'~$119M', expiryYear:2025, expiresStr:'2025-26 (likely renewing)', note:'Toronto-Dominion Bank. Acquired naming from FleetCenter (the bank purchased Banknorth in 2005). <strong>Up for renewal now.</strong>'},
+  {venue:'Barclays Center', tenants:'Brooklyn Nets, NY Liberty', league:'NBA', sponsor:'Barclays plc', industry:'finance', year:2009, term:20, termStr:'20 years', annualVal:10, annualStr:'~$10M/yr', totalVal:200, totalStr:'~$200M', expiryYear:2030, expiresStr:'2030', note:'UK-based bank. Signed before arena opened (2012). Among first major bank-named US sports venues.'},
+  {venue:'United Center', tenants:'Bulls, Blackhawks', league:'NBA', sponsor:'United Airlines', industry:'telecom', year:1994, term:30, termStr:'30 years (extended)', annualVal:1.8, annualStr:'~$1.8M/yr', totalVal:35, totalStr:'~$35M (orig.)', expiryYear:2024, expiresStr:'Recently extended', note:'Original 1994 deal $1.8M/yr — extremely cheap by today\'s standards. Chicago hometown airline.'},
+  {venue:'Rocket Arena', tenants:'Cleveland Cavaliers', league:'NBA', sponsor:'Rocket Companies', industry:'finance', year:2019, term:10, termStr:'10 years', annualVal:13, annualStr:'~$13M/yr', totalVal:130, totalStr:'~$130M', expiryYear:2029, expiresStr:'2029', note:'Detroit-based fintech (Rocket Mortgage, Quicken Loans). Renamed in 2024 from "Rocket Mortgage FieldHouse."'},
+  {venue:'Capital One Arena', tenants:'Washington Wizards, Capitals', league:'NBA', sponsor:'Capital One Financial', industry:'finance', year:2017, term:10, termStr:'10 years', annualVal:10, annualStr:'~$10M/yr', totalVal:100, totalStr:'~$100M', expiryYear:2027, expiresStr:'2027', note:'McLean, VA-based bank. Replaced Verizon Center naming.'},
+  {venue:'Ball Arena', tenants:'Nuggets, Avalanche, Mammoth', league:'NBA', sponsor:'Ball Corporation', industry:'consumer', year:2020, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2030, expiresStr:'2030', note:'Aluminum container manufacturer (Coors cans, etc.). Replaced Pepsi Center.'},
+  {venue:'American Airlines Center', tenants:'Mavericks, Stars', league:'NBA', sponsor:'American Airlines', industry:'telecom', year:1999, term:30, termStr:'30 years', annualVal:6.5, annualStr:'~$6.5M/yr', totalVal:195, totalStr:'$195M', expiryYear:2031, expiresStr:'2031', note:'AA HQ is in Fort Worth, TX. One of the longest-running NBA naming deals.'},
+  {venue:'Toyota Center', tenants:'Houston Rockets', league:'NBA', sponsor:'Toyota Motor Sales USA', industry:'consumer', year:2003, term:20, termStr:'20 years (extended)', annualVal:5, annualStr:'~$5M/yr', totalVal:100, totalStr:'~$100M', expiryYear:2023, expiresStr:'Extended to ~2028', note:'Toyota North America HQ in Plano, TX. Extension signed before original 2023 expiration.'},
+  {venue:'Smoothie King Center', tenants:'New Orleans Pelicans', league:'NBA', sponsor:'Smoothie King Franchises', industry:'consumer', year:2014, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2024, expiresStr:'Recently renewed', note:'Metairie, LA-based smoothie chain. Local brand for local team.'},
+  {venue:'Gainbridge Fieldhouse', tenants:'Indiana Pacers, Fever', league:'NBA', sponsor:'Group 1001 / Gainbridge', industry:'finance', year:2021, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2031, expiresStr:'2031', note:'Annuities brand from Group 1001 insurance. Replaced Bankers Life Fieldhouse.'},
+  {venue:'Fiserv Forum', tenants:'Milwaukee Bucks', league:'NBA', sponsor:'Fiserv Inc.', industry:'tech', year:2018, term:25, termStr:'25 years', annualVal:8, annualStr:'~$8M/yr', totalVal:200, totalStr:'~$200M', expiryYear:2043, expiresStr:'2043', note:'WI-based fintech / payment processing. One of the longest NBA naming deals.'},
+  {venue:'Kaseya Center', tenants:'Miami Heat', league:'NBA', sponsor:'Kaseya', industry:'tech', year:2023, term:17, termStr:'17 years', annualVal:7, annualStr:'~$7M/yr', totalVal:117, totalStr:'$117M', expiryYear:2040, expiresStr:'2040', note:'Miami-based IT software company. Replaced FTX Arena after crypto exchange collapse in 2022.'},
+  {venue:'Kia Center', tenants:'Orlando Magic', league:'NBA', sponsor:'Kia Motors America', industry:'consumer', year:2023, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2033, expiresStr:'2033', note:'Replaced Amway Center naming.'},
+  {venue:'Spectrum Center', tenants:'Charlotte Hornets', league:'NBA', sponsor:'Charter Communications', industry:'telecom', year:2016, term:10, termStr:'10 years', annualVal:7, annualStr:'~$7M/yr', totalVal:70, totalStr:'~$70M', expiryYear:2026, expiresStr:'2026 — renewal coming', note:'Replaced Time Warner Cable Arena (Charter bought TWC).'},
+  {venue:'Footprint Center', tenants:'Phoenix Suns, Mercury', league:'NBA', sponsor:'Footprint', industry:'tech', year:2021, term:0, termStr:'Multi-year', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Plant-based packaging materials. Replaced Talking Stick Resort Arena / America West Arena.'},
+  {venue:'Frost Bank Center', tenants:'San Antonio Spurs', league:'NBA', sponsor:'Cullen/Frost Bankers', industry:'finance', year:2023, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2033, expiresStr:'2033', note:'TX regional bank. Replaced AT&T Center.'},
+  {venue:'FedEx Forum', tenants:'Memphis Grizzlies', league:'NBA', sponsor:'FedEx Corp.', industry:'telecom', year:2002, term:0, termStr:'Long-term', annualVal:5, annualStr:'~$5M/yr', totalVal:92, totalStr:'~$92M', expiryYear:0, expiresStr:'Long-running', note:'Memphis HQ. One of the original major naming deals when arena opened in 2004.'},
+  {venue:'Target Center', tenants:'Minnesota Timberwolves, Lynx', league:'NBA', sponsor:'Target Corporation', industry:'consumer', year:1990, term:25, termStr:'25 years + ext.', annualVal:1.2, annualStr:'~$1.2M/yr', totalVal:30, totalStr:'$18-30M', expiryYear:2025, expiresStr:'Extended', note:'Minneapolis HQ. One of the earliest major US naming-rights deals.'},
+  {venue:'Moda Center', tenants:'Portland Trail Blazers', league:'NBA', sponsor:'Moda Health', industry:'insurance', year:2013, term:10, termStr:'10 years', annualVal:4, annualStr:'~$4M/yr', totalVal:40, totalStr:'~$40M', expiryYear:2023, expiresStr:'Extended', note:'OR-based health insurance.'},
+  {venue:'Paycom Center', tenants:'Oklahoma City Thunder', league:'NBA', sponsor:'Paycom Software', industry:'tech', year:2021, term:15, termStr:'15 years', annualVal:9, annualStr:'~$9M/yr', totalVal:135, totalStr:'~$135M', expiryYear:2036, expiresStr:'2036', note:'OKC-based HR/payroll software company.'},
+  {venue:'Delta Center', tenants:'Utah Jazz, Utah Mammoth', league:'NBA', sponsor:'Delta Air Lines', industry:'telecom', year:2024, term:0, termStr:'Multi-year', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Returned to Delta name after years as Vivint Arena. Delta has SLC as major hub.'},
+  {venue:'Golden 1 Center', tenants:'Sacramento Kings', league:'NBA', sponsor:'Golden 1 Credit Union', industry:'finance', year:2015, term:20, termStr:'20 years', annualVal:6, annualStr:'~$6M/yr', totalVal:120, totalStr:'~$120M', expiryYear:2035, expiresStr:'2035', note:'CA credit union. Naming announced before 2016 arena opening.'},
+  {venue:'State Farm Arena', tenants:'Atlanta Hawks', league:'NBA', sponsor:'State Farm Insurance', industry:'insurance', year:2018, term:20, termStr:'20 years', annualVal:7.5, annualStr:'~$7.5M/yr', totalVal:150, totalStr:'~$175M', expiryYear:2038, expiresStr:'2038', note:'State Farm also names the Cardinals\' stadium. One of the most active naming-rights sponsors.'},
+  {venue:'Mortgage Matchup Center', tenants:'Detroit Pistons', league:'NBA', sponsor:'Rocket Companies (Mortgage Matchup)', industry:'finance', year:2024, term:0, termStr:'Multi-year', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Replaced Little Caesars Arena naming for Pistons-specific games (NHL Red Wings still play at Little Caesars Arena).'},
+
+  // MLB
+  {venue:'Yankee Stadium', tenants:'NY Yankees', league:'MLB', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Yankees have refused naming-rights sales to preserve "Yankee Stadium" name.'},
+  {venue:'Fenway Park', tenants:'Boston Red Sox', league:'MLB', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'National Historic Landmark. Has never had a naming-rights sponsor (1912).'},
+  {venue:'Wrigley Field', tenants:'Chicago Cubs', league:'MLB', sponsor:'None (named for William Wrigley Jr.)', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Originally named for chewing gum magnate who owned team in 1920s — eponymous, not a current sponsorship.'},
+  {venue:'Dodger Stadium', tenants:'LA Dodgers', league:'MLB', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Has never sold naming rights. Built 1962.'},
+  {venue:'Oracle Park', tenants:'San Francisco Giants', league:'MLB', sponsor:'Oracle Corporation', industry:'tech', year:2019, term:20, termStr:'20 years', annualVal:10, annualStr:'~$10M/yr', totalVal:200, totalStr:'~$200M', expiryYear:2039, expiresStr:'2039', note:'Replaced AT&T Park naming. Oracle HQ in Bay Area. Previously SBC Park, Pacific Bell Park.'},
+  {venue:'Citi Field', tenants:'NY Mets', league:'MLB', sponsor:'Citigroup', industry:'finance', year:2006, term:20, termStr:'20 years', annualVal:20, annualStr:'$20M/yr', totalVal:400, totalStr:'$400M', expiryYear:2029, expiresStr:'2029', note:'Signed before financial crisis. <strong>$20M/yr was MLB record at the time.</strong> Citi has discussed extending early.'},
+  {venue:'T-Mobile Park', tenants:'Seattle Mariners', league:'MLB', sponsor:'T-Mobile US', industry:'telecom', year:2018, term:25, termStr:'25 years', annualVal:3.4, annualStr:'~$3.4M/yr', totalVal:87, totalStr:'~$87M', expiryYear:2043, expiresStr:'2043', note:'T-Mobile HQ in Bellevue, WA. Replaced Safeco Field.'},
+  {venue:'Globe Life Field', tenants:'Texas Rangers', league:'MLB', sponsor:'Globe Life', industry:'insurance', year:2019, term:0, termStr:'Multi-year (long)', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Globe Life Insurance (McKinney, TX). Also previously named the prior Rangers stadium.'},
+  {venue:'Truist Park', tenants:'Atlanta Braves', league:'MLB', sponsor:'Truist Financial', industry:'finance', year:2014, term:25, termStr:'25 years', annualVal:10, annualStr:'~$10M/yr', totalVal:250, totalStr:'~$250M', expiryYear:2039, expiresStr:'2039', note:'Charlotte-based bank (BB&T + SunTrust merger 2019). Replaced SunTrust Park.'},
+  {venue:'Minute Maid Park', tenants:'Houston Astros', league:'MLB', sponsor:'The Coca-Cola Company (Minute Maid)', industry:'consumer', year:2002, term:28, termStr:'28 years', annualVal:6, annualStr:'~$6M/yr', totalVal:170, totalStr:'$170M', expiryYear:2030, expiresStr:'2030', note:'Replaced Enron Field after corporate scandal. Minute Maid is Coca-Cola subsidiary.'},
+  {venue:'Daikin Park', tenants:'Houston Astros (under previous name)', league:'MLB', sponsor:'Daikin Industries', industry:'consumer', year:2025, term:15, termStr:'15 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2040, expiresStr:'2040', note:'Japanese HVAC/air-conditioning manufacturer. Replaced Minute Maid Park naming in 2025.'},
+  {venue:'Citizens Bank Park', tenants:'Philadelphia Phillies', league:'MLB', sponsor:'Citizens Financial Group', industry:'finance', year:2003, term:25, termStr:'25 years', annualVal:2.5, annualStr:'~$2.5M/yr', totalVal:57, totalStr:'$57M', expiryYear:2028, expiresStr:'2028', note:'Providence, RI-based bank.'},
+  {venue:'PNC Park', tenants:'Pittsburgh Pirates', league:'MLB', sponsor:'PNC Financial Services', industry:'finance', year:1998, term:20, termStr:'20 years (extended)', annualVal:2, annualStr:'~$2M/yr', totalVal:40, totalStr:'$40M (orig.)', expiryYear:2028, expiresStr:'~2028', note:'Pittsburgh-headquartered bank.'},
+  {venue:'Coors Field', tenants:'Colorado Rockies', league:'MLB', sponsor:'Molson Coors Beverage', industry:'consumer', year:1995, term:0, termStr:'Long-term', annualVal:1.5, annualStr:'~$1.5M/yr', totalVal:15, totalStr:'$15M', expiryYear:0, expiresStr:'Ongoing', note:'Coors brewing HQ in Golden, CO. Original 1995 deal among earliest MLB naming deals.'},
+  {venue:'Petco Park', tenants:'San Diego Padres', league:'MLB', sponsor:'Petco Health & Wellness', industry:'consumer', year:2003, term:22, termStr:'22 years', annualVal:2.7, annualStr:'~$2.7M/yr', totalVal:60, totalStr:'$60M', expiryYear:2025, expiresStr:'Extended', note:'San Diego-based pet retailer. Extension announced.'},
+  {venue:'Busch Stadium', tenants:'St. Louis Cardinals', league:'MLB', sponsor:'Anheuser-Busch InBev', industry:'consumer', year:2005, term:20, termStr:'20 years', annualVal:2.6, annualStr:'~$2.6M/yr', totalVal:52, totalStr:'$52M', expiryYear:2025, expiresStr:'Extended', note:'St. Louis-headquartered brewing giant. Long-standing Cardinals relationship.'},
+
+  // MLS additions
+  {venue:'BMO Stadium', tenants:'LAFC, Angel City FC', league:'MLS', sponsor:'BMO Financial Group', industry:'finance', year:2022, term:10, termStr:'10 years', annualVal:10, annualStr:'~$10M/yr', totalVal:100, totalStr:'~$100M', expiryYear:2033, expiresStr:'2033', note:'Bank of Montreal. Replaced Banc of California Stadium naming after BoC exited deal.'},
+
+  // EPL
+  {venue:'Emirates Stadium', tenants:'Arsenal FC', league:'EPL', sponsor:'Emirates Airlines', industry:'telecom', year:2004, term:15, termStr:'15 years + ext.', annualVal:12, annualStr:'~£12M/yr', totalVal:200, totalStr:'£150-200M (orig + ext)', expiryYear:2028, expiresStr:'2028', note:'UAE flag carrier. Extension extended through 2028. Stadium and shirt deal originally bundled.'},
+  {venue:'Etihad Stadium', tenants:'Manchester City', league:'EPL', sponsor:'Etihad Airways', industry:'telecom', year:2011, term:10, termStr:'10 years + ext.', annualVal:24, annualStr:'~£20-24M/yr', totalVal:400, totalStr:'£400M+ (bundled)', expiryYear:2030, expiresStr:'2030', note:'<strong>UAE airline owned by same Abu Dhabi government tied to City\'s owners.</strong> Deal includes shirt sponsorship — has been scrutinized under FFP rules.'},
+  {venue:'Tottenham Hotspur Stadium', tenants:'Tottenham Hotspur', league:'EPL', sponsor:'No primary stadium naming', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'<strong>Spurs have been seeking a stadium naming-rights deal for years.</strong> Reportedly seeking £25M+/yr. Multiple deals fell through (incl. failed talks with NFL).'},
+  {venue:'Old Trafford', tenants:'Manchester United', league:'EPL', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Has never sold naming rights. Ratcliffe redevelopment plans may include sponsorship.'},
+  {venue:'Anfield', tenants:'Liverpool FC', league:'EPL', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Liverpool / FSG has resisted naming-rights sales.'},
+  {venue:'Stamford Bridge', tenants:'Chelsea FC', league:'EPL', sponsor:'None', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'New ownership exploring redevelopment or new ground which would have naming rights.'},
+
+  // La Liga
+  {venue:'Spotify Camp Nou', tenants:'FC Barcelona', league:'EPL', sponsor:'Spotify', industry:'tech', year:2022, term:4, termStr:'4 years', annualVal:70, annualStr:'~€70M/yr', totalVal:280, totalStr:'€280M (bundled w/ shirt)', expiryYear:2026, expiresStr:'2026 (renewal expected)', note:'<strong>First-ever naming-rights deal in Camp Nou history.</strong> Bundled with shirt sponsorship. Spotify\'s largest sports deal globally. Renewal under negotiation as renovation continues.'},
+  {venue:'Santiago Bernabéu', tenants:'Real Madrid', league:'EPL', sponsor:'None (named after president)', industry:'other', year:0, term:0, termStr:'N/A', annualVal:0, annualStr:'—', totalVal:0, totalStr:'—', expiryYear:0, expiresStr:'—', note:'Real Madrid has historically resisted commercial naming. <strong>Recent renovation may bring sponsor opportunities.</strong>'},
+
+  // NHL-specific (where different from NBA shared)
+  {venue:'Scotiabank Arena', tenants:'Maple Leafs, Raptors', league:'NHL', sponsor:'Bank of Nova Scotia', industry:'finance', year:2017, term:20, termStr:'20 years', annualVal:40, annualStr:'~CA$40M/yr', totalVal:800, totalStr:'CA$800M (~US$590M)', expiryYear:2038, expiresStr:'2038', note:'<strong>Largest naming-rights deal in Canadian sports history.</strong> Replaced Air Canada Centre.'},
+  {venue:'Bell Centre', tenants:'Montreal Canadiens', league:'NHL', sponsor:'Bell Canada (BCE Inc.)', industry:'telecom', year:2002, term:25, termStr:'25 years', annualVal:4, annualStr:'~CA$4M/yr', totalVal:100, totalStr:'~CA$100M', expiryYear:2027, expiresStr:'2027 — renewal coming', note:'Bell\'s flagship sports venue. Houses Canadiens and concerts.'},
+  {venue:'Little Caesars Arena', tenants:'Detroit Red Wings, Pistons', league:'NHL', sponsor:'Little Caesars (Ilitch Holdings)', industry:'consumer', year:2014, term:20, termStr:'20 years', annualVal:6, annualStr:'~$6M/yr', totalVal:125, totalStr:'~$125M', expiryYear:2037, expiresStr:'2037', note:'Owned by Ilitch family who also own Red Wings, Tigers, and Little Caesars pizza chain. <strong>Pistons rebranded games as "Mortgage Matchup Center" in 2024.</strong>'},
+  {venue:'Honda Center', tenants:'Anaheim Ducks', league:'NHL', sponsor:'Honda Motor Co.', industry:'consumer', year:2006, term:15, termStr:'15 years + ext.', annualVal:5, annualStr:'~$5M/yr', totalVal:75, totalStr:'~$75M (orig.)', expiryYear:2027, expiresStr:'2027', note:'Honda North America HQ is in nearby Torrance, CA.'},
+  {venue:'Amerant Bank Arena', tenants:'Florida Panthers', league:'NHL', sponsor:'Amerant Bank', industry:'finance', year:2022, term:10, termStr:'10 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2032, expiresStr:'2032', note:'Coral Gables, FL-based bank. Replaced FLA Live Arena and BB&T Center.'},
+  {venue:'PPG Paints Arena', tenants:'Pittsburgh Penguins', league:'NHL', sponsor:'PPG Industries', industry:'consumer', year:2016, term:20, termStr:'20 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2036, expiresStr:'2036', note:'Pittsburgh-headquartered paint/coatings manufacturer.'},
+  {venue:'KeyBank Center', tenants:'Buffalo Sabres', league:'NHL', sponsor:'KeyCorp / KeyBank', industry:'finance', year:2016, term:15, termStr:'15 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2031, expiresStr:'2031', note:'Cleveland-based bank. Replaced First Niagara Center after Key acquired First Niagara.'},
+  {venue:'Bridgestone Arena', tenants:'Nashville Predators', league:'NHL', sponsor:'Bridgestone Americas', industry:'consumer', year:2010, term:15, termStr:'15 years', annualVal:4, annualStr:'~$4M/yr', totalVal:60, totalStr:'~$60M', expiryYear:2025, expiresStr:'Renewal in progress', note:'Bridgestone Americas HQ in Nashville.'},
+  {venue:'Enterprise Center', tenants:'St. Louis Blues', league:'NHL', sponsor:'Enterprise Holdings', industry:'consumer', year:2018, term:15, termStr:'15 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:2033, expiresStr:'2033', note:'Enterprise Rent-A-Car HQ in St. Louis area.'},
+  {venue:'T-Mobile Arena', tenants:'Vegas Golden Knights', league:'NHL', sponsor:'T-Mobile US', industry:'telecom', year:2014, term:0, termStr:'Long-term', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'Long-running', note:'Naming announced before arena opened in 2016. MGM Resorts / AEG partnership built it.'},
+  {venue:'Xfinity Mobile Arena', tenants:'Philadelphia Flyers, Sixers (current)', league:'NHL', sponsor:'Comcast (Xfinity Mobile)', industry:'telecom', year:2024, term:0, termStr:'Multi-year', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'Undisclosed', expiryYear:0, expiresStr:'TBD', note:'Renamed in 2024 from Wells Fargo Center. Comcast owns Flyers parent company.'},
+  {venue:'Climate Pledge Arena', tenants:'Seattle Kraken', league:'NHL', sponsor:'Amazon (Climate Pledge initiative)', industry:'tech', year:2020, term:25, termStr:'25 years', annualVal:0, annualStr:'Undisclosed', totalVal:0, totalStr:'~$300-400M est.', expiryYear:2045, expiresStr:'2045', note:'<strong>First major arena named after a corporate initiative rather than a brand.</strong> Bezos\' climate commitment campaign. Amazon HQ in Seattle.'},
+];
+
 let activeView = 'rights';
-let activeFilters = {rights: 'all', owners: 'all', venues: 'all'};
-let sortDirections = {rights: {field: 'val', dir: 'desc'}, owners: {field: 'val', dir: 'desc'}, venues: {field: 'cost', dir: 'desc'}};
+let activeFilters = {rights: 'all', owners: 'all', venues: 'all', naming: 'all'};
+let sortDirections = {rights: {field: 'val', dir: 'desc'}, owners: {field: 'val', dir: 'desc'}, venues: {field: 'cost', dir: 'desc'}, naming: {field: 'val', dir: 'desc'}};
 
 function fmtCurrency(v) {
   if (!v && v !== 0) return '—';
@@ -1062,6 +1571,528 @@ function renderVenues() {
   }).join('');
 }
 
+function renderNamingSummary(items) {
+  const valid = items.filter(x => x.totalVal > 0);
+  const totalDeals = valid.reduce((a,b) => a + b.totalVal, 0);
+  const avgAnnual = valid.length ? valid.reduce((a,b) => a + (b.annualVal || 0), 0) / valid.length : 0;
+  const expSoon = items.filter(x => x.expiryYear && x.expiryYear > 0 && x.expiryYear <= 2028).length;
+  const noSponsor = items.filter(x => x.sponsor === 'None' || x.sponsor.startsWith('None')).length;
+  document.getElementById('naming-summary').innerHTML = `
+    <div class="summary-stat"><div class="summary-label">Deals tracked</div><div class="summary-value">${items.length}</div><div class="summary-delta">Filtered set</div></div>
+    <div class="summary-stat"><div class="summary-label">Disclosed total</div><div class="summary-value">$${(totalDeals/1000).toFixed(2)}B</div><div class="summary-delta">Sum of disclosed deals</div></div>
+    <div class="summary-stat"><div class="summary-label">Avg annual</div><div class="summary-value">$${avgAnnual.toFixed(1)}M</div><div class="summary-delta">Per-year average (disclosed)</div></div>
+    <div class="summary-stat"><div class="summary-label">No sponsor</div><div class="summary-value">${noSponsor}</div><div class="summary-delta">Venues w/o naming deal</div></div>
+    <div class="summary-stat"><div class="summary-label">Expiring ≤2028</div><div class="summary-value" style="color:var(--red)">${expSoon}</div><div class="summary-delta">Renewals due soon</div></div>
+  `;
+}
+
+function renderNaming() {
+  const q = (document.getElementById('naming-search').value || '').toLowerCase();
+  const sortField = document.getElementById('naming-sort').value;
+  let items = NAMING.filter(d => {
+    const indOk = activeFilters.naming === 'all' || d.industry === activeFilters.naming;
+    if (!indOk) return false;
+    if (!q) return true;
+    return d.venue.toLowerCase().includes(q) ||
+      d.sponsor.toLowerCase().includes(q) ||
+      d.tenants.toLowerCase().includes(q) ||
+      (d.note || '').toLowerCase().includes(q);
+  });
+
+  if (sortField === 'val') items.sort((a,b) => b.totalVal - a.totalVal);
+  else if (sortField === 'annual') items.sort((a,b) => (b.annualVal || 0) - (a.annualVal || 0));
+  else if (sortField === 'exp') items.sort((a,b) => (a.expiryYear || 9999) - (b.expiryYear || 9999));
+  else if (sortField === 'year') items.sort((a,b) => (b.year || 0) - (a.year || 0));
+  else items.sort((a,b) => a.venue.localeCompare(b.venue));
+
+  renderNamingSummary(items);
+  document.getElementById('count-naming').textContent = items.length;
+
+  if (!items.length) {
+    document.getElementById('naming-tbody').innerHTML = '<tr><td colspan="8"><div class="empty-state">No deals match your search.</div></td></tr>';
+    return;
+  }
+
+  const industryColors = {
+    finance:'#2d5f2d', tech:'#1a3a6e', insurance:'#722f37',
+    telecom:'#b8400f', crypto:'#8a5a8a', consumer:'#5a7d2a', other:'#6b6b6b'
+  };
+
+  document.getElementById('naming-tbody').innerHTML = items.map((d, i) => {
+    const uid = 'n' + i;
+    const ec = (d.expiryYear && d.expiryYear > 0) ? expClass(d.expiryYear) : '';
+    return `<tr data-uid="${uid}" data-type="row">
+      <td><span class="cat-marker" style="background:${industryColors[d.industry] || '#888'}"></span></td>
+      <td class="primary">${escapeHtml(d.venue)}<div class="sub">${escapeHtml(d.tenants)}</div></td>
+      <td>${escapeHtml(d.sponsor)}</td>
+      <td class="secondary" style="text-transform:capitalize">${escapeHtml(d.industry === 'other' ? '—' : d.industry)}</td>
+      <td class="num">${d.year || '—'}</td>
+      <td class="num secondary">${escapeHtml(d.termStr)}</td>
+      <td class="num">${escapeHtml(d.totalStr)}<div class="sub">${escapeHtml(d.annualStr)}</div></td>
+      <td class="num">${d.expiryYear && d.expiryYear > 0 ? `<span class="exp-pill ${ec}">${escapeHtml(d.expiresStr)}</span>` : escapeHtml(d.expiresStr)}</td>
+    </tr>
+    <tr class="detail-row" id="d-${uid}">
+      <td colspan="8">
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">Sponsor</div>
+              <div class="detail-value"><strong>${escapeHtml(d.sponsor)}</strong></div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Deal structure</div>
+              <div class="detail-value">${escapeHtml(d.termStr)} signed ${d.year || 'N/A'}; ${escapeHtml(d.annualStr)}</div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Total value</div>
+              <div class="detail-value"><strong>${escapeHtml(d.totalStr)}</strong></div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Expires</div>
+              <div class="detail-value">${escapeHtml(d.expiresStr)}</div>
+            </div>
+          </div>
+          ${d.note ? `<div class="note-block">${d.note}</div>` : ''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ============================================================
+// CHAT: Smart-filter mode + optional Claude API mode
+// ============================================================
+
+const CHAT_STATE = {
+  apiKey: '',
+  messages: [],
+  mode: 'filter', // 'filter' or 'api'
+};
+
+function loadApiKey() {
+  try {
+    const k = sessionStorage.getItem('claude_api_key');
+    if (k) {
+      CHAT_STATE.apiKey = k;
+      CHAT_STATE.mode = 'api';
+      document.getElementById('api-key').value = k;
+      document.getElementById('api-status').textContent = 'Key loaded. Using Claude API mode.';
+      document.getElementById('api-status').className = 'api-status success';
+      document.getElementById('mode-pill').textContent = 'Claude API mode';
+      document.getElementById('mode-pill').classList.add('api-mode');
+    }
+  } catch (e) {}
+}
+
+function saveApiKey() {
+  const k = document.getElementById('api-key').value.trim();
+  if (!k.startsWith('sk-ant-')) {
+    document.getElementById('api-status').textContent = 'Invalid key format. Anthropic keys start with sk-ant-...';
+    document.getElementById('api-status').className = 'api-status error';
+    return;
+  }
+  try {
+    sessionStorage.setItem('claude_api_key', k);
+    CHAT_STATE.apiKey = k;
+    CHAT_STATE.mode = 'api';
+    document.getElementById('api-status').textContent = 'Key saved for this browser session. Using Claude API mode.';
+    document.getElementById('api-status').className = 'api-status success';
+    document.getElementById('mode-pill').textContent = 'Claude API mode';
+    document.getElementById('mode-pill').classList.add('api-mode');
+  } catch (e) {
+    document.getElementById('api-status').textContent = 'Could not save (browser storage blocked). Key active for this session only.';
+    document.getElementById('api-status').className = 'api-status error';
+    CHAT_STATE.apiKey = k;
+    CHAT_STATE.mode = 'api';
+  }
+}
+
+function clearApiKey() {
+  try { sessionStorage.removeItem('claude_api_key'); } catch (e) {}
+  CHAT_STATE.apiKey = '';
+  CHAT_STATE.mode = 'filter';
+  document.getElementById('api-key').value = '';
+  document.getElementById('api-status').textContent = 'Key cleared. Smart-filter mode active.';
+  document.getElementById('api-status').className = 'api-status';
+  document.getElementById('mode-pill').textContent = 'Smart-filter mode';
+  document.getElementById('mode-pill').classList.remove('api-mode');
+}
+
+function addMessage(role, contentHtml) {
+  const msgsEl = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg msg-' + role;
+  const avatar = role === 'user' ? 'You' : (CHAT_STATE.mode === 'api' ? 'AI' : 'Q');
+  div.innerHTML = '<div class="msg-avatar">' + avatar + '</div><div class="msg-body"><div class="msg-content">' + contentHtml + '</div></div>';
+  msgsEl.appendChild(div);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+  div.scrollIntoView({behavior:'smooth', block:'end'});
+  return div;
+}
+
+// ============================================================
+// SMART-FILTER MODE: parse and answer with structured queries
+// ============================================================
+
+function answerWithFilter(q) {
+  const lq = q.toLowerCase();
+
+  // Helper: format a list of rights records as table
+  function rightsTable(items, cols) {
+    if (!items.length) return '<p><em>No matches in the dataset.</em></p>';
+    const headers = {name:'League', annual:'Annual', total:'Total', expires:'Expires', cat:'Category'};
+    let html = '<table class="msg-result-table"><thead><tr>';
+    cols.forEach(c => html += '<th>' + headers[c] + '</th>');
+    html += '</tr></thead><tbody>';
+    items.forEach(d => {
+      html += '<tr>';
+      cols.forEach(c => {
+        if (c === 'name') html += '<td><strong>' + escapeHtml(d.name) + '</strong></td>';
+        else if (c === 'annual') html += '<td class="num">' + escapeHtml(d.annual) + '</td>';
+        else if (c === 'total') html += '<td class="num">' + escapeHtml(d.total) + '</td>';
+        else if (c === 'expires') html += '<td class="num">' + escapeHtml(d.expires) + '</td>';
+        else if (c === 'cat') html += '<td>' + escapeHtml(d.cat) + '</td>';
+      });
+      html += '</tr>';
+    });
+    return html + '</tbody></table>';
+  }
+  function ownersTable(items) {
+    if (!items.length) return '<p><em>No matches in the dataset.</em></p>';
+    let html = '<table class="msg-result-table"><thead><tr><th>Team</th><th>League</th><th>Owner</th><th class="num">Year</th><th class="num">Purchase</th><th class="num">Value</th></tr></thead><tbody>';
+    items.forEach(d => {
+      html += '<tr><td><strong>' + escapeHtml(d.team) + '</strong></td><td>' + escapeHtml(d.league) + '</td><td>' + escapeHtml(d.owner) + '</td><td class="num">' + escapeHtml(d.yearStr) + '</td><td class="num">' + escapeHtml(d.purchase) + '</td><td class="num">' + escapeHtml(d.valueStr) + '</td></tr>';
+    });
+    return html + '</tbody></table>';
+  }
+  function venuesTable(items) {
+    if (!items.length) return '<p><em>No matches in the dataset.</em></p>';
+    let html = '<table class="msg-result-table"><thead><tr><th>Venue</th><th>Tenants</th><th class="num">Built</th><th class="num">Cost</th></tr></thead><tbody>';
+    items.forEach(d => {
+      html += '<tr><td><strong>' + escapeHtml(d.name) + '</strong></td><td>' + escapeHtml(d.tenants) + '</td><td class="num">' + (d.built || '—') + '</td><td class="num">' + escapeHtml(d.costStr) + '</td></tr>';
+    });
+    return html + '</tbody></table>';
+  }
+  function namingTable(items) {
+    if (!items.length) return '<p><em>No matches in the dataset.</em></p>';
+    let html = '<table class="msg-result-table"><thead><tr><th>Venue</th><th>Sponsor</th><th class="num">Signed</th><th class="num">Annual</th><th class="num">Total</th><th class="num">Expires</th></tr></thead><tbody>';
+    items.forEach(d => {
+      html += '<tr><td><strong>' + escapeHtml(d.venue) + '</strong></td><td>' + escapeHtml(d.sponsor) + '</td><td class="num">' + (d.year || '—') + '</td><td class="num">' + escapeHtml(d.annualStr) + '</td><td class="num">' + escapeHtml(d.totalStr) + '</td><td class="num">' + escapeHtml(d.expiresStr) + '</td></tr>';
+    });
+    return html + '</tbody></table>';
+  }
+
+  // ---- Year extraction ----
+  const yearMatch = lq.match(/\b(20\d{2})\b/);
+  const targetYear = yearMatch ? parseInt(yearMatch[1]) : null;
+
+  // ---- Patterns ----
+  // "expire" / "expiring" patterns
+  if (/expir/i.test(lq) || /coming up.*market/i.test(lq) || /up for renewal/i.test(lq)) {
+    let cutoff = targetYear || 2029;
+    if (/before/i.test(lq) && targetYear) cutoff = targetYear - 1;
+    if (/after/i.test(lq) && targetYear) {
+      const items = RIGHTS.filter(d => d.expiryYear && d.expiryYear > targetYear);
+      return '<p>Found <strong>' + items.length + '</strong> media deals expiring after ' + targetYear + ':</p>' +
+        rightsTable(items.sort((a,b) => a.expiryYear - b.expiryYear), ['name','annual','expires']);
+    }
+    // default: by or before cutoff
+    const items = RIGHTS.filter(d => d.expiryYear && d.expiryYear <= cutoff);
+    return '<p>Found <strong>' + items.length + '</strong> media deals expiring by ' + cutoff + ':</p>' +
+      rightsTable(items.sort((a,b) => a.expiryYear - b.expiryYear), ['name','annual','expires']);
+  }
+
+  // "streaming-only" or "streaming"
+  if (/streaming.only/i.test(lq) || (/streaming/i.test(lq) && /(deal|league|rights|broadcaster)/i.test(lq))) {
+    const items = RIGHTS.filter(d =>
+      d.domestic.some(x => /apple tv|amazon|netflix|paramount\+|peacock|max|espn\+|hulu|youtube/i.test(x)) ||
+      /streaming-only/i.test(d.note || '') || /streaming only/i.test(d.note || '')
+    );
+    return '<p>Found <strong>' + items.length + '</strong> leagues with significant streaming-platform involvement:</p>' +
+      rightsTable(items, ['name','annual','expires']) +
+      '<p class="msg-note">Includes deals with Apple TV+, Amazon Prime, Netflix, Paramount+, Peacock, Max, ESPN+, YouTube — many alongside linear partners.</p>';
+  }
+
+  // Owner-name search across teams
+  // pattern: "owned by X" / "teams owned by X" / "X teams"
+  const ownerNameMatch = lq.match(/(?:teams?\s+)?(?:owned by|of|by)\s+([a-z][a-z\s.']+?)(?:\?|$|\s+(?:in|that))/i);
+  const possibleOwnerName = ownerNameMatch ? ownerNameMatch[1].trim() : null;
+
+  // Try known owner names
+  const knownOwners = ['mark walter','stan kroenke','steve ballmer','jerry jones','david tepper','arthur blank','jimmy haslam','robert kraft','josh harris','john henry','fenway sports','steve cohen','joe tsai','larry ellison','mohamed mansour','ryan reynolds','marc lasry','glazer','ratcliffe','kroenke','tsai','tepper','walton','penner','liberty media','red bull','aeg','msg sports','tko'];
+  let ownerHit = null;
+  for (const o of knownOwners) {
+    if (lq.includes(o)) { ownerHit = o; break; }
+  }
+
+  if (ownerHit) {
+    const items = OWNERS.filter(d =>
+      d.owner.toLowerCase().includes(ownerHit) ||
+      (d.minority || []).some(m => m.toLowerCase().includes(ownerHit)) ||
+      (d.note || '').toLowerCase().includes(ownerHit)
+    );
+    if (items.length) {
+      return '<p>Teams with <strong>' + ownerHit + '</strong> as owner or minority partner (' + items.length + '):</p>' + ownersTable(items);
+    }
+  }
+
+  // "biggest" or "most expensive" purchases / sales
+  if ((/biggest|largest|most expensive|highest|top/i.test(lq)) && /(purchase|sale|sold|bought|deal)/i.test(lq) && /team/i.test(lq)) {
+    const items = OWNERS.filter(d => d.purchaseVal > 0).sort((a,b) => b.purchaseVal - a.purchaseVal).slice(0, 10);
+    return '<p><strong>Top 10 team purchase prices on record:</strong></p>' + ownersTable(items);
+  }
+  if ((/biggest|largest|most expensive|highest|top/i.test(lq)) && /naming/i.test(lq)) {
+    const items = NAMING.filter(d => d.totalVal > 0).sort((a,b) => b.totalVal - a.totalVal).slice(0, 10);
+    return '<p><strong>Top 10 disclosed naming-rights deals:</strong></p>' + namingTable(items);
+  }
+  if ((/biggest|largest|most expensive|highest/i.test(lq)) && /stadium|arena|venue/i.test(lq)) {
+    const items = VENUES.filter(d => d.cost > 0).sort((a,b) => b.cost - a.cost).slice(0, 10);
+    return '<p><strong>Most expensive sports venues by construction cost:</strong></p>' + venuesTable(items);
+  }
+  if ((/biggest|largest|most valuable|top/i.test(lq)) && /team/i.test(lq) && !/purchase|sale/i.test(lq)) {
+    const items = OWNERS.filter(d => d.value > 0).sort((a,b) => b.value - a.value).slice(0, 10);
+    return '<p><strong>10 most valuable teams in the dataset:</strong></p>' + ownersTable(items);
+  }
+  if ((/biggest|largest|highest/i.test(lq)) && (/media deal|tv deal|rights deal/i.test(lq))) {
+    const items = RIGHTS.filter(d => d.totalVal > 0).sort((a,b) => b.totalVal - a.totalVal).slice(0, 10);
+    return '<p><strong>Top media rights deals by total disclosed value:</strong></p>' + rightsTable(items, ['name','total','annual','expires']);
+  }
+
+  // "After year X" purchases
+  if (/(after|since|recent)/i.test(lq) && targetYear && /(team|own|buy|bought|purchase)/i.test(lq)) {
+    let league = null;
+    ['nfl','nba','nhl','mlb','mls','wnba','epl','premier','f1','nascar'].forEach(l => {
+      if (lq.includes(l)) league = l;
+    });
+    let items = OWNERS.filter(d => d.year >= targetYear);
+    if (league) {
+      const lgKey = league.toUpperCase().replace('PREMIER','EPL');
+      items = items.filter(d => d.league.toUpperCase().includes(lgKey === 'EPL' ? 'EPL' : lgKey));
+    }
+    items.sort((a,b) => b.year - a.year);
+    return '<p>Teams purchased after <strong>' + targetYear + '</strong>' + (league ? ' in the ' + league.toUpperCase() : '') + ' (' + items.length + '):</p>' + ownersTable(items);
+  }
+
+  // "Who owns X" — venue or team lookup
+  const whoOwnsMatch = lq.match(/who owns (?:the\s+)?([a-z0-9.\s&']+?)(?:\?|$)/i);
+  if (whoOwnsMatch) {
+    const target = whoOwnsMatch[1].trim().toLowerCase().replace(/^the\s+/, '');
+    // Try exact team match first
+    const exactTeam = OWNERS.find(t => t.team.toLowerCase() === target);
+    if (exactTeam) {
+      return '<p><strong>' + escapeHtml(exactTeam.team) + '</strong> is owned by <strong>' + escapeHtml(exactTeam.owner) + '</strong>. ' +
+        'Acquired in ' + escapeHtml(exactTeam.yearStr) + ' for ' + escapeHtml(exactTeam.purchase) + '. Current value: ' + escapeHtml(exactTeam.valueStr) + '.</p>' +
+        (exactTeam.minority && exactTeam.minority.length ? '<p>Minority partners:</p><ul>' + exactTeam.minority.map(m => '<li>' + escapeHtml(m) + '</li>').join('') + '</ul>' : '') +
+        (exactTeam.note ? '<p class="msg-note">' + exactTeam.note + '</p>' : '');
+    }
+    // Venue with "arena" / "stadium" / "field" / "park" / "center" / "dome" in target → check venues first
+    const looksLikeVenue = /arena|stadium|field|park|center|dome|garden|coliseum|forum|ballpark/i.test(target);
+    if (looksLikeVenue) {
+      const venue = VENUES.find(v => v.name.toLowerCase().includes(target) || target.includes(v.name.toLowerCase().split(' ')[0]));
+      if (venue) {
+        return '<p><strong>' + escapeHtml(venue.name) + '</strong> (' + escapeHtml(venue.city) + ') is owned by <strong>' + escapeHtml(venue.ownerEntity) + '</strong> (' + escapeHtml(venue.ownerType) + '). Operated by ' + escapeHtml(venue.operator) + '. Naming rights: ' + escapeHtml(venue.namingRights) + '.</p>' +
+          (venue.note ? '<p class="msg-note">' + venue.note + '</p>' : '');
+      }
+    }
+    // Otherwise try teams first, then venues
+    const team = OWNERS.find(t => t.team.toLowerCase().includes(target));
+    if (team) {
+      return '<p><strong>' + escapeHtml(team.team) + '</strong> is owned by <strong>' + escapeHtml(team.owner) + '</strong>. ' +
+        'Acquired in ' + escapeHtml(team.yearStr) + ' for ' + escapeHtml(team.purchase) + '. Current value: ' + escapeHtml(team.valueStr) + '.</p>' +
+        (team.minority && team.minority.length ? '<p>Minority partners:</p><ul>' + team.minority.map(m => '<li>' + escapeHtml(m) + '</li>').join('') + '</ul>' : '') +
+        (team.note ? '<p class="msg-note">' + team.note + '</p>' : '');
+    }
+    const venue = VENUES.find(v => v.name.toLowerCase().includes(target));
+    if (venue) {
+      return '<p><strong>' + escapeHtml(venue.name) + '</strong> (' + escapeHtml(venue.city) + ') is owned by <strong>' + escapeHtml(venue.ownerEntity) + '</strong> (' + escapeHtml(venue.ownerType) + '). Operated by ' + escapeHtml(venue.operator) + '. Naming rights: ' + escapeHtml(venue.namingRights) + '.</p>' +
+        (venue.note ? '<p class="msg-note">' + venue.note + '</p>' : '');
+    }
+    return '<p><em>Could not find "' + escapeHtml(whoOwnsMatch[1]) + '" in the dataset. Try a slightly different name — partial matches sometimes miss.</em></p>';
+  }
+
+  // "Compare" cost / value
+  if (/compare/i.test(lq) && /(nfl|nba|mlb|nhl|mls).*(stadium|arena|venue|cost)/i.test(lq) && /(nfl|nba|mlb|nhl|mls)/i.test(lq.split(/(nfl|nba|mlb|nhl|mls)/i)[2] || '')) {
+    const groups = {};
+    ['NFL','NBA','MLB','NHL','MLS'].forEach(lg => {
+      const venues = VENUES.filter(v => v.league === lg && v.cost > 0);
+      if (venues.length) {
+        groups[lg] = {
+          count: venues.length,
+          avg: venues.reduce((a,b) => a + b.cost, 0) / venues.length,
+          max: Math.max(...venues.map(v => v.cost)),
+          min: Math.min(...venues.map(v => v.cost)),
+        };
+      }
+    });
+    let html = '<p><strong>Venue construction cost by league</strong> (where dataset includes the venue):</p><table class="msg-result-table"><thead><tr><th>League</th><th class="num">Count</th><th class="num">Avg cost</th><th class="num">Max</th><th class="num">Min</th></tr></thead><tbody>';
+    Object.keys(groups).forEach(lg => {
+      const g = groups[lg];
+      html += '<tr><td><strong>' + lg + '</strong></td><td class="num">' + g.count + '</td><td class="num">$' + g.avg.toFixed(1) + 'B</td><td class="num">$' + g.max.toFixed(1) + 'B</td><td class="num">$' + g.min.toFixed(2) + 'B</td></tr>';
+    });
+    return html + '</tbody></table><p class="msg-note">Note: dataset includes flagship/notable venues — not every team\'s home.</p>';
+  }
+
+  // Generic league lookup
+  const leagueKeywords = {NFL:'NFL', NBA:'NBA', NHL:'NHL', MLB:'MLB', MLS:'MLS', WNBA:'WNBA', 'PREMIER LEAGUE':'EPL', EPL:'EPL', 'LA LIGA':'LL', 'FORMULA 1':'F1', F1:'F1', NASCAR:'NASCAR', MOTOGP:'MotoGP', SAILGP:'SailGP'};
+  for (const kw of Object.keys(leagueKeywords)) {
+    if (lq.toUpperCase().includes(kw)) {
+      const lgFilter = leagueKeywords[kw];
+      if (/team|owner/i.test(lq)) {
+        const items = OWNERS.filter(d => d.league === lgFilter).sort((a,b) => b.value - a.value);
+        if (items.length) return '<p>All <strong>' + kw + '</strong> teams in the dataset (' + items.length + '):</p>' + ownersTable(items);
+      }
+      if (/rights|deal|broadcaster|tv/i.test(lq)) {
+        const items = RIGHTS.filter(d => d.name.toUpperCase().includes(kw.replace(' ','')));
+        if (items.length) return '<p>Media rights for <strong>' + kw + '</strong>:</p>' + rightsTable(items, ['name','annual','total','expires']) +
+          (items[0].note ? '<p class="msg-note">' + items[0].note + '</p>' : '');
+      }
+    }
+  }
+
+  // ============================================================
+  // Generic full-text search across all datasets
+  // ============================================================
+  const tokens = lq.split(/\s+/).filter(t => t.length > 2);
+  if (!tokens.length) return '<p><em>Try a more specific question — see the suggestion pills above for examples.</em></p>';
+
+  const score = (text) => {
+    const lt = (text || '').toLowerCase();
+    return tokens.reduce((s, t) => s + (lt.includes(t) ? 1 : 0), 0);
+  };
+
+  const rightsHits = RIGHTS.map(d => ({d, s: score(d.name + ' ' + d.sub + ' ' + d.domestic.join(' ') + ' ' + d.intl + ' ' + d.note)})).filter(x => x.s >= Math.min(2, tokens.length)).sort((a,b) => b.s - a.s).slice(0, 5).map(x => x.d);
+  const ownerHits = OWNERS.map(d => ({d, s: score(d.team + ' ' + d.owner + ' ' + d.league + ' ' + (d.minority || []).join(' ') + ' ' + (d.note || ''))})).filter(x => x.s >= Math.min(2, tokens.length)).sort((a,b) => b.s - a.s).slice(0, 5).map(x => x.d);
+  const venueHits = VENUES.map(d => ({d, s: score(d.name + ' ' + d.city + ' ' + d.tenants + ' ' + d.ownerEntity + ' ' + d.namingRights + ' ' + (d.note || ''))})).filter(x => x.s >= Math.min(2, tokens.length)).sort((a,b) => b.s - a.s).slice(0, 5).map(x => x.d);
+  const namingHits = NAMING.map(d => ({d, s: score(d.venue + ' ' + d.sponsor + ' ' + d.tenants + ' ' + (d.note || ''))})).filter(x => x.s >= Math.min(2, tokens.length)).sort((a,b) => b.s - a.s).slice(0, 5).map(x => x.d);
+
+  if (!rightsHits.length && !ownerHits.length && !venueHits.length && !namingHits.length) {
+    return '<p><em>No matches found in the dataset for that query. In smart-filter mode I work best with concrete questions about specific leagues, owners, venues, or sponsors. For free-form analysis, connect the Claude API above.</em></p>';
+  }
+
+  let html = '<p>Best matches across the dataset:</p>';
+  if (rightsHits.length) html += '<p><strong>Media rights:</strong></p>' + rightsTable(rightsHits, ['name','annual','expires']);
+  if (ownerHits.length) html += '<p><strong>Team owners:</strong></p>' + ownersTable(ownerHits);
+  if (venueHits.length) html += '<p><strong>Venues:</strong></p>' + venuesTable(venueHits);
+  if (namingHits.length) html += '<p><strong>Naming rights:</strong></p>' + namingTable(namingHits);
+  return html;
+}
+
+// ============================================================
+// CLAUDE API MODE
+// ============================================================
+
+async function answerWithApi(q, loadingEl) {
+  // Build a compact dataset summary to send as context
+  const datasetSummary = {
+    rights: RIGHTS.map(d => ({
+      league: d.name, category: d.cat,
+      annualValue: d.annual, totalValue: d.total, expires: d.expires, expiryYear: d.expiryYear,
+      domesticBroadcasters: d.domestic, international: d.intl, note: (d.note || '').replace(/<\/?strong>/g,'')
+    })),
+    owners: OWNERS.map(d => ({
+      team: d.team, league: d.league, owner: d.owner, ownerNetWorth: d.ownerNet,
+      yearAcquired: d.yearStr, purchasePrice: d.purchase, purchaseValueB: d.purchaseVal,
+      currentValue: d.valueStr, currentValueB: d.value,
+      minorityOwners: d.minority, note: (d.note || '').replace(/<\/?strong>/g,'')
+    })),
+    venues: VENUES.map(d => ({
+      venue: d.name, city: d.city, tenants: d.tenants, league: d.league,
+      ownerType: d.ownerType, ownerEntity: d.ownerEntity, operator: d.operator,
+      namingRights: d.namingRights, builtYear: d.built, cost: d.costStr,
+      capacity: d.capStr, publicFunding: d.publicFunding, note: (d.note || '').replace(/<\/?strong>/g,'')
+    })),
+    naming: NAMING.map(d => ({
+      venue: d.venue, tenants: d.tenants, league: d.league, sponsor: d.sponsor,
+      industry: d.industry, signedYear: d.year, term: d.termStr,
+      annualValue: d.annualStr, totalValue: d.totalStr, expires: d.expiresStr,
+      note: (d.note || '').replace(/<\/?strong>/g,'')
+    }))
+  };
+
+  const systemPrompt = `You are an expert sports business analyst answering questions about a structured dataset. The user has provided a JSON dataset of:
+- Media rights deals (${datasetSummary.rights.length} leagues)
+- Team ownership records (${datasetSummary.owners.length} teams across NFL, NBA, NHL, MLB, MLS, WNBA, EPL, La Liga, F1, MotoGP, SailGP, NASCAR, UFC/WWE)
+- Sports venues (${datasetSummary.venues.length} venues)
+- Stadium naming rights deals (${datasetSummary.naming.length} deals)
+
+Answer questions ONLY using this data. If the answer isn't in the data, say so clearly. Use HTML tables (<table>, <tr>, <td>) where helpful. Use <strong> for emphasis. Be concise and analytical. Cite specific data points. Do not invent figures.
+
+DATASET:
+${JSON.stringify(datasetSummary)}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': CHAT_STATE.apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-opus-4-7',
+        max_tokens: 1500,
+        system: systemPrompt,
+        messages: [
+          ...CHAT_STATE.messages.slice(-6),
+          { role: 'user', content: q }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      let errMsg = 'API error (' + response.status + ').';
+      try {
+        const errJson = JSON.parse(errText);
+        if (errJson.error && errJson.error.message) errMsg = errJson.error.message;
+      } catch (e) {}
+      if (response.status === 401) errMsg = 'API key is invalid or unauthorized.';
+      if (response.status === 429) errMsg = 'Rate limit exceeded. Wait a moment and try again.';
+      if (response.status === 400) errMsg = 'Request issue: ' + errMsg + ' If the model name is rejected, try a more recent Claude model.';
+      loadingEl.innerHTML = '<p><em>Error: ' + escapeHtml(errMsg) + ' Falling back to smart-filter mode for this query.</em></p>' + answerWithFilter(q);
+      return;
+    }
+    const data = await response.json();
+    const text = (data.content || []).filter(c => c.type === 'text').map(c => c.text).join('\n');
+
+    // Track conversation for follow-ups
+    CHAT_STATE.messages.push({ role: 'user', content: q });
+    CHAT_STATE.messages.push({ role: 'assistant', content: text });
+
+    // Render — light markdown handling
+    const rendered = text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/&lt;(\/?(?:table|thead|tbody|tr|th|td|strong|em|ul|li|p|br)(?:\s[^&]*)?)\s*&gt;/gi, '<$1>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+    loadingEl.innerHTML = '<p>' + rendered + '</p>';
+  } catch (err) {
+    loadingEl.innerHTML = '<p><em>Connection error: ' + escapeHtml(err.message) + '. Falling back to smart-filter mode.</em></p>' + answerWithFilter(q);
+  }
+}
+
+function handleSend() {
+  const input = document.getElementById('chat-input');
+  const q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+
+  // Hide suggestions after first message
+  document.getElementById('chat-suggestions').style.display = 'none';
+
+  addMessage('user', escapeHtml(q));
+
+  if (CHAT_STATE.mode === 'api' && CHAT_STATE.apiKey) {
+    const loadingMsg = addMessage('bot', '<span class="msg-loading"></span><em>Querying Claude...</em>');
+    answerWithApi(q, loadingMsg.querySelector('.msg-content'));
+  } else {
+    setTimeout(() => addMessage('bot', answerWithFilter(q)), 80);
+  }
+}
+
 function buildFilters(viewName) {
   const containerId = viewName + '-filters';
   const container = document.getElementById(containerId);
@@ -1077,6 +2108,7 @@ function buildFilters(viewName) {
       if (viewName === 'rights') renderRights();
       else if (viewName === 'owners') renderOwners();
       else if (viewName === 'venues') renderVenues();
+      else if (viewName === 'naming') renderNaming();
     });
   });
 }
@@ -1108,13 +2140,39 @@ document.getElementById('owners-search').addEventListener('input', renderOwners)
 document.getElementById('owners-sort').addEventListener('change', renderOwners);
 document.getElementById('venues-search').addEventListener('input', renderVenues);
 document.getElementById('venues-sort').addEventListener('change', renderVenues);
+document.getElementById('naming-search').addEventListener('input', renderNaming);
+document.getElementById('naming-sort').addEventListener('change', renderNaming);
+
+// Chat event wiring
+document.getElementById('api-toggle').addEventListener('click', () => {
+  const cfg = document.getElementById('api-config');
+  cfg.style.display = cfg.style.display === 'none' ? 'block' : 'none';
+});
+document.getElementById('api-save').addEventListener('click', saveApiKey);
+document.getElementById('api-clear').addEventListener('click', clearApiKey);
+document.getElementById('chat-send').addEventListener('click', handleSend);
+document.getElementById('chat-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    handleSend();
+  }
+});
+document.querySelectorAll('.suggest-pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.getElementById('chat-input').value = p.textContent;
+    handleSend();
+  });
+});
 
 buildFilters('rights');
 buildFilters('owners');
 buildFilters('venues');
+buildFilters('naming');
 renderRights();
 renderOwners();
 renderVenues();
+renderNaming();
+loadApiKey();
 </script>
 </body>
 </html>
