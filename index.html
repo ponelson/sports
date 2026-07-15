@@ -708,6 +708,70 @@ footer h4 {
   .summary-stat { border-right: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule); }
   .controls input { min-width: 140px; }
 }
+
+/* Intelligence expansion */
+.hero { padding: 72px 0 46px; border-bottom: .5px solid var(--rule); }
+.hero-kicker { font-size:10px; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); font-weight:600; margin-bottom:18px; }
+.hero h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(42px,7vw,88px); line-height:.96; letter-spacing:-.055em; font-weight:600; max-width:980px; }
+.hero-deck { margin-top:24px; max-width:760px; font-family:'Source Serif 4',Georgia,serif; font-size:20px; line-height:1.5; color:var(--ink-2); }
+.hero-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; }
+.hero-btn { border:.5px solid var(--rule-strong); background:var(--ink); color:var(--bg); padding:10px 16px; font:500 11px/1 Inter,sans-serif; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
+.hero-btn.secondary { background:transparent; color:var(--ink); }
+.feature-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; margin:28px 0 36px; }
+.feature-card { background:var(--paper); border:.5px solid var(--rule); padding:22px; min-height:180px; cursor:pointer; transition:transform .22s ease,border-color .22s ease; }
+.feature-card:hover { transform:translateY(-2px); border-color:var(--ink-3); }
+.feature-card.lead { min-height:290px; display:flex; flex-direction:column; justify-content:space-between; }
+.eyebrow { font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-3); }
+.feature-card h3 { font-family:'Source Serif 4',Georgia,serif; font-size:28px; line-height:1.05; letter-spacing:-.025em; margin:16px 0 10px; }
+.feature-card.lead h3 { font-size:40px; max-width:620px; }
+.feature-number { font-family:'Source Serif 4',Georgia,serif; font-size:44px; line-height:1; letter-spacing:-.04em; }
+.feature-copy { color:var(--ink-2); max-width:620px; }
+.module-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0 32px; }
+.module-card { background:var(--paper); border:.5px solid var(--rule); padding:18px; min-height:150px; }
+.module-card h4 { font-family:'Source Serif 4',Georgia,serif; font-size:20px; margin:10px 0 7px; }
+.insight-list { display:grid; gap:10px; margin-top:14px; }
+.insight-item { display:grid; grid-template-columns:72px 1fr auto; gap:14px; align-items:center; padding:14px 0; border-bottom:.5px solid var(--rule); }
+.signal-score { font-family:'Source Serif 4',Georgia,serif; font-size:30px; }
+.signal-chip { font-size:10px; text-transform:uppercase; letter-spacing:.08em; padding:4px 7px; border:1px solid var(--rule); white-space:nowrap; }
+.timeline-wrap { overflow-x:auto; padding:24px 0 12px; }
+.timeline { min-width:1500px; display:grid; grid-template-columns:repeat(15,1fr); border-top:1px solid var(--rule-strong); position:relative; }
+.timeline-year { position:relative; padding:16px 10px 0; min-height:390px; border-left:.5px solid var(--rule); }
+.timeline-year:last-child { border-right:.5px solid var(--rule); }
+.timeline-year h4 { font-family:'Source Serif 4',Georgia,serif; font-size:22px; }
+.timeline-event { margin-top:12px; padding:9px; background:var(--paper); border:.5px solid var(--rule); font-size:11px; cursor:pointer; }
+.timeline-event strong { display:block; font-size:12px; margin-bottom:3px; }
+.timeline-event[data-type='rights'] { border-left:3px solid var(--blue); }
+.timeline-event[data-type='venue'] { border-left:3px solid var(--accent); }
+.timeline-event[data-type='sale'] { border-left:3px solid var(--green); }
+.timeline-event[data-type='district'] { border-left:3px solid var(--amber); }
+.empire-layout { display:grid; grid-template-columns:280px 1fr; gap:18px; margin-top:20px; }
+.empire-list { border:.5px solid var(--rule); background:var(--paper); }
+.empire-option { width:100%; text-align:left; padding:13px 14px; border:0; border-bottom:.5px solid var(--rule); background:transparent; color:var(--ink); cursor:pointer; font:inherit; }
+.empire-option.active { background:var(--ink); color:var(--bg); }
+.empire-canvas { min-height:570px; background:var(--paper); border:.5px solid var(--rule); position:relative; overflow:hidden; }
+.empire-node { position:absolute; transform:translate(-50%,-50%); padding:9px 11px; border:.5px solid var(--rule-strong); background:var(--bg-elev); font-size:11px; max-width:170px; text-align:center; z-index:2; }
+.empire-node.core { font-family:'Source Serif 4',Georgia,serif; font-size:18px; background:var(--ink); color:var(--bg); }
+.empire-line { position:absolute; height:1px; background:var(--rule-strong); transform-origin:0 50%; opacity:.5; z-index:1; }
+.land-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+.land-card { background:var(--paper); border:.5px solid var(--rule); padding:18px; }
+.land-card-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+.land-card h3 { font-family:'Source Serif 4',Georgia,serif; font-size:23px; line-height:1.1; }
+.score-ring { width:58px; height:58px; border:1px solid var(--rule-strong); border-radius:50%; display:grid; place-items:center; flex:none; font-family:'Source Serif 4',Georgia,serif; font-size:21px; }
+.land-meta { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0; }
+.land-metric { padding-top:8px; border-top:.5px solid var(--rule); }
+.land-metric span { display:block; font-size:9px; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-3); }
+.land-metric strong { font-size:13px; }
+.control-bar { height:7px; background:var(--rule); margin-top:7px; overflow:hidden; }
+.control-bar i { display:block; height:100%; background:var(--accent); }
+.metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+.metric-card { background:var(--paper); border:.5px solid var(--rule); padding:18px; min-height:180px; }
+.metric-card .metric-value { font-family:'Source Serif 4',Georgia,serif; font-size:34px; letter-spacing:-.03em; margin:14px 0 6px; }
+.metric-card p { color:var(--ink-2); font-size:12px; }
+.metric-formula { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-3); margin-top:14px; padding-top:9px; border-top:.5px solid var(--rule); }
+.legend { display:flex; gap:14px; flex-wrap:wrap; margin:12px 0 0; font-size:10px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.07em; }
+.legend span:before { content:''; display:inline-block; width:8px; height:8px; margin-right:6px; background:var(--rule-strong); }
+@media(max-width:900px){.feature-grid,.module-grid,.metric-grid,.land-grid{grid-template-columns:1fr}.empire-layout{grid-template-columns:1fr}.hero{padding-top:42px}.feature-card.lead h3{font-size:32px}.empire-canvas{min-height:650px}}
+
 </style>
 </head>
 <body>
@@ -739,7 +803,13 @@ footer h4 {
 
 <nav class="tabs">
   <div class="tabs-inner">
-    <button class="tab active" data-view="rights">Media rights<span class="tab-count" id="count-rights">—</span></button>
+    <button class="tab active" data-view="home">Intelligence</button>
+    <button class="tab" data-view="signals">Signals</button>
+    <button class="tab" data-view="timeline">Timeline</button>
+    <button class="tab" data-view="empires">Empires</button>
+    <button class="tab" data-view="land">Land &amp; districts</button>
+    <button class="tab" data-view="metrics">Metrics</button>
+    <button class="tab" data-view="rights">Media rights<span class="tab-count" id="count-rights">—</span></button>
     <button class="tab" data-view="owners">Team owners<span class="tab-count" id="count-owners">—</span></button>
     <button class="tab" data-view="venues">Venues &amp; stadiums<span class="tab-count" id="count-venues">—</span></button>
     <button class="tab" data-view="naming">Naming rights<span class="tab-count" id="count-naming">—</span></button>
@@ -749,7 +819,52 @@ footer h4 {
 
 <main class="container">
 
-<section id="view-rights" class="view active">
+<section id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-kicker">Global sports capital intelligence</div>
+    <h1>The architecture of power, capital and place in global sport.</h1>
+    <div class="hero-deck">A connected intelligence system for the rights that control audiences, the owners who control teams, the land beneath venues, and the districts where the next generation of value is being created.</div>
+    <div class="hero-actions"><button class="hero-btn" data-jump="signals">Explore signals</button><button class="hero-btn secondary" data-jump="land">Map land optionality</button></div>
+  </div>
+  <div class="feature-grid" id="home-features"></div>
+  <div class="section-header"><div class="section-title">The control stack</div><div class="section-meta">One industry, viewed through connected forms of control</div></div>
+  <div class="module-grid">
+    <div class="module-card"><div class="eyebrow">Audience</div><h4>Who owns distribution?</h4><p class="feature-copy">Media rights determine reach, economics and platform leverage.</p></div>
+    <div class="module-card"><div class="eyebrow">Capital</div><h4>Who owns the assets?</h4><p class="feature-copy">Individuals, dynasties, private equity and sovereign capital increasingly overlap.</p></div>
+    <div class="module-card"><div class="eyebrow">Place</div><h4>Who controls the land?</h4><p class="feature-copy">The stadium is often the anchor tenant for a much larger development platform.</p></div>
+  </div>
+</section>
+
+<section id="view-signals" class="view">
+  <div class="section-header"><div class="section-title">Signals</div><div class="section-meta">What matters next · ranked by strategic consequence</div></div>
+  <div class="summary-strip" id="signals-summary"></div>
+  <div class="insight-list" id="signals-list"></div>
+</section>
+
+<section id="view-timeline" class="view">
+  <div class="section-header"><div class="section-title">The calendar of value creation</div><div class="section-meta">Rights · venues · sales · districts · 2026–2040</div></div>
+  <div class="legend"><span>Rights</span><span>Venue</span><span>Transaction</span><span>District</span></div>
+  <div class="timeline-wrap"><div class="timeline" id="timeline"></div></div>
+</section>
+
+<section id="view-empires" class="view">
+  <div class="section-header"><div class="section-title">Sports empire graph</div><div class="section-meta">Owner → holding company → team → venue → land → league</div></div>
+  <div class="empire-layout"><div class="empire-list" id="empire-list"></div><div class="empire-canvas" id="empire-canvas"></div></div>
+</section>
+
+<section id="view-land" class="view">
+  <div class="summary-strip" id="land-summary"></div>
+  <div class="controls"><input id="land-search" type="text" placeholder="Search districts, owners, landholders, catalysts..."><select id="land-sort"><option value="score">Sort: optionality score</option><option value="acres">Sort: controlled acreage</option><option value="control">Sort: control ratio</option><option value="value">Sort: prospective value</option></select></div>
+  <div class="section-header"><div class="section-title">Land &amp; sports districts</div><div class="section-meta">Legal title, adjacent control, public finance and embedded optionality</div></div>
+  <div class="land-grid" id="land-grid"></div>
+</section>
+
+<section id="view-metrics" class="view">
+  <div class="section-header"><div class="section-title">Derived intelligence</div><div class="section-meta">Calculated from the underlying asset graph</div></div>
+  <div class="metric-grid" id="metric-grid"></div>
+</section>
+
+<section id="view-rights" class="view">
   <div class="summary-strip" id="rights-summary"></div>
   <div class="controls">
     <input type="text" id="rights-search" placeholder="Search leagues, broadcasters, terms...">
@@ -2113,11 +2228,128 @@ function buildFilters(viewName) {
   });
 }
 
+
+
+// ===== Intelligence expansion datasets =====
+const DISTRICTS = [
+ {name:'Hollywood Park / SoFi Stadium',city:'Inglewood, CA',anchor:'Los Angeles Rams / Chargers',landOwner:'Kroenke / Hollywood Park entities',adjacentOwner:'Kroenke-affiliated development entities',developer:'Kroenke Group / Wilson Meany',acres:298,control:88,score:94,prospective:8.0,public:'Public infrastructure support; venue privately financed',transit:'Metro K Line connection via shuttle; regional airport access',current:'Stadium + phased mixed-use district',planned:'Retail, office, residential, hotel, entertainment',catalyst:'Long-duration buildout of one of the largest privately controlled sports districts in the US',status:'Announced / building'},
+ {name:'Willets Point / Citi Field',city:'Queens, NY',anchor:'New York Mets',landOwner:'NYC + private parcels; Mets-affiliated interests nearby',adjacentOwner:'Steve Cohen / Hard Rock consortium interests',developer:'Queens Future / Related-Sterling ecosystem',acres:50,control:58,score:96,prospective:8.0,public:'Major city land-use, infrastructure and redevelopment role',transit:'7 subway + LIRR',current:'Parking, auto uses, stadium-adjacent public land',planned:'Metropolitan Park concept, housing, entertainment, public realm',catalyst:'Rare transit-rich, underbuilt land beside a major NYC venue',status:'Emerging / entitlement'},
+ {name:'The Battery Atlanta',city:'Cumberland, GA',anchor:'Atlanta Braves',landOwner:'Braves Development Company and partners',adjacentOwner:'Braves-affiliated entities',developer:'Braves Development Company',acres:60,control:82,score:88,prospective:2.0,public:'Cobb County financing and infrastructure partnership',transit:'Highway-oriented',current:'Mature mixed-use district',planned:'Continued infill and operating optimization',catalyst:'Canonical proof that team ownership can capture district economics',status:'Operating'},
+ {name:'Deer District',city:'Milwaukee, WI',anchor:'Milwaukee Bucks',landOwner:'Bucks-related entities + public partners',adjacentOwner:'Bucks ownership group',developer:'Bucks / local partners',acres:30,control:72,score:81,prospective:1.2,public:'Public arena financing and district infrastructure',transit:'Downtown street network',current:'Arena + entertainment district',planned:'Additional residential, office and hospitality',catalyst:'Arena-led downtown regeneration with remaining infill capacity',status:'Operating / expanding'},
+ {name:'Wrigleyville / Gallagher Way',city:'Chicago, IL',anchor:'Chicago Cubs',landOwner:'Ricketts-affiliated entities around Wrigley',adjacentOwner:'Ricketts family entities',developer:'Hickory Street Capital',acres:10,control:64,score:78,prospective:1.0,public:'Limited relative to greenfield venue projects',transit:'CTA Red Line',current:'Dense mixed-use entertainment district',planned:'Incremental infill and hospitality optimization',catalyst:'Scarce urban land with exceptional event-driven foot traffic',status:'Operating'},
+ {name:'Brook Park Browns District',city:'Brook Park, OH',anchor:'Cleveland Browns',landOwner:'Mixed private / assembled parcels',adjacentOwner:'Haslam Sports Group-linked development interests',developer:'Haslam Sports Group / partners',acres:176,control:76,score:93,prospective:3.5,public:'Proposed public participation and infrastructure mechanisms',transit:'Airport + highway access',current:'Industrial / underutilized land',planned:'Domed stadium and large mixed-use district',catalyst:'Large-scale land transformation tied to a potential new venue',status:'Proposed'},
+ {name:'Arlington Heights / Bears',city:'Arlington Heights, IL',anchor:'Chicago Bears',landOwner:'Chicago Bears',adjacentOwner:'Bears-controlled former racetrack site',developer:'Chicago Bears / future partners',acres:326,control:96,score:95,prospective:5.0,public:'Infrastructure and tax framework under negotiation',transit:'Metra rail station on site',current:'Former racetrack / cleared land',planned:'Stadium-led mixed-use district',catalyst:'Rare single-owner, rail-served, 300+ acre parcel in a major metro',status:'Option / planning'},
+ {name:'Intuit Dome / Inglewood',city:'Inglewood, CA',anchor:'LA Clippers',landOwner:'Steve Ballmer-affiliated entities',adjacentOwner:'Mixed; Ballmer controls key arena campus',developer:'Murphy’s Bowl LLC',acres:28,control:67,score:79,prospective:2.0,public:'Local development agreement and infrastructure coordination',transit:'Near Hollywood Park; future regional connectivity',current:'New arena campus',planned:'Commercial and entertainment ecosystem',catalyst:'Concentration of major venues makes Inglewood a sports-entertainment supercluster',status:'Operating'},
+ {name:'Fenway / Lansdowne',city:'Boston, MA',anchor:'Boston Red Sox',landOwner:'Fenway Sports Group / affiliates + fragmented private owners',adjacentOwner:'FSG-linked and institutional partners',developer:'WS Development / Fenway partners',acres:8,control:42,score:84,prospective:2.5,public:'Transit and planning coordination',transit:'MBTA Green Line + commuter rail',current:'Dense urban mixed-use',planned:'Fenway Corners and infill development',catalyst:'Exceptional scarcity and institutional land assembly around an iconic venue',status:'Building'},
+ {name:'Navy Yard / South Philadelphia Sports Complex',city:'Philadelphia, PA',anchor:'Eagles / Phillies / 76ers / Flyers',landOwner:'Public authorities + team-controlled parcels',adjacentOwner:'Comcast Spectacor and other institutional owners',developer:'Multiple',acres:120,control:38,score:90,prospective:6.0,public:'Significant public land and infrastructure role',transit:'Broad Street Line terminus',current:'Stadiums + vast surface parking',planned:'Entertainment, mixed-use, potential parking conversion',catalyst:'One of America’s largest transit-adjacent surface-parking reservoirs beside multiple venues',status:'Emerging'},
+ {name:'Tottenham High Road Regeneration',city:'London, UK',anchor:'Tottenham Hotspur',landOwner:'Tottenham Hotspur-linked entities + public/private mosaic',adjacentOwner:'Club-affiliated development entities',developer:'Tottenham Hotspur / partners',acres:30,control:61,score:86,prospective:2.5,public:'Regeneration, planning and transport coordination',transit:'Multiple rail / Overground stations',current:'Stadium-led urban regeneration',planned:'Housing, hotel, public realm, commercial uses',catalyst:'Global example of venue-led neighborhood-scale regeneration',status:'Operating / expanding'},
+ {name:'Washington Commanders Future District',city:'Washington region',anchor:'Washington Commanders',landOwner:'Site dependent',adjacentOwner:'Potential Harris Blitzer / development consortium',developer:'To be determined',acres:180,control:35,score:92,prospective:6.0,public:'Expected major intergovernmental and infrastructure negotiation',transit:'Site dependent',current:'Multiple candidate sites',planned:'Stadium + mixed-use district',catalyst:'A franchise relocation decision could redirect billions of development value',status:'Watchlist'}
+];
+
+const SIGNALS = [
+ {score:98,title:'The 2028 rights convergence',type:'Media',horizon:'24 months',text:'NHL, MLB and Premier League US rights approach major renewal windows in the same period, creating a rare redistribution point for sports media power.'},
+ {score:97,title:'Sports owners are becoming master developers',type:'Land',horizon:'Now',text:'Arlington Heights, Brook Park and Willets Point illustrate the shift from owning a team to controlling hundreds of acres and the district economics around a venue.'},
+ {score:95,title:'Surface parking is latent urban inventory',type:'Real estate',horizon:'5–10 years',text:'Transit-adjacent parking fields around major venues represent some of the largest underutilized development reservoirs in American sports.'},
+ {score:93,title:'Institutional capital is rewiring ownership',type:'Capital',horizon:'Now',text:'Private equity and structured capital increasingly connect franchises across leagues, countries and asset classes without requiring full control.'},
+ {score:91,title:'The old stadium site can be the hidden asset',type:'Land',horizon:'Event-driven',text:'Relocations can create two simultaneous opportunities: a new district around the replacement venue and redevelopment of the former site.'},
+ {score:89,title:'Naming rights should be viewed as infrastructure yield',type:'Commercial',horizon:'Now',text:'Annual naming income relative to venue cost reveals how effectively a physical asset monetizes corporate demand.'}
+];
+
+const TIMELINE_EVENTS = [
+ {year:2026,type:'venue',title:'Intuit Dome operating cycle',detail:'New arena economics mature'},
+ {year:2027,type:'rights',title:'IPL rights window',detail:'Major cricket inventory returns'},
+ {year:2027,type:'district',title:'MLS calendar transition',detail:'Potential district activation shift'},
+ {year:2028,type:'rights',title:'NHL rights expire',detail:'US national package renewal'},
+ {year:2028,type:'rights',title:'MLB bridge expires',detail:'Full national renegotiation'},
+ {year:2028,type:'rights',title:'Premier League US',detail:'NBC cycle ends'},
+ {year:2029,type:'rights',title:'MLS / Apple revision point',detail:'Global package opens'},
+ {year:2029,type:'rights',title:'La Liga US',detail:'ESPN cycle ends'},
+ {year:2030,type:'rights',title:'F1 US',detail:'Apple cycle ends'},
+ {year:2030,type:'rights',title:'UEFA cycle',detail:'Champions League renewal window'},
+ {year:2030,type:'district',title:'Major district buildouts',detail:'Next wave of stadium-led mixed use'},
+ {year:2031,type:'venue',title:'New venue pipeline',detail:'Multiple proposed US projects could open'},
+ {year:2032,type:'rights',title:'UFC cycle',detail:'Paramount package approaches renewal'},
+ {year:2033,type:'rights',title:'NFL core cycle',detail:'Major package expirations'},
+ {year:2034,type:'venue',title:'Salt Lake Winter Games',detail:'Infrastructure and venue catalyst'},
+ {year:2035,type:'rights',title:'Wimbledon US',detail:'Long-dated ESPN deal matures'},
+ {year:2036,type:'rights',title:'NBA / WNBA cycle',detail:'Historic long-term packages mature'},
+ {year:2037,type:'rights',title:'US Open Tennis',detail:'ESPN agreement matures'},
+ {year:2040,type:'district',title:'Long-duration land optionality',detail:'Current land assemblies reach mature buildout'}
+];
+
+const EMPIRES = [
+ {name:'Stan Kroenke / KSE',value:'$25B+',nodes:[['Los Angeles Rams','Team'],['Arsenal','Team'],['Denver Nuggets','Team'],['Colorado Avalanche','Team'],['Colorado Rapids','Team'],['SoFi Stadium','Venue'],['Hollywood Park','Land / district'],['NFL · EPL · NBA · NHL · MLS','Leagues']]},
+ {name:'Josh Harris / HBSE',value:'$15B+',nodes:[['Washington Commanders','Team'],['Philadelphia 76ers','Team'],['New Jersey Devils','Team'],['Crystal Palace stake','Team'],['Prudential Center','Venue'],['Apollo / institutional network','Capital'],['NFL · NBA · NHL · EPL','Leagues']]},
+ {name:'Mark Walter ecosystem',value:'$20B+',nodes:[['Los Angeles Dodgers','Team'],['Chelsea stake ecosystem','Team'],['Los Angeles Lakers stake','Team'],['TWG Global','Holding company'],['Guggenheim network','Capital'],['Dodger Stadium','Venue'],['MLB · NBA · EPL','Leagues']]},
+ {name:'Fenway Sports Group',value:'$15B+',nodes:[['Boston Red Sox','Team'],['Liverpool FC','Team'],['Pittsburgh Penguins','Team'],['RFK Racing','Team'],['Fenway Park','Venue'],['Fenway district interests','Land / district'],['MLB · EPL · NHL · NASCAR','Leagues']]}
+];
+
+function fmtB(v){ return '$'+(v>=10?Math.round(v):v.toFixed(1))+'B'; }
+function renderHome(){
+  const upcoming=RIGHTS.filter(x=>x.expiryYear>=2027&&x.expiryYear<=2030).reduce((a,b)=>a+(b.totalVal||0),0);
+  const landValue=DISTRICTS.reduce((a,b)=>a+b.prospective,0);
+  document.getElementById('home-features').innerHTML=`
+    <div class="feature-card lead" data-jump="signals"><div><div class="eyebrow">Featured signal</div><h3>The next redistribution of sports power is already visible.</h3><p class="feature-copy">Rights expirations, institutional ownership and land control are converging. The most important assets are increasingly not isolated teams or stadiums, but connected platforms spanning audience, capital and place.</p></div><div><div class="feature-number">${fmtB(upcoming)}+</div><div class="eyebrow">disclosed rights value touching 2027–2030 windows</div></div></div>
+    <div class="feature-card" data-jump="land"><div class="eyebrow">Land optionality</div><h3>${fmtB(landValue)}+</h3><p class="feature-copy">Illustrative prospective district value represented in the current watchlist.</p></div>
+    <div class="feature-card" data-jump="empires"><div class="eyebrow">Connected control</div><h3>${EMPIRES.length} empires</h3><p class="feature-copy">Explore multi-asset ownership networks across teams, venues, land and leagues.</p></div>`;
+}
+function renderSignals(){
+ const avg=Math.round(SIGNALS.reduce((a,b)=>a+b.score,0)/SIGNALS.length);
+ document.getElementById('signals-summary').innerHTML=`<div class="summary-stat"><div class="summary-label">Signals tracked</div><div class="summary-value">${SIGNALS.length}</div><div class="summary-delta">Ranked theses</div></div><div class="summary-stat"><div class="summary-label">Average conviction</div><div class="summary-value">${avg}</div><div class="summary-delta">Proprietary 0–100 score</div></div><div class="summary-stat"><div class="summary-label">Top theme</div><div class="summary-value">Land</div><div class="summary-delta">Control + optionality</div></div>`;
+ document.getElementById('signals-list').innerHTML=SIGNALS.map(s=>`<div class="insight-item"><div class="signal-score">${s.score}</div><div><div class="eyebrow">${escapeHtml(s.type)} · ${escapeHtml(s.horizon)}</div><div style="font-family:'Source Serif 4',serif;font-size:20px;margin:3px 0">${escapeHtml(s.title)}</div><div class="feature-copy">${escapeHtml(s.text)}</div></div><div class="signal-chip">Watch</div></div>`).join('');
+}
+function renderTimeline(){
+ const years=[]; for(let y=2026;y<=2040;y++) years.push(y);
+ document.getElementById('timeline').innerHTML=years.map(y=>`<div class="timeline-year"><h4>${y}</h4>${TIMELINE_EVENTS.filter(e=>e.year===y).map(e=>`<div class="timeline-event" data-type="${e.type}"><strong>${escapeHtml(e.title)}</strong>${escapeHtml(e.detail)}</div>`).join('')}</div>`).join('');
+}
+function renderEmpires(){
+ const list=document.getElementById('empire-list');
+ list.innerHTML=EMPIRES.map((e,i)=>`<button class="empire-option ${i===0?'active':''}" data-empire="${i}"><strong>${escapeHtml(e.name)}</strong><div class="sub">Estimated ecosystem ${escapeHtml(e.value)}</div></button>`).join('');
+ list.querySelectorAll('.empire-option').forEach(b=>b.onclick=()=>{list.querySelectorAll('.empire-option').forEach(x=>x.classList.remove('active'));b.classList.add('active');drawEmpire(+b.dataset.empire)});
+ drawEmpire(0);
+}
+function drawEmpire(i){
+ const e=EMPIRES[i], c=document.getElementById('empire-canvas');
+ const cx=50,cy=50,R=37;
+ let html=`<div class="empire-node core" style="left:${cx}%;top:${cy}%">${escapeHtml(e.name)}<div style="font:10px Inter;margin-top:4px;opacity:.75">${escapeHtml(e.value)}</div></div>`;
+ e.nodes.forEach((n,idx)=>{const a=(Math.PI*2*idx/e.nodes.length)-Math.PI/2; const x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R; const dx=x-cx,dy=y-cy,len=Math.sqrt(dx*dx+dy*dy),ang=Math.atan2(dy,dx)*180/Math.PI; html+=`<div class="empire-line" style="left:${cx}%;top:${cy}%;width:${len}%;transform:rotate(${ang}deg)"></div><div class="empire-node" style="left:${x}%;top:${y}%"><strong>${escapeHtml(n[0])}</strong><div class="sub">${escapeHtml(n[1])}</div></div>`});
+ c.innerHTML=html;
+}
+function renderLand(){
+ const q=(document.getElementById('land-search')?.value||'').toLowerCase(), sort=document.getElementById('land-sort')?.value||'score';
+ let items=DISTRICTS.filter(d=>!q||Object.values(d).join(' ').toLowerCase().includes(q));
+ items.sort((a,b)=>sort==='acres'?b.acres-a.acres:sort==='control'?b.control-a.control:sort==='value'?b.prospective-a.prospective:b.score-a.score);
+ const acres=items.reduce((a,b)=>a+b.acres,0), pv=items.reduce((a,b)=>a+b.prospective,0), avg=items.length?Math.round(items.reduce((a,b)=>a+b.score,0)/items.length):0;
+ document.getElementById('land-summary').innerHTML=`<div class="summary-stat"><div class="summary-label">Districts tracked</div><div class="summary-value">${items.length}</div><div class="summary-delta">Operating + prospective</div></div><div class="summary-stat"><div class="summary-label">Controlled / relevant land</div><div class="summary-value">${acres.toLocaleString()}</div><div class="summary-delta">Illustrative acres</div></div><div class="summary-stat"><div class="summary-label">Prospective value</div><div class="summary-value">${fmtB(pv)}+</div><div class="summary-delta">Illustrative development potential</div></div><div class="summary-stat"><div class="summary-label">Avg optionality</div><div class="summary-value">${avg}</div><div class="summary-delta">0–100 score</div></div>`;
+ document.getElementById('land-grid').innerHTML=items.map(d=>`<article class="land-card"><div class="land-card-top"><div><div class="eyebrow">${escapeHtml(d.city)} · ${escapeHtml(d.status)}</div><h3>${escapeHtml(d.name)}</h3><div class="feature-copy" style="margin-top:7px">${escapeHtml(d.catalyst)}</div></div><div class="score-ring">${d.score}</div></div><div class="land-meta"><div class="land-metric"><span>Relevant acreage</span><strong>${d.acres}</strong></div><div class="land-metric"><span>Control ratio</span><strong>${d.control}%</strong></div><div class="land-metric"><span>Prospective value</span><strong>${fmtB(d.prospective)}</strong></div></div><div class="detail-grid"><div><div class="detail-label">Land owner / control</div><div class="detail-value">${escapeHtml(d.landOwner)}</div></div><div><div class="detail-label">Adjacent control</div><div class="detail-value">${escapeHtml(d.adjacentOwner)}</div></div><div><div class="detail-label">Developer</div><div class="detail-value">${escapeHtml(d.developer)}</div></div><div><div class="detail-label">Public finance</div><div class="detail-value">${escapeHtml(d.public)}</div></div><div><div class="detail-label">Current use</div><div class="detail-value">${escapeHtml(d.current)}</div></div><div><div class="detail-label">Planned use</div><div class="detail-value">${escapeHtml(d.planned)}</div></div></div><div class="detail-label" style="margin-top:16px">Estimated district control</div><div class="control-bar"><i style="width:${d.control}%"></i></div></article>`).join('');
+}
+function cagr(current,purchase,year){const n=2026-year;if(!purchase||n<=0)return null;return Math.pow(current/purchase,1/n)-1}
+function renderMetrics(){
+ const investable=OWNERS.filter(x=>x.purchaseVal>0&&x.value>0&&x.year<2026).map(x=>({...x,cagr:cagr(x.value,x.purchaseVal,x.year)})).filter(x=>isFinite(x.cagr)).sort((a,b)=>b.cagr-a.cagr);
+ const top=investable[0];
+ const named=NAMING.filter(x=>x.annualVal>0&&x.totalVal>0);
+ const namingYield=named.length?named.reduce((a,b)=>a+b.annualVal,0)/named.length:0;
+ const topLand=[...DISTRICTS].sort((a,b)=>b.score-a.score)[0];
+ const rightsPerYear=RIGHTS.filter(x=>x.annualVal>0).reduce((a,b)=>a+b.annualVal,0);
+ const cards=[
+ ['Franchise appreciation leader', top?((top.cagr*100).toFixed(1)+'% CAGR'):'—', top?`${top.team}: ${top.purchase} to ${top.valueStr} since ${top.yearStr}.`:'', 'CAGR = (current value / purchase price)^(1 / holding years) − 1'],
+ ['Rights value tracked', fmtB(rightsPerYear)+'/yr', 'Disclosed annual media-rights value represented in the current rights dataset.', 'Σ disclosed annual rights values'],
+ ['Top land optionality', topLand.score+'/100', `${topLand.name} leads the current district watchlist.`, 'Weighted: control + underuse + transit + scarcity + catalyst'],
+ ['Land control leader', Math.max(...DISTRICTS.map(d=>d.control))+'%', 'Highest estimated share of economically relevant district land under aligned control.', 'Owner-controlled relevant acreage / district relevant acreage'],
+ ['Average naming income', '$'+(namingYield*1000).toFixed(1)+'M/yr', 'Average disclosed annual naming-rights income among tracked paid deals.', 'Σ annual naming value / disclosed deals'],
+ ['Empire value', EMPIRES[0].value, 'Illustrative combined sports-asset ecosystem value for the currently selected leading network.', 'Estimated controlled and strategically affiliated sports assets']
+ ];
+ document.getElementById('metric-grid').innerHTML=cards.map(c=>`<div class="metric-card"><div class="eyebrow">Derived metric</div><div class="metric-value">${escapeHtml(c[1])}</div><h4 style="font-family:'Source Serif 4',serif;font-size:19px">${escapeHtml(c[0])}</h4><p>${escapeHtml(c[2])}</p><div class="metric-formula">${escapeHtml(c[3])}</div></div>`).join('');
+}
+
 function setView(view) {
   activeView = view;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
 }
+
+document.querySelectorAll('[data-jump]').forEach(b => b.addEventListener('click', () => setView(b.dataset.jump)));
+document.body.addEventListener('click', e => { const j=e.target.closest('[data-jump]'); if(j) setView(j.dataset.jump); });
 
 document.querySelectorAll('.tab').forEach(t => {
   t.addEventListener('click', () => setView(t.dataset.view));
@@ -2142,6 +2374,8 @@ document.getElementById('venues-search').addEventListener('input', renderVenues)
 document.getElementById('venues-sort').addEventListener('change', renderVenues);
 document.getElementById('naming-search').addEventListener('input', renderNaming);
 document.getElementById('naming-sort').addEventListener('change', renderNaming);
+document.getElementById('land-search').addEventListener('input', renderLand);
+document.getElementById('land-sort').addEventListener('change', renderLand);
 
 // Chat event wiring
 document.getElementById('api-toggle').addEventListener('click', () => {
@@ -2164,6 +2398,12 @@ document.querySelectorAll('.suggest-pill').forEach(p => {
   });
 });
 
+renderHome();
+renderSignals();
+renderTimeline();
+renderEmpires();
+renderLand();
+renderMetrics();
 buildFilters('rights');
 buildFilters('owners');
 buildFilters('venues');
