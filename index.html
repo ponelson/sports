@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sports Intelligence — Rights, Owners, Venues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700;8..60,900&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{--sans:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;--serif:'Source Serif 4',ui-serif,Georgia,serif;--mono:'JetBrains Mono','SF Mono',Menlo,monospace;--wm-glass:rgba(255,255,255,.72);--wm-shadow2:0 8px 28px rgba(0,0,0,.08);
   --bg: #f5f3ee;
   --bg-elev: #fbfaf6;
   --bg-row-alt: #f0eee8;
@@ -27,24 +28,7 @@
   --blue: #1a3a6e;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15140f;
-    --bg-elev: #1e1d18;
-    --bg-row-alt: #1a1914;
-    --paper: #1e1d18;
-    --ink: #f4f2e8;
-    --ink-2: #c8c5b8;
-    --ink-3: #8d8a7c;
-    --ink-4: #5a5850;
-    --rule: #2e2c25;
-    --rule-strong: #c8c5b8;
-    --accent: #e89060;
-    --accent-soft: #3a2a15;
-    --green: #98c098;
-    --amber: #e0b870;
-    --red: #e89090;
-    --blue: #95b0d8;
-  }
+  :root { --wm-ink:#111114;--bg:#f5f5f7;--bg-elev:rgba(255,255,255,.72);--bg-row-alt:#eef0f3;--paper:rgba(255,255,255,.72);--ink:#111114;--ink-2:#303540;--ink-3:#6b6f7b;--ink-4:#9aa0ab;--rule:rgba(0,0,0,.10);--accent:#0071e3;--accent-soft:#eaf3ff; }
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -772,6 +756,16 @@ footer h4 {
 .legend span:before { content:''; display:inline-block; width:8px; height:8px; margin-right:6px; background:var(--rule-strong); }
 @media(max-width:900px){.feature-grid,.module-grid,.metric-grid,.land-grid{grid-template-columns:1fr}.empire-layout{grid-template-columns:1fr}.hero{padding-top:42px}.feature-card.lead h3{font-size:32px}.empire-canvas{min-height:650px}}
 
+
+  :root{--wm-ink:#111114;--bg:#f5f5f7;--bg-elev:rgba(255,255,255,.72);--bg-row-alt:#eef0f3;--paper:rgba(255,255,255,.72);--ink:#111114;--ink-2:#303540;--ink-3:#6b6f7b;--ink-4:#9aa0ab;--rule:rgba(0,0,0,.10);--accent:#0071e3;--accent-soft:#eaf3ff;}
+
+  /* ===== world_models re-skin (chrome only; content untouched) ===== */
+  html{background:#eff2f6;}
+  body{background:radial-gradient(circle at 15% 0%, #eaf3ff 0, rgba(234,243,255,0) 38%),radial-gradient(circle at 80% 8%, #fff0df 0, rgba(255,240,223,0) 32%),linear-gradient(180deg,#fbfbfd 0,#f5f5f7 45%,#eff2f6 100%) !important;background-attachment:fixed !important;color:var(--wm-ink,#111114);}
+  body{font-family:var(--sans) !important;line-height:1.45;}
+  h1,h2,h3,h4,h5,h6,.serif,.title,h1.title,.fp-title,.lede h2,.display,.big,.feature-card h3,.land-card h3{font-family:var(--serif) !important;}
+  code,kbd,pre,samp,th,.mono,.factor,.kicker,.eyebrow,.fp-k,.fp-stat,[class*="mono"],.filter-btn,.suggest-pill{font-family:var(--mono) !important;}
+  .feature-card,.metric-card,.module-card,.land-card,.empire-node,.empire-list,.detail-content,.note-block,.masthead,.summary-strip,.timeline-event,.empire-canvas{background:var(--wm-glass) !important;backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);box-shadow:var(--wm-shadow2);border:1px solid rgba(0,0,0,.09);}
 </style>
 </head>
 <body>
